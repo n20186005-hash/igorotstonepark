@@ -1,0 +1,11 @@
+{
+  "name": "Igorot Stone Kingdom — Gabay sa Pagbisita",
+  "short_name": "Stone Kingdom",
+  "icons": [
+    { "src": "/favicon-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "theme_color": "#17372c",
+  "background_color": "#f7f5ef",
+  "display": "standalone"
+}

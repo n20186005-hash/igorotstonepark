@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 96" role="img" aria-labelledby="title desc">
+  <title id="title">Igorot Stone Kingdom Guide</title>
+  <desc id="desc">A stepped stone hill with a pine peak.</desc>
+  <g transform="translate(8 8)">
+    <path d="M4 68h68v12H4zM12 49h52v14H12zM21 31h34v13H21z" fill="#D8C7A5" stroke="#17372C" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M38 3l8 17h-6v10h-5V20h-6z" fill="#17372C"/>
+    <path d="M17 68l6-8 7 8 7-9 7 9 7-8 7 8" fill="none" stroke="#A85F3D" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g fill="#17372C">
+    <text x="98" y="40" font-family="Georgia,serif" font-size="27" font-weight="700">IGOROT STONE KINGDOM</text>
+    <text x="99" y="67" font-family="Arial,sans-serif" font-size="15" letter-spacing="3.2">GABAY SA BAGUIO</text>
+  </g>
+</svg>

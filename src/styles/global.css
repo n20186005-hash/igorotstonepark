@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+:root {
+  --pine: #17372c;
+  --pine-2: #244c3b;
+  --stone: #d8c7a5;
+  --stone-light: #f2ede1;
+  --earth: #a85f3d;
+  --ink: #20261f;
+  --mist: #f7f5ef;
+  --line: rgba(32, 38, 31, 0.16);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--mist);
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 12px 13px, rgba(23, 55, 44, 0.045) 1.1px, transparent 1.2px) 0 0 / 28px 28px,
+    linear-gradient(180deg, #f7f5ef 0%, #eee8dc 100%);
+}
+
+h1,
+h2,
+h3,
+.display-serif {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+::selection {
+  color: white;
+  background: var(--earth);
+}
+
+.focus-ring:focus-visible,
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #d28a65;
+  outline-offset: 4px;
+}
+
+.stone-texture {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.18), transparent 42%),
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,.25) 0 2px, transparent 2.5px),
+    radial-gradient(circle at 72% 55%, rgba(33,40,31,.08) 0 1px, transparent 1.5px),
+    var(--stone);
+  background-size: auto, 32px 32px, 24px 24px, auto;
+}
+
+.stone-edge {
+  clip-path: polygon(2% 3%, 97% 0, 100% 92%, 95% 100%, 4% 98%, 0 88%, 1% 12%);
+}
+
+.ridge-line {
+  height: 18px;
+  background: var(--pine);
+  clip-path: polygon(0 75%, 4% 42%, 8% 68%, 12% 25%, 16% 56%, 20% 15%, 24% 61%, 28% 35%, 32% 72%, 36% 22%, 40% 52%, 44% 5%, 48% 58%, 52% 32%, 56% 70%, 60% 20%, 64% 55%, 68% 12%, 72% 64%, 76% 28%, 80% 69%, 84% 18%, 88% 54%, 92% 32%, 96% 61%, 100% 38%, 100% 100%, 0 100%);
+  opacity: .88;
+}
+
+.hero-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(12, 31, 24, .88) 0%, rgba(12, 31, 24, .54) 42%, rgba(12, 31, 24, .12) 72%, rgba(12, 31, 24, .05) 100%);
+  pointer-events: none;
+}
+
+.stone-grid {
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.map-frame {
+  box-shadow: 14px 14px 0 rgba(23, 55, 44, 0.12);
+}
+
+.faq-item[open] summary .faq-plus {
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
