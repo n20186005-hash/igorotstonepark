@@ -4,7 +4,8 @@ Isang custom, single-page Astro site para sa Igorot Stone Kingdom sa Baguio. Fil
 
 ## Stack at version pins
 
-- Astro `7.2.0`
+- Astro `7.3.3`
+- `@astrojs/cloudflare` `14.3.2` (hybrid SSR para sa `/api/weather`)
 - Tailwind CSS `4.3.3` + `@tailwindcss/vite` `4.3.3`
 - TypeScript `6.0.3`
 - `@astrojs/check` `0.9.10` — peer range nito ay sumusuporta sa TypeScript 6
@@ -13,17 +14,17 @@ Isang custom, single-page Astro site para sa Igorot Stone Kingdom sa Baguio. Fil
 - Node.js `24.19.0` LTS sa `engines` at `.node-version`
 - Cloudflare Wrangler `4.120.1` ay exact-pinned sa `deploy` script sa pamamagitan ng `pnpm dlx`
 
-Walang database, login, CMS o server-side data dependency. Static ang Astro output at dine-deploy bilang Cloudflare Worker static assets.
+Walang database, login o CMS. Ang content pages ay prerendered (static), pero ang `/api/weather` endpoint ay tumatakbo sa Cloudflare Worker para sa server-side weather fetch + cache (hybrid output via `@astrojs/cloudflare`).
 
 ## Domain: isang lugar lang ang babaguhin
 
 Buksan ang `astro.config.mjs` at palitan lamang ang:
 
 ```js
-const site = '';
+const site = 'https://igorotstonepark.com';
 ```
 
-Kapag may final domain na, ilagay ang mismong HTTPS origin sa value na ito at huwag nang magdagdag ng hiwalay na base URL sa ibang file.
+Ang production domain ay `https://igorotstonepark.com`. Kapag naka-set ang `site`, awtomatikong gumagawa ng canonical URL, `og:url`, absolute OG image URL at sitemap (`sitemap-index.xml` mula sa `@astrojs/sitemap`). Huwag nang magdagdag ng hiwalay na base URL sa ibang file.
 
 Kapag walang domain, normal pa ring nagbu-build ang site: hindi nilalabas ang absolute canonical / `og:url` / absolute OG image URL at hindi ine-enable ang sitemap integration. Kapag may `site`, lahat ng absolute page/image URL ay dini-derive mula sa `Astro.site`, at ang sitemap ay awtomatikong ginagawa ng `@astrojs/sitemap`.
 
@@ -45,7 +46,7 @@ pnpm build
 pnpm deploy
 ```
 
-Ang `wrangler.jsonc` ay assets-only Worker config na nagtuturo sa `./dist`; walang Astro server adapter na kailangan para sa static output na ito.
+Ang `wrangler.jsonc` ay Worker config na gumagamit ng `@astrojs/cloudflare` adapter: ang `main` ay ang Astro server entrypoint at ang `assets.directory` ay `./dist/client` para sa prerendered pages. Ang `/api/weather` ay hinahawakan ng Worker (server-side Open-Meteo fetch + Cloudflare cache).
 
 ## Required clean-environment check
 

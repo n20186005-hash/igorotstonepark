@@ -1,11 +1,18 @@
 {
   "name": "Igorot Stone Kingdom — Gabay sa Pagbisita",
   "short_name": "Stone Kingdom",
-  "icons": [
-    { "src": "/favicon-32.png", "sizes": "32x32", "type": "image/png" },
-    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
-  ],
-  "theme_color": "#17372c",
+  "description": "Visitor guide to Igorot Stone Kingdom in Baguio: weather, fees, hours, directions, transport, food and nearby attractions.",
+  "lang": "fil",
+  "start_url": "/",
+  "scope": "/",
+  "id": "/",
+  "display": "standalone",
   "background_color": "#f7f5ef",
-  "display": "standalone"
+  "theme_color": "#17372c",
+  "categories": ["travel", "tourism", "navigation"],
+  "icons": [
+    { "src": "/favicon-16.png", "sizes": "16x16", "type": "image/png" },
+    { "src": "/favicon-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
 }

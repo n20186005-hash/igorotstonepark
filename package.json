@@ -16,9 +16,10 @@
     "deploy": "pnpm build && pnpm dlx wrangler@4.120.1 deploy"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "14.3.2",
     "@astrojs/sitemap": "3.7.3",
     "@tailwindcss/vite": "4.3.3",
-    "astro": "7.2.0",
+    "astro": "7.3.3",
     "tailwindcss": "4.3.3"
   },
   "devDependencies": {

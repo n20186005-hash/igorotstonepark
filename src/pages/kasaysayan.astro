@@ -1,0 +1,133 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+export const prerender = true;
+
+const pageTitle = 'Kasaysayan at Alamat ng Igorot Stone Kingdom — Baguio';
+const pageDescription = 'Ang kuwento, sining ng bato at kontekstong kultural ng Igorot Stone Kingdom sa Pinsao, Baguio — at kung paano nito hinuhugot ang inspirasyon mula sa pamana ng Cordillera.';
+
+const siteUrl = Astro.site;
+const pageUrl = siteUrl ? new URL('/kasaysayan/', siteUrl).toString() : '/kasaysayan/';
+const homeUrl = siteUrl ? siteUrl.toString() : '/';
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Gabay', item: homeUrl },
+    { '@type': 'ListItem', position: 2, name: 'Kasaysayan', item: pageUrl }
+  ]
+};
+
+const sources = [
+  { fil: 'Igorot people — Wikipedia', en: 'Igorot people — Wikipedia', href: 'https://en.wikipedia.org/wiki/Igorot_people' },
+  { fil: 'Rice terraces of the Philippine Cordilleras — Wikipedia', en: 'Rice terraces of the Philippine Cordilleras — Wikipedia', href: 'https://en.wikipedia.org/wiki/Rice_terraces_of_the_Philippine_Cordilleras' },
+  { fil: 'Rice Terraces of the Philippine Cordilleras — UNESCO World Heritage', en: 'Rice Terraces of the Philippine Cordilleras — UNESCO World Heritage', href: 'https://whc.unesco.org/en/list/722/' },
+  { fil: 'National Commission on Indigenous Peoples (NCIP)', en: 'National Commission on Indigenous Peoples (NCIP)', href: 'https://ncip.gov.ph/' },
+  { fil: 'City Government of Baguio', en: 'City Government of Baguio', href: 'https://www.baguio.gov.ph/' }
+];
+---
+
+<Base title={pageTitle} description={pageDescription}>
+  <script type="application/ld+json" slot="structured-data" set:html={JSON.stringify(breadcrumb)} />
+
+  <section class="bg-[#17372c] text-white px-5 py-16 lg:px-10 lg:py-24">
+    <div class="mx-auto max-w-[1440px]">
+      <Breadcrumbs items={[{ fil: 'Gabay', en: 'Guide', href: '/' }, { fil: 'Kasaysayan', en: 'History & Lore', href: '/kasaysayan/' }]} />
+      <p class="mt-8 text-xs font-black uppercase tracking-[0.24em] text-[#dcb17c]"><span class="lang-fil">Kasaysayan at konteksto</span><span class="lang-en">History &amp; context</span></p>
+      <h1 class="mt-4 text-5xl font-bold leading-none md:text-6xl"><span class="lang-fil">Kasaysayan at Alamat ng Igorot Stone Kingdom</span><span class="lang-en">History &amp; Lore of the Igorot Stone Kingdom</span></h1>
+      <p class="mt-6 max-w-2xl text-base leading-7 text-white/80">
+        <span class="lang-fil">Higit sa isang pasyalan, ang Igorot Stone Kingdom ay isang pagkukuwento sa bato—tungkol sa bundok, sa mga komunidad ng Cordillera, at sa isang modernong proyektong humuhugot sa kanilang sining.</span>
+        <span class="lang-en">More than a roadside stop, the Igorot Stone Kingdom is a story told in stone—about the mountain, the communities of the Cordillera, and a modern project that draws on their craft.</span>
+      </p>
+      <p class="mt-5 max-w-2xl text-sm leading-6 text-white/65"><span class="lang-fil">Rating: 4.4 ★ (5,411 reviews) sa Google Maps — <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">tingnan ang lahat ng review ↗</a></span><span class="lang-en">Rating: 4.4 ★ (5,411 reviews) on Google Maps — <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">view all reviews ↗</a></span></p>
+    </div>
+  </section>
+
+  <div class="ridge-line" aria-hidden="true"></div>
+
+  <article class="mx-auto max-w-[820px] px-5 py-20 lg:px-10 lg:py-28 text-[#3f463f]">
+    <figure class="mb-14 overflow-hidden border-2 border-[#17372c]">
+      <img src="/images/igorot-stone-kingdom-stonework.webp" alt="Mataas na stone terraces ng Igorot Stone Kingdom" loading="lazy" class="w-full" />
+      <figcaption class="bg-[#f2ede1] px-5 py-4 text-sm leading-6 text-[#5b625a]">
+        <span class="lang-fil"><strong>Sining ng bato:</strong> ang bawat antas ay gawa sa pinagtagpi-tagping bato nang walang semento—isang pamamaraang humuhugot sa dry-stone walling ng Cordillera.</span>
+        <span class="lang-en"><strong>The craft of stone:</strong> each tier is built from fitted stones without mortar—a method inspired by the dry-stone walling of the Cordillera.</span>
+      </figcaption>
+    </figure>
+
+    <section class="mb-14">
+      <h2 class="text-3xl font-bold text-[#17372c]"><span class="lang-fil">Ano ang Igorot Stone Kingdom</span><span class="lang-en">What the Igorot Stone Kingdom is</span></h2>
+      <div class="lang-fil mt-5 space-y-5 text-base leading-7">
+        <p>Ang Igorot Stone Kingdom ay isang hillside attraction sa Pinsao Proper, Baguio—isang paligid ng malalaking stone terrace, pasikot-sikot na passage, viewpoint deck at photo stops na hinubog mula sa bato ng bundok. Ayon sa kilalang kuwento sa lugar, ito ay ipinagawa ng isang lokal na residente na gustong ipakita ang ganda ng Cordillera sa pamamagitan ng sariling sining.</p>
+        <p>Hindi ito isang sinaunang guho. Ito ay isang kontemporaryong, independently-built na proyekto na gumagamit ng "kaharian," "tore" at iba pang pangalan bilang bahagi ng malikhaing pagkukuwento—hindi bilang literal na kasaysayan.</p>
+      </div>
+      <div class="lang-en mt-5 space-y-5 text-base leading-7">
+        <p>The Igorot Stone Kingdom is a hillside attraction in Pinsao Proper, Baguio—a landscape of large stone terraces, winding passages, viewpoint decks and photo stops shaped from mountain stone. By local accounts, it was built by a resident who wanted to show the beauty of the Cordillera through his own craft.</p>
+        <p>It is not an ancient ruin. It is a contemporary, independently built project that uses “kingdoms,” “towers” and other names as part of a creative narrative—not as literal history.</p>
+      </div>
+    </section>
+
+    <section class="mb-14">
+      <h2 class="text-3xl font-bold text-[#17372c]"><span class="lang-fil">Ang sining ng bato: stonework ng Cordillera</span><span class="lang-en">The craft of stone: Cordillera stonework</span></h2>
+      <div class="lang-fil mt-5 space-y-5 text-base leading-7">
+        <p>Ang salitang “Igorot” ay pangkalahatang tumutukoy sa mga grupong ethnolinguistic ng Cordillera—tulad ng Ibaloi, Kankana-ey, Ifugao, Bontoc at iba pa. Kilala sila sa rice terraces, stonework at matitibay na sistemang pamayanan na ipinasa sa maraming henerasyon.</p>
+        <p>Ang pinakakilalang halimbawa ay ang Rice Terraces ng Philippine Cordilleras—isang UNESCO World Heritage Site na ginawa sa pamamagitan ng dry-stone walling: bato na pinagtagpi nang walang semento, nakatayo nang libu-libong taon. Ang Igorot Stone Kingdom ay kumukuha ng inspirasyon mula sa imaheng ito: ang bato bilang simbolo ng tibay, at ang bundok bilang tahanan.</p>
+      </div>
+      <div class="lang-en mt-5 space-y-5 text-base leading-7">
+        <p>The word “Igorot” broadly refers to the ethnolinguistic groups of the Cordillera—such as the Ibaloi, Kankana-ey, Ifugao, Bontoc and others. They are known for rice terraces, stonework and resilient community systems passed down over generations.</p>
+        <p>The best-known example is the Rice Terraces of the Philippine Cordilleras—a UNESCO World Heritage Site built with dry-stone walling: stones fitted without mortar, standing for thousands of years. The Igorot Stone Kingdom draws inspiration from that image—stone as a symbol of strength, and the mountain as home.</p>
+      </div>
+    </section>
+
+    <section class="mb-14">
+      <h2 class="text-3xl font-bold text-[#17372c]"><span class="lang-fil">Mga alamat at kuwento</span><span class="lang-en">Legends and stories</span></h2>
+      <div class="lang-fil mt-5 space-y-5 text-base leading-7">
+        <p>Sa loob ng attraction, makakatagpo ka ng mga pangalan at “kaharian” na bahagi ng malikhaing framing ng mga nagtayo nito. Ito ay para magbigay ng karanasan at kwento sa mga bisita—hindi ito mga sinaunang alamat ng mga komunidad ng Cordillera.</p>
+        <p>Mahalagang intindihin ang pagkakaiba: ang tunay na alamat at ritwal ng Cordillera ay bahagi ng buhay na Tradisyon ng mga katutubong grupo. Ang mga kuwento sa Stone Kingdom ay modernong interpretasyon lamang, at hindi dapat palitawin bilang kapalit ng aktwal na pamana.</p>
+      </div>
+      <div class="lang-en mt-5 space-y-5 text-base leading-7">
+        <p>Inside the attraction you will find names and “kingdoms” that are part of the builders’ creative framing. They exist to give visitors an experience and a story—not as ancient legends of the Cordillera’s communities.</p>
+        <p>It is important to understand the difference: the real myths and rituals of the Cordillera are part of the living traditions of Indigenous groups. The stories at the Stone Kingdom are a modern interpretation only, and should not be presented as a substitute for that actual heritage.</p>
+      </div>
+    </section>
+
+    <section class="mb-14">
+      <h2 class="text-3xl font-bold text-[#17372c]"><span class="lang-fil">Pamana at respeto</span><span class="lang-en">Heritage and respect</span></h2>
+      <div class="lang-fil mt-5 space-y-5 text-base leading-7">
+        <p>Ang pagbisita sa isang lugar na humuhugot sa kultura ng Cordillera ay pagkakataon para matuto nang may respeto. Ang mga komunidad ng Cordillera ay may buhay, nagpapatuloy at magkakaibang tradisyon—hindi lang disenyo para sa isang attraction.</p>
+        <p>Igalang ang mga lokal na residente at negosyo sa Pinsao, huwag istorbohin ang pribadong bahay, at ituring ang Stone Kingdom bilang isang malikhaing proyekto ng isang komunidad—hindi bilang kapalit ng mga buhay na kultura nito.</p>
+      </div>
+      <div class="lang-en mt-5 space-y-5 text-base leading-7">
+        <p>Visiting a place that draws on Cordillera culture is a chance to learn with respect. The communities of the Cordillera have living, ongoing and diverse traditions—not merely a design motif for an attraction.</p>
+        <p>Respect the local residents and businesses in Pinsao, do not disturb private homes, and treat the Stone Kingdom as a community’s creative project—not as a stand-in for its living cultures.</p>
+      </div>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-3xl font-bold text-[#17372c]"><span class="lang-fil">Bakit mahalaga ang tamang pag-unawa</span><span class="lang-en">Why accurate framing matters</span></h2>
+      <div class="lang-fil mt-5 space-y-5 text-base leading-7">
+        <p>Ang isang responsableng visitor guide ay nagsasabi ng totoo: ito ay modernong attraction, hindi archaeological site. Ang pagkilala rito ay nagpapanatili ng integridad ng impormasyon at ng respeto sa tunay na pamana ng Cordillera.</p>
+      </div>
+      <div class="lang-en mt-5 space-y-5 text-base leading-7">
+        <p>A responsible visitor guide tells the truth: this is a modern attraction, not an archaeological site. Recognising that preserves both the integrity of the information and respect for the Cordillera’s actual heritage.</p>
+      </div>
+    </section>
+
+    <div class="mt-14 border-t border-[#17372c]/15 pt-10">
+      <h2 class="text-xl font-bold uppercase tracking-[0.16em] text-[#a85f3d]"><span class="lang-fil">Sanggunian</span><span class="lang-en">Sources</span></h2>
+      <ul class="mt-5 space-y-3 text-sm">
+        {
+          sources.map((s) => (
+            <li>
+              <a href={s.href} target="_blank" rel="noreferrer" class="text-[#17372c] underline decoration-[#a85f3d]/40 underline-offset-4 hover:text-[#a85f3d]">
+                <span class="lang-fil">{s.fil} ↗</span><span class="lang-en">{s.en} ↗</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-6 text-xs leading-6 text-[#7a827a]"><span class="lang-fil">Ang mga link ay papunta sa mga independenteng reference para sa karagdagang pag-aaral. Ang nilalaman ng page na ito ay gabay lamang at maaaring magbago.</span><span class="lang-en">These links point to independent references for further reading. The content of this page is guidance only and may change.</span></p>
+    </div>
+  </article>
+</Base>

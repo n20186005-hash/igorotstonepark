@@ -1,14 +1,20 @@
 ---
-import '../styles/global.css';
-import { faqs, foodSpots, nearbyPlaces, visitFacts } from '../data/visit';
+import Base from '../layouts/Base.astro';
+import WeatherModule from '../components/WeatherModule.astro';
+import { faqs, foodSpots, nearbyPlaces, visitFacts, facilities, quarterStrategy, crowdRoutes, generalRoutes, aboutContext } from '../data/visit';
+
+export const prerender = true;
 
 const siteUrl = Astro.site;
 const path = Astro.url.pathname;
 const canonicalUrl = siteUrl ? new URL(path, siteUrl).toString() : undefined;
 const heroPath = '/images/igorot-stone-kingdom-wide.webp';
 const heroAbsolute = siteUrl ? new URL(heroPath, siteUrl).toString() : undefined;
-const pageTitle = 'Igorot Stone Kingdom | Gabay sa Pagbisita sa Baguio';
-const pageDescription = 'Praktikal na gabay sa Igorot Stone Kingdom sa Baguio: entrance fee, oras, parking, transportasyon, kainan, kalapit na pasyalan at FAQ.';
+const pageTitle = 'Igorot Stone Kingdom Baguio — Entrance Fee, Hours & Directory';
+const pageDescription = 'Visit Igorot Stone Kingdom in Baguio: real-time weather, entrance fee, opening hours, location & directions, parking, transport, facilities, food spots, nearby places and FAQ.';
+
+const mapsShareUrl = 'https://maps.app.goo.gl/n12kgpTFurncbFv3A';
+const govtTourismUrl = 'https://www.tourism.gov.ph';
 
 const attractionId = canonicalUrl ? `${canonicalUrl}#attraction` : '#attraction';
 const attractionStructuredData = {
@@ -16,7 +22,10 @@ const attractionStructuredData = {
   '@type': ['TouristAttraction', 'LocalBusiness'],
   '@id': attractionId,
   name: 'Igorot Stone Kingdom Inc.',
+  alternateName: ['Igorot Stone Kingdom', 'Igorot Stone Kingdom Baguio'],
   description: 'Isang modernong hillside cultural theme attraction sa Baguio na kilala sa malalaking stone terraces, passages at Cordillera-inspired storytelling.',
+  url: canonicalUrl || 'https://igorotstonepark.com',
+  image: heroAbsolute ? [heroAbsolute] : undefined,
   address: {
     '@type': 'PostalAddress',
     streetAddress: '362 Longlong Road, Pinsao Proper',
@@ -38,15 +47,9 @@ const attractionStructuredData = {
       closes: '18:00'
     }
   ],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.4',
-    bestRating: '5',
-    reviewCount: '5323'
-  },
   priceRange: '₱₱',
-  ...(canonicalUrl ? { url: canonicalUrl } : {}),
-  ...(heroAbsolute ? { image: heroAbsolute } : {})
+  hasMap: mapsShareUrl,
+  sameAs: [mapsShareUrl, govtTourismUrl]
 };
 
 const faqStructuredData = {
@@ -63,353 +66,448 @@ const faqStructuredData = {
 };
 ---
 
-<!doctype html>
-<html lang="fil">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="theme-color" content="#17372c" />
-    <title>{pageTitle}</title>
-    <meta name="description" content={pageDescription} />
-    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+<Base title={pageTitle} description={pageDescription} variant="overlay">
+  <script type="application/ld+json" slot="structured-data" set:html={JSON.stringify(attractionStructuredData)} />
+  <script type="application/ld+json" slot="structured-data" set:html={JSON.stringify(faqStructuredData)} />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="fil_PH" />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={pageDescription} />
-    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
-    {heroAbsolute && <meta property="og:image" content={heroAbsolute} />}
-    {heroAbsolute && <meta property="og:image:alt" content="Malawak na tanawin ng Igorot Stone Kingdom sa Baguio" />}
-    <meta name="twitter:card" content={heroAbsolute ? 'summary_large_image' : 'summary'} />
-
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-
-    <script type="application/ld+json" set:html={JSON.stringify(attractionStructuredData)} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)} />
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-HXM22WWPKP');
-    </script>
-  </head>
-  <body>
-    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-white focus:px-4 focus:py-3">Lumaktaw sa nilalaman</a>
-
-    <header class="absolute inset-x-0 top-0 z-40 border-b border-white/15 bg-[#10271f]/55 text-white backdrop-blur-md">
-      <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-8 px-5 py-4 lg:px-10">
-        <a href="#top" class="flex items-center gap-3" aria-label="Igorot Stone Kingdom — umpisa">
-          <img src="/favicon.svg" width="42" height="42" alt="" class="h-10 w-10" />
-          <span class="leading-tight">
-            <strong class="block font-serif text-[16px] tracking-wide">IGOROT STONE KINGDOM</strong>
-            <span class="block text-[10px] font-semibold uppercase tracking-[0.28em] text-[#e7d8b8]">Gabay sa Baguio</span>
-          </span>
-        </a>
-        <nav aria-label="Pangunahing nabigasyon" class="hidden items-center gap-6 text-sm font-semibold lg:flex">
-          <a href="#plano" class="hover:text-[#e7d8b8]">Plano</a>
-          <a href="#bayad" class="hover:text-[#e7d8b8]">Bayad</a>
-          <a href="#pagpunta" class="hover:text-[#e7d8b8]">Pagpunta</a>
-          <a href="#kainan" class="hover:text-[#e7d8b8]">Kainan</a>
-          <a href="#kalapit" class="hover:text-[#e7d8b8]">Kalapit</a>
-          <a href="#faq" class="hover:text-[#e7d8b8]">FAQ</a>
-        </nav>
-        <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="rounded-full border border-[#e7d8b8]/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] transition hover:bg-[#e7d8b8] hover:text-[#17372c]">Mapa ↗</a>
+  <section id="top" class="hero-photo relative min-h-[790px] overflow-hidden bg-[#17372c] text-white">
+    <img src={heroPath} alt="Malawak na tanawin ng mga stone terrace at tore ng Igorot Stone Kingdom" class="absolute inset-0 h-full w-full object-cover" fetchpriority="high" />
+    <div class="relative z-10 mx-auto grid min-h-[790px] max-w-[1440px] items-end gap-10 px-5 pb-14 pt-32 lg:grid-cols-[1.35fr_.65fr] lg:px-10 lg:pb-20">
+      <div class="max-w-[900px]">
+        <div class="mb-7 flex flex-wrap items-center gap-3 text-[11px] font-black uppercase tracking-[0.24em]">
+          <span class="bg-[#a85f3d] px-4 py-2">Pinsao Proper</span>
+          <span class="border border-white/45 px-4 py-2">Baguio City · Cordillera</span>
+        </div>
+        <p class="mb-4 font-serif text-xl italic text-[#eadfca] md:text-2xl"><span class="lang-fil">Bato, ulap, hagdan at tanawing bundok.</span><span class="lang-en">Stone, cloud, stairs and mountain views.</span></p>
+        <h1 class="max-w-[880px] text-[clamp(4rem,9vw,8.7rem)] font-bold leading-[.8] tracking-[-0.055em]">Igorot<br />Stone Kingdom</h1>
+        <p class="mt-8 max-w-2xl text-base leading-7 text-white/84 md:text-lg"><span class="lang-fil">Ang Igorot Stone Kingdom Inc. (kilala rin bilang Igorot Stone Kingdom), sa Baguio, Benguet, Philippines, ay isang modernong hillside attraction na hinubog sa malalaking stone terrace at Cordillera-inspired na kuwento—gabay ito para maayos mong maplano ang pagbisita, mula bayad at parking hanggang kainan sa paligid.</span><span class="lang-en">Igorot Stone Kingdom Inc. (also known as Igorot Stone Kingdom), in Baguio, Benguet, Philippines, is a modern hillside attraction shaped from large stone terraces and Cordillera-inspired storytelling—a guide to planning your visit, from fees and parking to food nearby.</span></p>
+        <p class="mt-4 text-sm text-white/65">Igorot Stone Kingdom Inc. · Baguio, Benguet, Philippines</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#plano" class="bg-[#e7d8b8] px-6 py-3.5 text-sm font-black uppercase tracking-[0.12em] text-[#17372c] transition hover:bg-white"><span class="lang-fil">Planuhin ang bisita</span><span class="lang-en">Plan your visit</span></a>
+          <a href="#pagpunta" class="border border-white/55 bg-white/5 px-6 py-3.5 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur transition hover:bg-white/15"><span class="lang-fil">Paano pumunta</span><span class="lang-en">Getting there</span></a>
+        </div>
       </div>
-    </header>
 
-    <main id="main">
-      <section id="top" class="hero-photo relative min-h-[790px] overflow-hidden bg-[#17372c] text-white">
-        <img src={heroPath} alt="Malawak na tanawin ng mga stone terrace at tore ng Igorot Stone Kingdom" class="absolute inset-0 h-full w-full object-cover" fetchpriority="high" />
-        <div class="relative z-10 mx-auto grid min-h-[790px] max-w-[1440px] items-end gap-10 px-5 pb-14 pt-32 lg:grid-cols-[1.35fr_.65fr] lg:px-10 lg:pb-20">
-          <div class="max-w-[900px]">
-            <div class="mb-7 flex flex-wrap items-center gap-3 text-[11px] font-black uppercase tracking-[0.24em]">
-              <span class="bg-[#a85f3d] px-4 py-2">Pinsao Proper</span>
-              <span class="border border-white/45 px-4 py-2">Baguio City · Cordillera</span>
-            </div>
-            <p class="mb-4 font-serif text-xl italic text-[#eadfca] md:text-2xl">Bato, ulap, hagdan at tanawing bundok.</p>
-            <h1 class="max-w-[880px] text-[clamp(4rem,9vw,8.7rem)] font-bold leading-[.8] tracking-[-0.055em]">Igorot<br />Stone Kingdom</h1>
-            <p class="mt-8 max-w-2xl text-base leading-7 text-white/84 md:text-lg">Isang modernong hillside attraction na hinubog sa malalaking stone terrace at Cordillera-inspired na kuwento—gabay ito para maayos mong maplano ang pagbisita, mula bayad at parking hanggang kainan sa paligid.</p>
-            <div class="mt-8 flex flex-wrap gap-3">
-              <a href="#plano" class="bg-[#e7d8b8] px-6 py-3.5 text-sm font-black uppercase tracking-[0.12em] text-[#17372c] transition hover:bg-white">Planuhin ang bisita</a>
-              <a href="#pagpunta" class="border border-white/55 bg-white/5 px-6 py-3.5 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur transition hover:bg-white/15">Paano pumunta</a>
-            </div>
-          </div>
-
-          <aside class="stone-texture stone-edge ml-auto w-full max-w-[380px] p-7 text-[#20261f] shadow-2xl md:p-9">
-            <p class="text-[11px] font-black uppercase tracking-[0.23em] text-[#a85f3d]">Mabilis na tingin</p>
-            <div class="mt-5 grid grid-cols-2 gap-x-6 gap-y-6">
-              <div><span class="block text-xs font-bold uppercase tracking-wider text-[#375143]">Oras</span><strong class="mt-1 block font-serif text-2xl">7 AM–6 PM</strong></div>
-              <div><span class="block text-xs font-bold uppercase tracking-wider text-[#375143]">Tagal</span><strong class="mt-1 block font-serif text-2xl">1–2 oras</strong></div>
-              <div><span class="block text-xs font-bold uppercase tracking-wider text-[#375143]">Adult</span><strong class="mt-1 block font-serif text-2xl">~₱130</strong></div>
-              <div><span class="block text-xs font-bold uppercase tracking-wider text-[#375143]">Rating</span><strong class="mt-1 block font-serif text-2xl">4.4 ★</strong></div>
-            </div>
-            <p class="mt-7 border-t border-[#17372c]/20 pt-5 text-xs leading-5 text-[#4f574e]">Rates at oras ay maaaring magbago. Para sa same-day visit, kumpirmahin sa gate o sa kasalukuyang Google Maps listing.</p>
-          </aside>
+      <aside class="stone-texture stone-edge ml-auto w-full max-w-[380px] p-7 text-[#20261f] shadow-2xl md:p-9">
+        <p class="text-[11px] font-black uppercase tracking-[0.23em] text-[#a85f3d]">Mabilis na tingin</p>
+        <div class="mt-5 grid grid-cols-2 gap-x-6 gap-y-6">
+          <div><span class="block text-xs font-bold uppercase tracking-wider text-[#375143]"><span class="lang-fil">Oras</span><span class="lang-en">Hours</span></span><strong class="mt-1 block font-serif text-2xl">7 AM–6 PM</strong></div>
+          <div><span class="block text-xs font-bold uppercase tracking-wider text-[#375143]"><span class="lang-fil">Tagal</span><span class="lang-en">Duration</span></span><strong class="mt-1 block font-serif text-2xl">1–2 oras</strong></div>
+          <div><span class="block text-xs font-bold uppercase tracking-wider text-[#375143]"><span class="lang-fil">Adult</span><span class="lang-en">Adult</span></span><strong class="mt-1 block font-serif text-2xl">~₱130</strong></div>
+          <div><span class="block text-xs font-bold uppercase tracking-wider text-[#375143]"><span class="lang-fil">Rating</span><span class="lang-en">Rating</span></span><strong class="mt-1 block font-serif text-2xl">4.4 ★</strong><span class="mt-1 block text-xs text-[#5b625a]">5,411 reviews</span><span class="mt-1 block text-[10px] leading-4 text-[#7a827a]"><span class="lang-fil">Mula sa Google Maps · Setyembre 2026</span><span class="lang-en">From Google Maps · Sep 2026</span></span></div>
         </div>
-      </section>
+        <p class="mt-7 border-t border-[#17372c]/20 pt-5 text-xs leading-5 text-[#4f574e]">Rates at oras ay maaaring magbago. Para sa same-day visit, kumpirmahin sa gate o sa kasalukuyang Google Maps listing.</p>
+      </aside>
+    </div>
+  </section>
 
-      <div class="ridge-line" aria-hidden="true"></div>
+  <div class="ridge-line" aria-hidden="true"></div>
 
-      <section id="plano" class="mx-auto max-w-[1440px] px-5 py-20 lg:px-10 lg:py-28">
-        <div class="grid gap-12 lg:grid-cols-[.72fr_1.28fr] lg:gap-20">
+  <section id="plano" class="mx-auto max-w-[1440px] px-5 py-20 lg:px-10 lg:py-28">
+    <div class="grid gap-12 lg:grid-cols-[.72fr_1.28fr] lg:gap-20">
+      <div>
+        <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]"><span class="lang-fil">Bago umakyat</span><span class="lang-en">Before you climb</span></p>
+        <h2 class="mt-4 text-5xl font-bold leading-[.95] tracking-tight md:text-6xl"><span class="lang-fil">Alamin muna ang ritmo ng lugar.</span><span class="lang-en">Learn the rhythm of the place first.</span></h2>
+        <p class="mt-7 max-w-lg text-base leading-7 text-[#4d554d]">Hindi ito flat na park. Ang experience ay tuloy-tuloy na hagdan, pasikot-sikot na stone passages, viewpoint at photo stops. Kumportableng sapatos at kaunting pacing ang malaking tulong.</p>
+      </div>
+      <div class="grid gap-px overflow-hidden border border-[#17372c]/15 bg-[#17372c]/15 sm:grid-cols-2">
+        {visitFacts.map((fact, index) => (
+          <article class:list={['min-h-[190px] bg-[#f7f5ef] p-7 md:p-9', index === 0 || index === 3 ? 'stone-grid' : '']}>
+            <p class="text-[11px] font-black uppercase tracking-[0.2em] text-[#a85f3d]">{fact.label}</p>
+            <p class="mt-4 font-serif text-3xl font-bold leading-tight text-[#17372c]">{fact.value}</p>
+            {fact.note && <p class="mt-3 max-w-sm text-sm leading-6 text-[#5b625a]">{fact.note}</p>}
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-16 grid overflow-hidden bg-[#17372c] text-white lg:grid-cols-[1fr_1.2fr]">
+      <div class="p-8 md:p-12 lg:p-14">
+        <p class="text-xs font-black uppercase tracking-[0.24em] text-[#dcb17c]">Mahalagang konteksto</p>
+        <h3 class="mt-4 text-4xl font-bold leading-tight md:text-5xl">Modernong interpretasyon, hindi sinaunang guho.</h3>
+        <p class="mt-6 max-w-xl leading-7 text-white/78">Ang Igorot Stone Kingdom ay isang modernong attraction na humuhugot ng inspirasyon sa stonework at kuwentong Cordilleran. Mas makabuluhang bumisita kapag kinikilala itong malikhaing interpretasyon—hindi kapalit ng mga buhay, magkakaiba at patuloy na tradisyon ng mga komunidad sa Cordillera.</p>
+      </div>
+      <img src="/images/igorot-stone-kingdom-terraces.webp" alt="Stone terraces ng Igorot Stone Kingdom sa gilid ng luntiang bundok" loading="lazy" class="h-full min-h-[390px] w-full object-cover" />
+    </div>
+  </section>
+
+  <section class="bg-[#e1d2b5] py-20 lg:py-24" aria-labelledby="gallery-title">
+    <div class="mx-auto max-w-[1440px] px-5 lg:px-10">
+      <div class="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+        <div>
+          <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]"><span class="lang-fil">Sa loob</span><span class="lang-en">Inside</span></p>
+          <h2 id="gallery-title" class="mt-3 text-5xl font-bold tracking-tight text-[#17372c]"><span class="lang-fil">Bato sa bawat antas.</span><span class="lang-en">Stone at every level.</span></h2>
+        </div>
+        <p class="max-w-lg text-sm leading-6 text-[#4d554d]">Mga totoong larawan ng attraction; naka-save sa project mismo para walang hotlink sa production.</p>
+      </div>
+      <a href="/directory/" class="mt-5 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.12em] text-[#17372c] hover:text-[#a85f3d]"><span class="lang-fil">Tignan ang park directory →</span><span class="lang-en">See the park directory →</span></a>
+      <div class="mt-6 grid gap-4 lg:grid-cols-[1.25fr_.75fr]">
+        <figure class="group overflow-hidden bg-[#17372c]">
+          <img src="/images/igorot-stone-kingdom-stonework.webp" alt="Mataas na tanawin sa maraming antas ng stone terraces" loading="lazy" class="h-[430px] w-full object-cover transition duration-500 group-hover:scale-[1.02] md:h-[620px]" />
+          <figcaption class="bg-[#17372c] px-5 py-4 text-sm leading-6 text-white/80"><span class="lang-fil"><strong>Sining ng bato:</strong> ang bawat antas ay pinagtagpi-tagping bato nang walang semento—isang pamamaraang humuhugot sa dry-stone walling ng Cordillera.</span><span class="lang-en"><strong>The craft of stone:</strong> each tier is fitted stone without mortar—a method inspired by Cordillera dry-stone walling.</span></figcaption>
+        </figure>
+        <div class="grid gap-4">
+          <figure class="overflow-hidden bg-[#17372c]">
+            <img src="/images/igorot-stone-kingdom-wide.webp" alt="Malawak na view ng stone structures at courtyard" loading="lazy" class="h-[300px] w-full object-cover md:h-[302px]" />
+            <figcaption class="bg-[#17372c] px-5 py-4 text-sm leading-6 text-white/80"><span class="lang-fil"><strong>Centro at courtyard:</strong> dito nagtatapos ang hagdan mula sa gate—ang pinakamadaling assembly point bago akyatin ang mga terrace.</span><span class="lang-en"><strong>Center &amp; courtyard:</strong> where the stairs from the gate end—the easiest assembly point before climbing the terraces.</span></figcaption>
+          </figure>
+          <figure class="overflow-hidden bg-[#17372c]">
+            <img src="/images/igorot-stone-kingdom-marker.webp" alt="Opisyal na information marker ng Igorot Stone Kingdom" loading="lazy" class="h-[300px] w-full object-cover object-center md:h-[302px]" />
+            <figcaption class="bg-[#17372c] px-5 py-4 text-sm leading-6 text-white/80"><span class="lang-fil"><strong>Information marker:</strong> naglalaman ng opisyal na pangalan at pointer para sa mga bisita; maganda ring photo stop.</span><span class="lang-en"><strong>Information marker:</strong> shows the official name and pointers for visitors; also a good photo stop.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="bayad" class="mx-auto max-w-[1440px] px-5 py-20 lg:px-10 lg:py-28">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
+      <div>
+        <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]"><span class="lang-fil">Bayad / Gastos</span><span class="lang-en">Fees / Costs</span></p>
+        <h2 class="mt-4 text-5xl font-bold leading-none md:text-6xl"><span class="lang-fil">Maghanda ng cash at kaunting allowance.</span><span class="lang-en">Bring cash and a little allowance.</span></h2>
+        <div class="mt-9 grid gap-3 sm:grid-cols-3">
+          <div class="stone-texture stone-edge p-6"><span class="text-xs font-black uppercase tracking-wider text-[#4c5a50]">Adult</span><strong class="mt-2 block font-serif text-4xl text-[#17372c]">~₱130</strong></div>
+          <div class="stone-texture stone-edge p-6"><span class="text-xs font-black uppercase tracking-wider text-[#4c5a50]">Bata</span><strong class="mt-2 block font-serif text-4xl text-[#17372c]">~₱100</strong></div>
+          <div class="stone-texture stone-edge p-6"><span class="text-xs font-black uppercase tracking-wider text-[#4c5a50]">Toddler</span><strong class="mt-2 block font-serif text-4xl text-[#17372c]">Libre*</strong></div>
+        </div>
+        <p class="mt-5 text-sm leading-6 text-[#5b625a]">*Ito ang mga pinakahuling madalas na iniulat na admission figures. Discount categories, promos at age rules ay maaaring magbago; kumpirmahin ang eksaktong rate sa entrance.</p>
+        <a href="/fees/" class="mt-6 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.12em] text-[#17372c] hover:text-[#a85f3d]"><span class="lang-fil">Buong gabay sa bayad at oras →</span><span class="lang-en">Full fee &amp; hours guide →</span></a>
+      </div>
+
+      <div id="parking" class="border-l-4 border-[#a85f3d] bg-[#17372c] p-8 text-white md:p-11">
+        <div class="flex items-start justify-between gap-4">
           <div>
-            <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]">Bago umakyat</p>
-            <h2 class="mt-4 text-5xl font-bold leading-[.95] tracking-tight md:text-6xl">Alamin muna ang ritmo ng lugar.</h2>
-            <p class="mt-7 max-w-lg text-base leading-7 text-[#4d554d]">Hindi ito flat na park. Ang experience ay tuloy-tuloy na hagdan, pasikot-sikot na stone passages, viewpoint at photo stops. Kumportableng sapatos at kaunting pacing ang malaking tulong.</p>
+            <p class="text-xs font-black uppercase tracking-[0.24em] text-[#dcb17c]">Parking</p>
+            <h3 class="mt-3 text-4xl font-bold">Maaga = mas kaunting abala.</h3>
           </div>
-          <div class="grid gap-px overflow-hidden border border-[#17372c]/15 bg-[#17372c]/15 sm:grid-cols-2">
-            {visitFacts.map((fact, index) => (
-              <article class:list={['min-h-[190px] bg-[#f7f5ef] p-7 md:p-9', index === 0 || index === 3 ? 'stone-grid' : '']}>
-                <p class="text-[11px] font-black uppercase tracking-[0.2em] text-[#a85f3d]">{fact.label}</p>
-                <p class="mt-4 font-serif text-3xl font-bold leading-tight text-[#17372c]">{fact.value}</p>
-                {fact.note && <p class="mt-3 max-w-sm text-sm leading-6 text-[#5b625a]">{fact.note}</p>}
-              </article>
+          <span class="text-4xl" aria-hidden="true">P</span>
+        </div>
+        <p class="mt-6 leading-7 text-white/78">May mga parking area sa paligid ng attraction, pero mabilis mapuno sa weekend at peak hours. May ilang recent visitor reports na humigit-kumulang ₱100 ang car parking; huwag ituring na fixed rate dahil maaaring mag-iba ang operator at araw.</p>
+        <ul class="mt-7 space-y-3 text-sm text-white/85">
+          <li class="flex gap-3"><span class="text-[#dcb17c]">◆</span><span>Dumating malapit sa opening time kung may sariling sasakyan.</span></li>
+          <li class="flex gap-3"><span class="text-[#dcb17c]">◆</span><span>Magdala ng maliit na cash para sa parking at incidental fees.</span></li>
+          <li class="flex gap-3"><span class="text-[#dcb17c]">◆</span><span>Kung ayaw sa parking stress, taxi ang pinakasimple mula sa city center.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#17372c] py-20 text-white lg:py-28" aria-labelledby="best-time-title">
+    <div class="mx-auto grid max-w-[1440px] gap-10 px-5 lg:grid-cols-[.7fr_1.3fr] lg:px-10">
+      <div>
+        <p class="text-xs font-black uppercase tracking-[0.24em] text-[#dcb17c]"><span class="lang-fil">Pinakamagandang oras</span><span class="lang-en">Best time to go</span></p>
+        <h2 id="best-time-title" class="mt-4 text-5xl font-bold leading-none md:text-6xl"><span class="lang-fil">Weekday.<br />Maagang umaga.</span><span class="lang-en">Weekday.<br />Early morning.</span></h2>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <article class="border border-white/15 bg-white/5 p-7">
+          <span class="font-serif text-5xl text-[#dcb17c]">01</span>
+          <h3 class="mt-5 text-2xl font-bold">Para sa mas tahimik na lakad</h3>
+          <p class="mt-3 text-sm leading-6 text-white/70">Weekday morning ang mas komportable para sa viewpoints, makikitid na passage at mga litrato na hindi masyadong siksikan.</p>
+        </article>
+        <article class="border border-white/15 bg-white/5 p-7">
+          <span class="font-serif text-5xl text-[#dcb17c]">02</span>
+          <h3 class="mt-5 text-2xl font-bold">Maglaan ng 1–2 oras</h3>
+          <p class="mt-3 text-sm leading-6 text-white/70">Sapat para sa pangunahing ruta. Dagdagan kung mabagal ang pace, maraming photo stops o may kasamang bata at senior.</p>
+        </article>
+        <article class="border border-white/15 bg-white/5 p-7 sm:col-span-2">
+          <span class="font-serif text-5xl text-[#dcb17c]">03</span>
+          <h3 class="mt-5 text-2xl font-bold">Baguio weather: laging may plan B.</h3>
+          <p class="mt-3 max-w-2xl text-sm leading-6 text-white/70">Madaling magpalit ang araw, ulap at ambon. Lightweight rain layer, sapatos na may kapit at tubig ang mas praktikal kaysa sobrang daming gamit.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <WeatherModule />
+
+  <section id="estrategiya" class="bg-[#efe8da] py-20 lg:py-28" aria-labelledby="quarter-title">
+    <div class="mx-auto max-w-[1440px] px-5 lg:px-10">
+      <div class="mb-10 max-w-2xl">
+        <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]"><span class="lang-fil">Estratehiya kada panahon</span><span class="lang-en">Strategy by season</span></p>
+        <h2 id="quarter-title" class="mt-3 text-5xl font-bold tracking-tight text-[#17372c]"><span class="lang-fil">Kailan ka dapat pumunta?</span><span class="lang-en">When should you visit?</span></h2>
+        <p class="mt-5 text-sm leading-6 text-[#596158]">Batay sa karaniwang klima ng Baguio (cool highland, may tag-araw at tag-ulan). Ang kondisyon ay nag-iiba-iba taon-taon, kaya ituring ito bilang gabay, hindi katiyakan.</p>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[680px] border-collapse text-left">
+          <thead>
+            <tr class="border-b-2 border-[#17372c]/30 text-xs font-black uppercase tracking-[0.14em] text-[#375143]">
+              <th class="py-4 pr-6">Quarter</th>
+              <th class="py-4 pr-6">Panahon</th>
+              <th class="py-4 pr-6">Gaan sa paglakad</th>
+              <th class="py-4">Payo</th>
+            </tr>
+          </thead>
+          <tbody class="text-sm">
+            {quarterStrategy.map((q) => (
+              <tr class="border-b border-[#17372c]/15 align-top">
+                <td class="py-5 pr-6 font-bold text-[#17372c]">{q.quarter}</td>
+                <td class="py-5 pr-6 text-[#5b625a]">{q.weather}</td>
+                <td class="py-5 pr-6 text-[#5b625a]">{q.comfort}</td>
+                <td class="py-5 text-[#5b625a]">{q.tip}</td>
+              </tr>
             ))}
-          </div>
-        </div>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-8 max-w-3xl text-xs leading-6 text-[#7a827a]">
+        <span class="lang-fil"><strong>Pagtitipid at pamamaraan:</strong> ang mga rekomendasyong pana-panahon ay batay sa pangkaraniwang klima ng Baguio (cool highland, may tag-araw at tag-ulan) at hindi eksaktong forecast. Ang live na datos ng panahon ay kinukuha nang server-side at naka-cache nang humigit-kumulang 30 minuto upang maging sariwa nang hindi masyadong madalas humingi sa data source. Gabay lamang ito, hindi katiyakan.</span>
+        <span class="lang-en"><strong>Data &amp; method:</strong> the seasonal recommendations are based on Baguio’s typical highland climate (cool, with wet and dry seasons) and are not an exact forecast. Live weather is fetched server-side and cached for about 30 minutes so it stays fresh without over-requesting the data source. Guidance only, not a guarantee.</span>
+      </p>
+    </div>
+  </section>
 
-        <div class="mt-16 grid overflow-hidden bg-[#17372c] text-white lg:grid-cols-[1fr_1.2fr]">
-          <div class="p-8 md:p-12 lg:p-14">
-            <p class="text-xs font-black uppercase tracking-[0.24em] text-[#dcb17c]">Mahalagang konteksto</p>
-            <h3 class="mt-4 text-4xl font-bold leading-tight md:text-5xl">Modernong interpretasyon, hindi sinaunang guho.</h3>
-            <p class="mt-6 max-w-xl leading-7 text-white/78">Ang Igorot Stone Kingdom ay isang modernong attraction na humuhugot ng inspirasyon sa stonework at kuwentong Cordilleran. Mas makabuluhang bumisita kapag kinikilala itong malikhaing interpretasyon—hindi kapalit ng mga buhay, magkakaiba at patuloy na tradisyon ng mga komunidad sa Cordillera.</p>
-          </div>
-          <img src="/images/igorot-stone-kingdom-terraces.webp" alt="Stone terraces ng Igorot Stone Kingdom sa gilid ng luntiang bundok" loading="lazy" class="h-full min-h-[390px] w-full object-cover" />
-        </div>
-      </section>
+  <section id="ruta" class="mx-auto max-w-[1440px] px-5 py-20 lg:px-10 lg:py-28" aria-labelledby="ruta-title">
+    <div class="mb-12 max-w-2xl">
+      <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]"><span class="lang-fil">Paano i-enjoy</span><span class="lang-en">How to enjoy it</span></p>
+      <h2 id="ruta-title" class="mt-3 text-5xl font-bold tracking-tight text-[#17372c]"><span class="lang-fil">Ruta para sa iba’t ibang bisita.</span><span class="lang-en">Routes for different visitors.</span></h2>
+      <p class="mt-5 text-sm leading-6 text-[#596158]">Piliin ayon sa iyong kasama at pace. Lahat ay nasa parehong hillside attraction, kaya i-adjust ang intensity kung kinakailangan.</p>
+      <button type="button" class="no-print mt-6 inline-flex items-center gap-2 rounded-full border border-[#17372c] px-5 py-2.5 text-xs font-black uppercase tracking-[0.12em] text-[#17372c] transition hover:bg-[#17372c] hover:text-white" onclick="window.print()"><span class="lang-fil">🖨️ I-print ang itinerary</span><span class="lang-en">🖨️ Print itinerary</span></button>
+    </div>
 
-      <section class="bg-[#e1d2b5] py-20 lg:py-24" aria-labelledby="gallery-title">
-        <div class="mx-auto max-w-[1440px] px-5 lg:px-10">
-          <div class="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+    <h3 class="mb-5 text-xs font-black uppercase tracking-[0.2em] text-[#a85f3d]">Ayon sa grupo</h3>
+    <div class="grid gap-4 lg:grid-cols-3">
+      {crowdRoutes.map((r) => (
+        <article class="border border-[#17372c]/15 bg-[#f8f6f0] p-8">
+          <div class="flex items-center gap-3">
+            <span class="text-3xl" aria-hidden="true">{r.icon}</span>
             <div>
-              <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]">Sa loob</p>
-              <h2 id="gallery-title" class="mt-3 text-5xl font-bold tracking-tight text-[#17372c]">Bato sa bawat antas.</h2>
-            </div>
-            <p class="max-w-lg text-sm leading-6 text-[#4d554d]">Mga totoong larawan ng attraction; naka-save sa project mismo para walang hotlink sa production.</p>
-          </div>
-          <div class="grid gap-4 lg:grid-cols-[1.25fr_.75fr]">
-            <figure class="group overflow-hidden bg-[#17372c]">
-              <img src="/images/igorot-stone-kingdom-stonework.webp" alt="Mataas na tanawin sa maraming antas ng stone terraces" loading="lazy" class="h-[430px] w-full object-cover transition duration-500 group-hover:scale-[1.02] md:h-[620px]" />
-            </figure>
-            <div class="grid gap-4">
-              <figure class="overflow-hidden bg-[#17372c]">
-                <img src="/images/igorot-stone-kingdom-wide.webp" alt="Malawak na view ng stone structures at courtyard" loading="lazy" class="h-[300px] w-full object-cover md:h-[302px]" />
-              </figure>
-              <figure class="overflow-hidden bg-[#17372c]">
-                <img src="/images/igorot-stone-kingdom-marker.webp" alt="Opisyal na information marker ng Igorot Stone Kingdom" loading="lazy" class="h-[300px] w-full object-cover object-center md:h-[302px]" />
-              </figure>
+              <h4 class="font-serif text-2xl font-bold text-[#17372c]">{r.title}</h4>
+              <p class="text-xs text-[#7a827a]">{r.who}</p>
             </div>
           </div>
-        </div>
-      </section>
+          <ol class="mt-6 space-y-3 text-sm leading-6 text-[#5b625a]">
+            {r.steps.map((s) => (
+              <li class="flex gap-3"><span class="shrink-0 font-bold text-[#a85f3d]">◆</span><span>{s}</span></li>
+            ))}
+          </ol>
+        </article>
+      ))}
+    </div>
 
-      <section id="bayad" class="mx-auto max-w-[1440px] px-5 py-20 lg:px-10 lg:py-28">
-        <div class="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
+    <h3 class="mb-5 mt-14 text-xs font-black uppercase tracking-[0.2em] text-[#a85f3d]">Karaniwang ruta</h3>
+    <div class="grid gap-4 lg:grid-cols-2">
+      {generalRoutes.map((r) => (
+        <article class="grid gap-4 border-t-2 border-[#a85f3d] bg-[#17372c] p-8 text-white md:grid-cols-[auto_1fr]">
           <div>
-            <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]">Bayad / Gastos</p>
-            <h2 class="mt-4 text-5xl font-bold leading-none md:text-6xl">Maghanda ng cash at kaunting allowance.</h2>
-            <div class="mt-9 grid gap-3 sm:grid-cols-3">
-              <div class="stone-texture stone-edge p-6"><span class="text-xs font-black uppercase tracking-wider text-[#4c5a50]">Adult</span><strong class="mt-2 block font-serif text-4xl text-[#17372c]">~₱130</strong></div>
-              <div class="stone-texture stone-edge p-6"><span class="text-xs font-black uppercase tracking-wider text-[#4c5a50]">Bata</span><strong class="mt-2 block font-serif text-4xl text-[#17372c]">~₱100</strong></div>
-              <div class="stone-texture stone-edge p-6"><span class="text-xs font-black uppercase tracking-wider text-[#4c5a50]">Toddler</span><strong class="mt-2 block font-serif text-4xl text-[#17372c]">Libre*</strong></div>
-            </div>
-            <p class="mt-5 text-sm leading-6 text-[#5b625a]">*Ito ang mga pinakahuling madalas na iniulat na admission figures. Discount categories, promos at age rules ay maaaring magbago; kumpirmahin ang eksaktong rate sa entrance.</p>
+            <p class="text-xs font-black uppercase tracking-[0.18em] text-[#dcb17c]">{r.duration}</p>
+            <h4 class="mt-2 font-serif text-3xl font-bold">{r.title}</h4>
           </div>
+          <ol class="space-y-2 text-sm leading-6 text-white/80">
+            {r.steps.map((s) => (
+              <li class="flex gap-3"><span class="shrink-0 text-[#dcb17c]">→</span><span>{s}</span></li>
+            ))}
+          </ol>
+        </article>
+      ))}
+    </div>
+  </section>
 
-          <div id="parking" class="border-l-4 border-[#a85f3d] bg-[#17372c] p-8 text-white md:p-11">
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <p class="text-xs font-black uppercase tracking-[0.24em] text-[#dcb17c]">Parking</p>
-                <h3 class="mt-3 text-4xl font-bold">Maaga = mas kaunting abala.</h3>
-              </div>
-              <span class="text-4xl" aria-hidden="true">P</span>
-            </div>
-            <p class="mt-6 leading-7 text-white/78">May mga parking area sa paligid ng attraction, pero mabilis mapuno sa weekend at peak hours. May ilang recent visitor reports na humigit-kumulang ₱100 ang car parking; huwag ituring na fixed rate dahil maaaring mag-iba ang operator at araw.</p>
-            <ul class="mt-7 space-y-3 text-sm text-white/85">
-              <li class="flex gap-3"><span class="text-[#dcb17c]">◆</span><span>Dumating malapit sa opening time kung may sariling sasakyan.</span></li>
-              <li class="flex gap-3"><span class="text-[#dcb17c]">◆</span><span>Magdala ng maliit na cash para sa parking at incidental fees.</span></li>
-              <li class="flex gap-3"><span class="text-[#dcb17c]">◆</span><span>Kung ayaw sa parking stress, taxi ang pinakasimple mula sa city center.</span></li>
+  <section id="pagpunta" class="mx-auto max-w-[1440px] px-5 py-20 lg:px-10 lg:py-28">
+    <div class="grid gap-12 lg:grid-cols-[.82fr_1.18fr] lg:gap-16">
+      <div>
+        <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]"><span class="lang-fil">Detalyadong transportasyon</span><span class="lang-en">Detailed transport</span></p>
+        <h2 class="mt-4 text-5xl font-bold leading-none md:text-6xl"><span class="lang-fil">Longlong Road, paakyat mula sa sentro.</span><span class="lang-en">Longlong Road, uphill from the center.</span></h2>
+        <p class="mt-6 max-w-xl leading-7 text-[#555e55]">Address: <strong>362 Longlong Road, Pinsao Proper, Baguio City, 2600 Benguet</strong>. Ang final approach ay hillside road, kaya normal na mas mabagal kapag weekend o maulan.</p>
+        <a href="/location/" class="mt-5 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.12em] text-[#17372c] hover:text-[#a85f3d]">Buong directions at transport →</a>
+      </div>
+      <div class="space-y-4">
+        <article class="grid gap-4 border-t border-[#17372c]/20 py-6 md:grid-cols-[130px_1fr]">
+          <p class="text-xs font-black uppercase tracking-[0.18em] text-[#a85f3d]">Taxi</p>
+          <div><h3 class="text-2xl font-bold text-[#17372c]">Pinakasimple mula sa city center</h3><p class="mt-2 text-sm leading-6 text-[#5b625a]">Sabihin: “Igorot Stone Kingdom, Longlong Road, Pinsao Proper.” Ito ang pinakamadaling option kung ayaw mong maghanap ng jeepney transfer o parking.</p></div>
+        </article>
+        <article class="grid gap-4 border-t border-[#17372c]/20 py-6 md:grid-cols-[130px_1fr]">
+          <p class="text-xs font-black uppercase tracking-[0.18em] text-[#a85f3d]">Paliparan</p>
+          <div>
+            <h3 class="text-2xl font-bold text-[#17372c]">Mula Loakan Airport (BGO) patungong attraction</h3>
+            <p class="mt-2 text-sm leading-6 text-[#5b625a]">Ang Baguio Loakan Airport ay nasa humigit-kumulang 7–8 km mula sa Igorot Stone Kingdom, o mga 20–30 minutong biyahe depende sa daloy ng trapiko.</p>
+            <ul class="mt-4 space-y-2 text-sm leading-6 text-[#5b625a]">
+              <li class="flex gap-3"><span class="shrink-0 text-[#a85f3d]">◆</span><span><strong>Airport taxi / Grab:</strong> Pinakadirekta. Sabihin ang eksaktong address: 362 Longlong Road, Pinsao Proper.</span></li>
+              <li class="flex gap-3"><span class="shrink-0 text-[#a85f3d]">◆</span><span><strong>Jeepney + lakad:</strong> Mula airport, sumakay ng jeep patungong city center, pagkatapos lumipat sa Tam-awan / Longlong route na jeep mula Kayang/Otek terminal.</span></li>
+              <li class="flex gap-3"><span class="shrink-0 text-[#a85f3d]">◆</span><span><strong>Pre-arranged transfer:</strong> Kung maraming gamit o kasama ang grupo, mas praktikal ang private transfer kaysa magpalipat-lipat ng sasakyan.</span></li>
             </ul>
           </div>
-        </div>
-      </section>
+        </article>
+        <article class="grid gap-4 border-t border-[#17372c]/20 py-6 md:grid-cols-[130px_1fr]">
+          <p class="text-xs font-black uppercase tracking-[0.18em] text-[#a85f3d]">Jeepney</p>
+          <div><h3 class="text-2xl font-bold text-[#17372c]">Hanapin ang Tam-awan / Longlong route</h3><p class="mt-2 text-sm leading-6 text-[#5b625a]">Magtanong sa central terminals sa may Kayang/Otek area para sa jeep na patungong Tam-awan/Longlong. Kumpirmahin sa dispatcher o driver kung dumaraan o saan pinakamalapit bumaba para sa Stone Kingdom.</p></div>
+        </article>
+        <article class="grid gap-4 border-y border-[#17372c]/20 py-6 md:grid-cols-[130px_1fr]">
+          <p class="text-xs font-black uppercase tracking-[0.18em] text-[#a85f3d]">Sariling kotse</p>
+          <div><h3 class="text-2xl font-bold text-[#17372c]">I-pin ang mismong attraction</h3><p class="mt-2 text-sm leading-6 text-[#5b625a]">Gamitin ang map pin sa ibaba. Mag-expect ng uphill streets at limitadong parking sa busy hours; umaga ang mas madaling arrival window.</p></div>
+        </article>
+      </div>
+    </div>
 
-      <section class="bg-[#17372c] py-20 text-white lg:py-28" aria-labelledby="best-time-title">
-        <div class="mx-auto grid max-w-[1440px] gap-10 px-5 lg:grid-cols-[.7fr_1.3fr] lg:px-10">
-          <div>
-            <p class="text-xs font-black uppercase tracking-[0.24em] text-[#dcb17c]">Pinakamagandang oras</p>
-            <h2 id="best-time-title" class="mt-4 text-5xl font-bold leading-none md:text-6xl">Weekday.<br />Maagang umaga.</h2>
-          </div>
-          <div class="grid gap-4 sm:grid-cols-2">
-            <article class="border border-white/15 bg-white/5 p-7">
-              <span class="font-serif text-5xl text-[#dcb17c]">01</span>
-              <h3 class="mt-5 text-2xl font-bold">Para sa mas tahimik na lakad</h3>
-              <p class="mt-3 text-sm leading-6 text-white/70">Weekday morning ang mas komportable para sa viewpoints, makikitid na passage at mga litrato na hindi masyadong siksikan.</p>
-            </article>
-            <article class="border border-white/15 bg-white/5 p-7">
-              <span class="font-serif text-5xl text-[#dcb17c]">02</span>
-              <h3 class="mt-5 text-2xl font-bold">Maglaan ng 1–2 oras</h3>
-              <p class="mt-3 text-sm leading-6 text-white/70">Sapat para sa pangunahing ruta. Dagdagan kung mabagal ang pace, maraming photo stops o may kasamang bata at senior.</p>
-            </article>
-            <article class="border border-white/15 bg-white/5 p-7 sm:col-span-2">
-              <span class="font-serif text-5xl text-[#dcb17c]">03</span>
-              <h3 class="mt-5 text-2xl font-bold">Baguio weather: laging may plan B.</h3>
-              <p class="mt-3 max-w-2xl text-sm leading-6 text-white/70">Madaling magpalit ang araw, ulap at ambon. Lightweight rain layer, sapatos na may kapit at tubig ang mas praktikal kaysa sobrang daming gamit.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="pagpunta" class="mx-auto max-w-[1440px] px-5 py-20 lg:px-10 lg:py-28">
-        <div class="grid gap-12 lg:grid-cols-[.82fr_1.18fr] lg:gap-16">
-          <div>
-            <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]">Detalyadong transportasyon</p>
-            <h2 class="mt-4 text-5xl font-bold leading-none md:text-6xl">Longlong Road, paakyat mula sa sentro.</h2>
-            <p class="mt-6 max-w-xl leading-7 text-[#555e55]">Address: <strong>362 Longlong Road, Pinsao Proper, Baguio City, 2600 Benguet</strong>. Ang final approach ay hillside road, kaya normal na mas mabagal kapag weekend o maulan.</p>
-          </div>
-          <div class="space-y-4">
-            <article class="grid gap-4 border-t border-[#17372c]/20 py-6 md:grid-cols-[130px_1fr]">
-              <p class="text-xs font-black uppercase tracking-[0.18em] text-[#a85f3d]">Taxi</p>
-              <div><h3 class="text-2xl font-bold text-[#17372c]">Pinakasimple mula sa city center</h3><p class="mt-2 text-sm leading-6 text-[#5b625a]">Sabihin: “Igorot Stone Kingdom, Longlong Road, Pinsao Proper.” Ito ang pinakamadaling option kung ayaw mong maghanap ng jeepney transfer o parking.</p></div>
-            </article>
-            <article class="grid gap-4 border-t border-[#17372c]/20 py-6 md:grid-cols-[130px_1fr]">
-              <p class="text-xs font-black uppercase tracking-[0.18em] text-[#a85f3d]">Paliparan</p>
-              <div>
-                <h3 class="text-2xl font-bold text-[#17372c]">Mula Loakan Airport (BGO) patungong attraction</h3>
-                <p class="mt-2 text-sm leading-6 text-[#5b625a]">Ang Baguio Loakan Airport ay nasa humigit-kumulang 7–8 km mula sa Igorot Stone Kingdom, o mga 20–30 minutong biyahe depende sa daloy ng trapiko.</p>
-                <ul class="mt-4 space-y-2 text-sm leading-6 text-[#5b625a]">
-                  <li class="flex gap-3"><span class="shrink-0 text-[#a85f3d]">◆</span><span><strong>Airport taxi / Grab:</strong> Pinakadirekta. Sabihin ang eksaktong address: 362 Longlong Road, Pinsao Proper.</span></li>
-                  <li class="flex gap-3"><span class="shrink-0 text-[#a85f3d]">◆</span><span><strong>Jeepney + lakad:</strong> Mula airport, sumakay ng jeep patungong city center, pagkatapos lumipat sa Tam-awan / Longlong route na jeep mula Kayang/Otek terminal.</span></li>
-                  <li class="flex gap-3"><span class="shrink-0 text-[#a85f3d]">◆</span><span><strong>Pre-arranged transfer:</strong> Kung maraming gamit o kasama ang grupo, mas praktikal ang private transfer kaysa magpalipat-lipat ng sasakyan.</span></li>
-                </ul>
-              </div>
-            </article>
-            <article class="grid gap-4 border-t border-[#17372c]/20 py-6 md:grid-cols-[130px_1fr]">
-              <p class="text-xs font-black uppercase tracking-[0.18em] text-[#a85f3d]">Jeepney</p>
-              <div><h3 class="text-2xl font-bold text-[#17372c]">Hanapin ang Tam-awan / Longlong route</h3><p class="mt-2 text-sm leading-6 text-[#5b625a]">Magtanong sa central terminals sa may Kayang/Otek area para sa jeep na patungong Tam-awan/Longlong. Kumpirmahin sa dispatcher o driver kung dumaraan o saan pinakamalapit bumaba para sa Stone Kingdom.</p></div>
-            </article>
-            <article class="grid gap-4 border-y border-[#17372c]/20 py-6 md:grid-cols-[130px_1fr]">
-              <p class="text-xs font-black uppercase tracking-[0.18em] text-[#a85f3d]">Sariling kotse</p>
-              <div><h3 class="text-2xl font-bold text-[#17372c]">I-pin ang mismong attraction</h3><p class="mt-2 text-sm leading-6 text-[#5b625a]">Gamitin ang map pin sa ibaba. Mag-expect ng uphill streets at limitadong parking sa busy hours; umaga ang mas madaling arrival window.</p></div>
-            </article>
-          </div>
-        </div>
-
-        <div class="mt-14 grid gap-7 lg:grid-cols-[1.35fr_.65fr] lg:items-stretch">
-          <div class="map-frame overflow-hidden border-2 border-[#17372c] bg-white">
-            <iframe
-              title="Mapa ng Igorot Stone Kingdom sa Baguio"
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6816.607439247363!2d120.5725104!3d16.4315628!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391a3e931948e1f%3A0x992084ab1a61b3ff!2sIgorot%20Stone%20Kingdom%20Inc.!5e1!3m2!1szh-CN!2s!4v1786412902432!5m2!1szh-CN!2s"
-              width="100%"
-              height="520"
-              style="border:0; display:block;"
-              loading="lazy"
-              allowfullscreen
-              referrerpolicy="strict-origin-when-cross-origin"></iframe>
-          </div>
-          <div class="stone-texture stone-edge flex flex-col justify-between p-8 md:p-10">
-            <div>
-              <p class="text-xs font-black uppercase tracking-[0.22em] text-[#a85f3d]">Coordinates</p>
-              <p class="mt-3 font-serif text-3xl font-bold text-[#17372c]">16.4315628,<br />120.5750853</p>
-              <p class="mt-6 text-sm leading-6 text-[#515951]">I-save ang pin bago bumiyahe. Kapag mahina ang signal sa uphill streets, may reference ka pa rin sa eksaktong lokasyon.</p>
-            </div>
-            <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="mt-9 inline-flex items-center justify-between border-t border-[#17372c]/25 pt-5 text-sm font-black uppercase tracking-[0.12em] text-[#17372c]">Buksan sa Google Maps <span>↗</span></a>
-          </div>
-        </div>
-      </section>
-
-      <section id="kainan" class="bg-[#efe8da] py-20 lg:py-28">
-        <div class="mx-auto max-w-[1440px] px-5 lg:px-10">
-          <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
-            <div>
-              <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]">Kainan sa paligid</p>
-              <h2 class="mt-4 text-5xl font-bold leading-none md:text-6xl">Pagkatapos ng hagdan, pagkain naman.</h2>
-            </div>
-            <p class="max-w-2xl text-sm leading-6 text-[#596158]">Ang Tam-awan / Pinsao area ay may ilang magandang local stops. Hours at menu ay puwedeng magbago, kaya tingnan muna ang current listing lalo na kung late afternoon ka kakain.</p>
-          </div>
-          <div class="mt-12 grid gap-4 lg:grid-cols-3">
-            {foodSpots.map((spot, index) => (
-              <article class:list={['relative min-h-[310px] border border-[#17372c]/15 p-8', index === 0 ? 'bg-[#17372c] text-white' : 'bg-[#f8f6f0] text-[#20261f]']}>
-                <span class:list={['absolute right-6 top-5 font-serif text-6xl', index === 0 ? 'text-white/10' : 'text-[#17372c]/8']}>0{index + 1}</span>
-                <p class:list={['text-xs font-black uppercase tracking-[0.2em]', index === 0 ? 'text-[#dcb17c]' : 'text-[#a85f3d]']}>{spot.kind}</p>
-                <h3 class="mt-5 max-w-xs text-3xl font-bold leading-tight">{spot.name}</h3>
-                <p class:list={['mt-5 text-sm leading-6', index === 0 ? 'text-white/72' : 'text-[#5b625a]']}>{spot.note}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="kalapit" class="mx-auto max-w-[1440px] px-5 py-20 lg:px-10 lg:py-28">
-        <div class="mb-11 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
-          <div>
-            <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]">Kalapit na pasyalan</p>
-            <h2 class="mt-4 text-5xl font-bold leading-none md:text-6xl">Buuin ang isang Baguio culture loop.</h2>
-          </div>
-          <p class="max-w-lg text-sm leading-6 text-[#596158]">Kung may kalahati o buong araw ka, pinakamadaling pagsamahin ang Stone Kingdom sa mga stop na ito bago bumalik sa sentro.</p>
-        </div>
-        <div class="divide-y divide-[#17372c]/15 border-y border-[#17372c]/15">
-          {nearbyPlaces.map((place, index) => (
-            <article class="grid gap-4 py-7 md:grid-cols-[70px_1fr_180px] md:items-center">
-              <span class="font-serif text-3xl text-[#a85f3d]">0{index + 1}</span>
-              <div><h3 class="text-2xl font-bold text-[#17372c]">{place.name}</h3><p class="mt-2 max-w-3xl text-sm leading-6 text-[#5b625a]">{place.note}</p></div>
-              <span class="w-fit border border-[#17372c]/20 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.15em] text-[#405045]">{place.tag}</span>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section class="bg-[#a85f3d] py-14 text-[#fff7e9]" aria-labelledby="access-title">
-        <div class="mx-auto grid max-w-[1440px] gap-7 px-5 lg:grid-cols-[.58fr_1.42fr] lg:px-10">
-          <div>
-            <p class="text-xs font-black uppercase tracking-[0.24em] text-[#f2d8bc]">Accessibility note</p>
-            <h2 id="access-title" class="mt-3 text-4xl font-bold">Maraming hagdan.</h2>
-          </div>
-          <p class="max-w-3xl text-base leading-7 text-white/86">Hillside ang attraction at maraming section ang may matarik o hindi pantay na daan, kaya hindi ito ideal para sa wheelchair o stroller. Kung may mobility concern, tanungin muna ang staff kung aling kasalukuyang bahagi ang kayang puntahan nang hindi kailangang akyatin ang buong route.</p>
-        </div>
-      </section>
-
-      <section id="faq" class="mx-auto max-w-[1200px] px-5 py-20 lg:px-10 lg:py-28">
-        <div class="mx-auto max-w-3xl text-center">
-          <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]">FAQ · Madalas itanong</p>
-          <h2 class="mt-4 text-5xl font-bold leading-none md:text-6xl">Bago ka bumiyahe.</h2>
-        </div>
-        <div class="mx-auto mt-12 max-w-4xl border-t border-[#17372c]/20">
-          {faqs.map((faq) => (
-            <details class="faq-item group border-b border-[#17372c]/20 py-1">
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-left text-xl font-bold text-[#17372c] marker:hidden md:text-2xl">
-                <span>{faq.question}</span>
-                <span class="faq-plus shrink-0 text-3xl font-light text-[#a85f3d] transition-transform">+</span>
-              </summary>
-              <p class="max-w-3xl pb-7 pr-10 text-sm leading-7 text-[#596158]">{faq.answer}</p>
-            </details>
-          ))}
-        </div>
-      </section>
-    </main>
-
-    <footer class="bg-[#10271f] text-white">
-      <div class="mx-auto grid max-w-[1440px] gap-10 px-5 py-14 lg:grid-cols-[1fr_1fr] lg:px-10">
+    <div class="mt-14 grid gap-7 lg:grid-cols-[1.35fr_.65fr] lg:items-stretch">
+      <div class="map-frame overflow-hidden border-2 border-[#17372c] bg-white">
+        <iframe
+          title="Mapa ng Igorot Stone Kingdom sa Baguio"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6816.607439247363!2d120.5725104!3d16.4315628!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391a3e931948e1f%3A0x992084ab1a61b3ff!2sIgorot%20Stone%20Kingdom%20Inc.!5e1!3m2!1szh-CN!2s!4v1786412902432!5m2!1szh-CN!2s"
+          width="100%"
+          height="520"
+          style="border:0; display:block;"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div class="stone-texture stone-edge flex flex-col justify-between p-8 md:p-10">
         <div>
-          <img src="/logo.svg" alt="Igorot Stone Kingdom — Gabay sa Baguio" width="360" height="96" class="h-auto w-[290px] brightness-0 invert" />
-          <p class="mt-6 max-w-xl text-sm leading-6 text-white/60">Isang maikling visitor guide para sa Longlong Road, Pinsao Proper, Baguio City.</p>
+          <p class="text-xs font-black uppercase tracking-[0.22em] text-[#a85f3d]">Coordinates</p>
+          <p class="mt-3 font-serif text-3xl font-bold text-[#17372c]">16.4315628,<br />120.5750853</p>
+          <p class="mt-6 text-sm leading-6 text-[#515951]">I-save ang pin bago bumiyahe. Kapag mahina ang signal sa uphill streets, may reference ka pa rin sa eksaktong lokasyon.</p>
         </div>
-        <div class="lg:text-right">
-          <p class="text-xs font-black uppercase tracking-[0.22em] text-[#dcb17c]">Photo credits</p>
-          <p class="mt-3 text-xs leading-6 text-white/60">Richmond Chi at Ralff Nestor Nacor · Wikimedia Commons · CC BY-SA 4.0. Ang local copies ay ni-resize at ni-compress para sa web.</p>
-          <div class="mt-3 flex flex-wrap gap-4 text-xs underline decoration-white/25 underline-offset-4 lg:justify-end">
-            <a href="https://commons.wikimedia.org/wiki/Category:Igorot_Stone_Kingdom" target="_blank" rel="license noreferrer">Mga source na larawan ↗</a>
-            <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noreferrer">CC BY-SA 4.0 ↗</a>
-          </div>
+        <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="mt-9 inline-flex items-center justify-between border-t border-[#17372c]/25 pt-5 text-sm font-black uppercase tracking-[0.12em] text-[#17372c]">Buksan sa Google Maps <span>↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="kainan" class="bg-[#efe8da] py-20 lg:py-28">
+    <div class="mx-auto max-w-[1440px] px-5 lg:px-10">
+      <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
+        <div>
+          <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]"><span class="lang-fil">Kainan sa paligid</span><span class="lang-en">Food nearby</span></p>
+          <h2 class="mt-4 text-5xl font-bold leading-none md:text-6xl"><span class="lang-fil">Pagkatapos ng hagdan, pagkain naman.</span><span class="lang-en">After the stairs, time to eat.</span></h2>
+        </div>
+        <p class="max-w-2xl text-sm leading-6 text-[#596158]">Ang Tam-awan / Pinsao area ay may ilang magandang local stops. Hours at menu ay puwedeng magbago, kaya tingnan muna ang current listing lalo na kung late afternoon ka kakain.</p>
+      </div>
+      <div class="mt-12 grid gap-4 lg:grid-cols-3">
+        {foodSpots.map((spot, index) => (
+          <article class:list={['relative min-h-[310px] border border-[#17372c]/15 p-8', index === 0 ? 'bg-[#17372c] text-white' : 'bg-[#f8f6f0] text-[#20261f]']}>
+            <span class:list={['absolute right-6 top-5 font-serif text-6xl', index === 0 ? 'text-white/10' : 'text-[#17372c]/8']}>0{index + 1}</span>
+            <p class:list={['text-xs font-black uppercase tracking-[0.2em]', index === 0 ? 'text-[#dcb17c]' : 'text-[#a85f3d]']}>{spot.kind}</p>
+            <h3 class="mt-5 max-w-xs text-3xl font-bold leading-tight">{spot.name}</h3>
+            <p class:list={['mt-5 text-sm leading-6', index === 0 ? 'text-white/72' : 'text-[#5b625a]']}>{spot.note}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="serbisyo" class="bg-[#17372c] py-20 text-white lg:py-28" aria-labelledby="services-title">
+    <div class="mx-auto max-w-[1440px] px-5 lg:px-10">
+      <div class="mb-12 max-w-2xl">
+        <p class="text-xs font-black uppercase tracking-[0.24em] text-[#dcb17c]"><span class="lang-fil">Serbisyo sa bisita</span><span class="lang-en">Visitor services</span></p>
+        <h2 id="services-title" class="mt-3 text-5xl font-bold tracking-tight"><span class="lang-fil">Ano ang available sa paligid?</span><span class="lang-en">What is available around?</span></h2>
+        <p class="mt-5 text-sm leading-6 text-white/75">Gabay lang ito sa <em>uri</em> ng serbisyo—hindi rekomendasyon ng partikular na tindahan o negosyo. Maaaring magbago ang oras, presyo at availability, kaya magtanong muna sa staff o i-check ang real-time info bago umalis.</p>
+      </div>
+      <div class="grid gap-px overflow-hidden border border-white/15 bg-white/15 sm:grid-cols-2 lg:grid-cols-3">
+        {facilities.map((f) => (
+          <article class="bg-[#17372c] p-8">
+            <span class="text-3xl" aria-hidden="true">{f.icon}</span>
+            <h3 class="mt-4 font-serif text-2xl font-bold">{f.title}</h3>
+            <p class="mt-3 text-sm leading-6 text-white/72">{f.note}</p>
+            <ul class="mt-5 space-y-2 text-sm text-white/80">
+              {f.items.map((it) => (
+                <li class="flex gap-2"><span class="text-[#dcb17c]">·</span><span>{it}</span></li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+      <p class="mt-8 max-w-3xl text-sm leading-6 text-white/65">Mga malapit na amenity sa city proper (15–25 min by land): ospital / clinic, banko at ATM, supermarket at pharmacy, at gas station. Para sa emergency, ang nearest city services ay nasa Baguio centro.</p>
+    </div>
+  </section>
+
+  <section id="kalapit" class="mx-auto max-w-[1440px] px-5 py-20 lg:px-10 lg:py-28">
+    <div class="mb-11 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
+      <div>
+        <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]"><span class="lang-fil">Kalapit na pasyalan</span><span class="lang-en">Nearby attractions</span></p>
+        <h2 class="mt-4 text-5xl font-bold leading-none md:text-6xl"><span class="lang-fil">Buuin ang isang Baguio culture loop.</span><span class="lang-en">Build a Baguio culture loop.</span></h2>
+      </div>
+      <p class="max-w-lg text-sm leading-6 text-[#596158]">Kung may kalahati o buong araw ka, pinakamadaling pagsamahin ang Stone Kingdom sa mga stop na ito bago bumalik sa sentro.</p>
+    </div>
+    <div class="divide-y divide-[#17372c]/15 border-y border-[#17372c]/15">
+      {nearbyPlaces.map((place, index) => (
+        <article class="grid gap-4 py-7 md:grid-cols-[70px_1fr_180px] md:items-center">
+          <span class="font-serif text-3xl text-[#a85f3d]">0{index + 1}</span>
+          <div><h3 class="text-2xl font-bold text-[#17372c]">{place.name}</h3><p class="mt-2 max-w-3xl text-sm leading-6 text-[#5b625a]">{place.note}</p></div>
+          <span class="w-fit border border-[#17372c]/20 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.15em] text-[#405045]">{place.tag}</span>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-[#a85f3d] py-14 text-[#fff7e9]" aria-labelledby="access-title">
+    <div class="mx-auto grid max-w-[1440px] gap-7 px-5 lg:grid-cols-[.58fr_1.42fr] lg:px-10">
+      <div>
+        <p class="text-xs font-black uppercase tracking-[0.24em] text-[#f2d8bc]">Accessibility note</p>
+        <h2 id="access-title" class="mt-3 text-4xl font-bold">Maraming hagdan.</h2>
+      </div>
+      <p class="max-w-3xl text-base leading-7 text-white/86">Hillside ang attraction at maraming section ang may matarik o hindi pantay na daan, kaya hindi ito ideal para sa wheelchair o stroller. Kung may mobility concern, tanungin muna ang staff kung aling kasalukuyang bahagi ang kayang puntahan nang hindi kailangang akyatin ang buong route.</p>
+    </div>
+  </section>
+
+  <section id="tungkol" class="mx-auto max-w-[1440px] px-5 py-20 lg:px-10 lg:py-28" aria-labelledby="about-title">
+    <div class="grid gap-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-20">
+      <div>
+        <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]"><span class="lang-fil">Kuwento at konteksto</span><span class="lang-en">Story &amp; context</span></p>
+        <h2 id="about-title" class="mt-4 text-5xl font-bold leading-[.95] tracking-tight md:text-6xl"><span class="lang-fil">Higit sa bato: kultura at pananagutan.</span><span class="lang-en">Beyond stone: culture and responsibility.</span></h2>
+      </div>
+      <div class="max-w-3xl text-[#4d554d]">
+        <p class="text-base leading-7">{aboutContext.intro}</p>
+        <h3 class="mt-8 text-xl font-bold text-[#17372c]">Ang Cordillera sa likod ng disenyo</h3>
+        <p class="mt-3 text-base leading-7">{aboutContext.heritage}</p>
+        <h3 class="mt-8 text-xl font-bold text-[#17372c]">Isang modernong atraksyon</h3>
+        <p class="mt-3 text-base leading-7">{aboutContext.modern}</p>
+        <h3 class="mt-8 text-xl font-bold text-[#17372c]">Pananagutan ng bisita</h3>
+        <ul class="mt-4 space-y-3 text-base leading-7">
+          {aboutContext.responsibility.map((r) => (
+            <li class="flex gap-3"><span class="shrink-0 font-bold text-[#a85f3d]">◆</span><span>{r}</span></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="review" class="bg-[#17372c] py-16 text-white lg:py-20" aria-labelledby="review-title">
+    <div class="mx-auto grid max-w-[1440px] gap-10 px-5 lg:grid-cols-[.85fr_1.15fr] lg:px-10">
+      <div>
+        <p class="text-xs font-black uppercase tracking-[0.24em] text-[#dcb17c]"><span class="lang-fil">Rating ng bisita</span><span class="lang-en">Visitor rating</span></p>
+        <h2 id="review-title" class="mt-3 text-4xl font-bold tracking-tight md:text-5xl">4.4 ★ <span class="text-2xl font-normal text-white/70">· 5,411 reviews</span></h2>
+        <p class="mt-5 max-w-md text-sm leading-6 text-white/70"><span class="lang-fil">Ang rating at bilang ng review ay sinabayan mula sa mga user review sa Google Maps · Setyembre 2026 · <a href={mapsShareUrl} target="_blank" rel="noreferrer" class="underline decoration-white/40 underline-offset-4 hover:text-[#e7d8b8]">Tingnan ang lahat ng review sa Google Maps ↗</a></span><span class="lang-en">Rating and review count synced from Google Maps user reviews · September 2026 · <a href={mapsShareUrl} target="_blank" rel="noreferrer" class="underline decoration-white/40 underline-offset-4 hover:text-[#e7d8b8]">View all reviews on Google Maps ↗</a></span></p>
+      </div>
+      <div class="flex flex-col justify-center border-t border-white/15 pt-8 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+        <p class="text-xs font-black uppercase tracking-[0.22em] text-[#dcb17c]"><span class="lang-fil">Sanggunian</span><span class="lang-en">Source</span></p>
+        <p class="mt-3 max-w-xl text-sm leading-6 text-white/75"><span class="lang-fil">Sini-sync mula sa user review ng Google Maps, sync noong Setyembre 2026; ang copyright ay sa mga orihinal na may-akda at Google Maps.</span><span class="lang-en">Synced from Google Maps user reviews, synced September 2026; copyright belongs to the original authors and Google Maps.</span></p>
+        <a href={mapsShareUrl} target="_blank" rel="noreferrer" class="mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-[#e7d8b8]/80 px-5 py-2.5 text-xs font-black uppercase tracking-[0.12em] transition hover:bg-[#e7d8b8] hover:text-[#17372c]"><span class="lang-fil">Tingnan ang lahat ng review sa Google Maps</span><span class="lang-en">View all reviews on Google Maps</span> <span>↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="sources" class="bg-[#efe8da] py-16 lg:py-20" aria-labelledby="sources-title">
+    <div class="mx-auto max-w-[1440px] px-5 lg:px-10">
+      <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]"><span class="lang-fil">Sanggunian at source</span><span class="lang-en">References &amp; sources</span></p>
+      <h2 id="sources-title" class="mt-3 text-4xl font-bold tracking-tight text-[#17372c] md:text-5xl"><span class="lang-fil">Kung saan hinahati ang impormasyon</span><span class="lang-en">Where our information comes from</span></h2>
+      <div class="mt-10 grid gap-4 md:grid-cols-2">
+        <div class="border border-[#17372c]/15 bg-white p-7">
+          <p class="text-xs font-black uppercase tracking-[0.18em] text-[#a85f3d]"><span class="lang-fil">Review · Sinychronized Setyembre 2026</span><span class="lang-en">Reviews · Synced September 2026</span></p>
+          <p class="mt-3 text-sm leading-6 text-[#5b625a]"><span class="lang-fil">Ang rating at bilang ng review ay mula sa user review ng Google Maps; ang copyright ay sa mga orihinal na may-akda at Google Maps.</span><span class="lang-en">Ratings and review counts are from Google Maps user reviews; copyright belongs to the original authors and Google Maps.</span></p>
+          <a href={mapsShareUrl} target="_blank" rel="noreferrer" class="mt-4 inline-flex items-center gap-1 text-sm font-black uppercase tracking-[0.1em] text-[#17372c] hover:text-[#a85f3d]">Google Maps ↗</a>
+        </div>
+        <div class="border border-[#17372c]/15 bg-white p-7">
+          <p class="text-xs font-black uppercase tracking-[0.18em] text-[#a85f3d]"><span class="lang-fil">Turismo at gobyerno</span><span class="lang-en">Tourism &amp; government</span></p>
+          <p class="mt-3 text-sm leading-6 text-[#5b625a]"><span class="lang-fil">Opisyal na impormasyon sa paglalakbay at patakaran ng rehiyon para sa mas tiwalang plano.</span><span class="lang-en">Official regional travel information and policies for more reliable planning.</span></p>
+          <a href={govtTourismUrl} target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-1 text-sm font-black uppercase tracking-[0.1em] text-[#17372c] hover:text-[#a85f3d]">Department of Tourism, Philippines ↗</a>
         </div>
       </div>
-      <div class="border-t border-white/10 px-5 py-5 text-center text-xs leading-5 text-white/55 lg:px-10">Hindi ito opisyal na website ng Igorot Stone Kingdom Inc.; independent visitor guide lamang ito at maaaring magbago ang rates, oras at policies nang walang abiso rito.</div>
-    </footer>
-  </body>
-</html>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-[1200px] px-5 py-20 lg:px-10 lg:py-28">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]"><span class="lang-fil">FAQ · Madalas itanong</span><span class="lang-en">FAQ · Common questions</span></p>
+      <h2 class="mt-4 text-5xl font-bold leading-none md:text-6xl"><span class="lang-fil">Bago ka bumiyahe.</span><span class="lang-en">Before you travel.</span></h2>
+    </div>
+    <div class="mx-auto mt-12 max-w-4xl border-t border-[#17372c]/20">
+      {faqs.map((faq) => (
+        <details class="faq-item group border-b border-[#17372c]/20 py-1">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-left text-xl font-bold text-[#17372c] marker:hidden md:text-2xl">
+            <span>{faq.question}</span>
+            <span class="faq-plus shrink-0 text-3xl font-light text-[#a85f3d] transition-transform">+</span>
+          </summary>
+          <p class="max-w-3xl pb-7 pr-10 text-sm leading-7 text-[#596158]">{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</Base>

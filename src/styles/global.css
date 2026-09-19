@@ -95,3 +95,29 @@ summary:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ===== Bilingual toggle (Filipino / English) =====
+   Default <html> shows .lang-fil; adding .lang-en on <html> swaps to .lang-en. */
+html:not(.lang-en) .lang-en { display: none !important; }
+html.lang-en .lang-fil { display: none !important; }
+html.lang-en .lang-en { display: block !important; }
+
+.lang-switch {
+  opacity: .55;
+  transition: opacity .15s ease;
+}
+.lang-switch:hover { opacity: 1; }
+.lang-switch.is-active {
+  opacity: 1;
+  color: #e7d8b8;
+}
+
+/* ===== Printable itinerary ===== */
+@media print {
+  header, footer, .ridge-line, .no-print { display: none !important; }
+  body { background: #fff; color: #111; }
+  section:not(#ruta) { display: none !important; }
+  #ruta { padding-top: 0 !important; padding-bottom: 0 !important; }
+  #ruta a[href]::after { content: ""; }
+  .map-frame, iframe { display: none !important; }
+}

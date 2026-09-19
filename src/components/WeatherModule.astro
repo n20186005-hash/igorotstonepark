@@ -1,0 +1,277 @@
+---
+// Real-time weather + 7-day forecast for the attraction.
+// Data is fetched server-side (see /api/weather) and cached; this component only displays it.
+// A small client-side engine turns the raw values into visitor advice that is
+// rendered only when the relevant condition actually applies.
+---
+<section id="panahon" class="mx-auto max-w-[1440px] px-5 py-20 lg:px-10 lg:py-28" aria-labelledby="weather-title">
+  <div class="grid gap-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-20">
+    <div>
+      <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]"><span class="lang-fil">Panahon ngayon</span><span class="lang-en">Current weather</span></p>
+      <h2 id="weather-title" class="mt-4 text-5xl font-bold leading-[.95] tracking-tight md:text-6xl"><span class="lang-fil">Umuwi o akyat, tingnan muna ang panahon.</span><span class="lang-en">Before you go, check the weather.</span></h2>
+      <p class="mt-7 max-w-lg text-base leading-7 text-[#4d554d]"><span class="lang-fil">Ang Baguio ay mabilis magbago ang panahon. Bago umakyat sa hillside na Stone Kingdom, alamin kung uulan at kung kailangan ng payong o jacket.</span><span class="lang-en">Baguio’s weather changes fast. Before climbing the hillside Stone Kingdom, check if it will rain and whether you need an umbrella or jacket.</span></p>
+      <p class="mt-4 text-xs leading-5 text-[#7a827a]" data-weather-source><span class="lang-fil">Awtomatikong ina-update; para sa plano ng biyahe, laging i-cross-check ang opisyal na forecast.</span><span class="lang-en">Updated automatically; for trip planning, always cross-check the official forecast.</span></p>
+    </div>
+    <div>
+      <div data-weather-root class="rounded-2xl border border-[#17372c]/15 bg-white/70 p-6 shadow-sm md:p-8">
+        <div data-weather-current class="flex flex-wrap items-end gap-6">
+          <div class="text-6xl" data-weather-icon aria-hidden="true">⏳</div>
+          <div>
+            <p class="text-sm font-bold uppercase tracking-wider text-[#375143]" data-weather-cond>Kinukuha ang panahon…</p>
+            <p class="font-serif text-5xl font-bold text-[#17372c]" data-weather-temp>—°</p>
+            <p class="text-sm text-[#5b625a]"><span class="lang-fil" data-weather-feels-fil>—</span><span class="lang-en" data-weather-feels-en>—</span></p>
+          </div>
+          <div class="ml-auto text-right text-sm text-[#5b625a]">
+            <p data-weather-range></p>
+            <p data-weather-wind></p>
+            <p data-weather-humidity></p>
+          </div>
+        </div>
+
+        <div data-weather-advice class="mt-6 hidden border-t border-[#17372c]/10 pt-5">
+          <div data-weather-risk class="hidden rounded-xl bg-[#7a1f1f] px-4 py-3 text-white">
+            <p class="text-xs font-black uppercase tracking-[0.18em]">⚠️ <span class="lang-fil">Babala</span><span class="lang-en">Risk alert</span></p>
+            <ul data-weather-risk-list class="mt-1.5 space-y-1 text-sm leading-5"></ul>
+          </div>
+          <div class="mt-4 grid gap-3 sm:grid-cols-3">
+            <div class="rounded-xl bg-[#17372c]/5 p-4" data-box-travel>
+              <p class="text-xs font-black uppercase tracking-[0.15em] text-[#375143]"><span class="lang-fil">Suotin</span><span class="lang-en">What to wear</span></p>
+              <ul data-weather-travel class="mt-2 space-y-1.5 text-sm leading-5 text-[#4d554d]"></ul>
+            </div>
+            <div class="rounded-xl bg-[#17372c]/5 p-4" data-box-play>
+              <p class="text-xs font-black uppercase tracking-[0.15em] text-[#375143]"><span class="lang-fil">Sa paglibot</span><span class="lang-en">Plan your visit</span></p>
+              <ul data-weather-play class="mt-2 space-y-1.5 text-sm leading-5 text-[#4d554d]"></ul>
+            </div>
+            <div class="rounded-xl bg-[#17372c]/5 p-4" data-box-items>
+              <p class="text-xs font-black uppercase tracking-[0.15em] text-[#375143]"><span class="lang-fil">Dalhin</span><span class="lang-en">Bring along</span></p>
+              <ul data-weather-items class="mt-2 space-y-1.5 text-sm leading-5 text-[#4d554d]"></ul>
+            </div>
+          </div>
+        </div>
+
+        <div data-weather-forecast class="mt-7 grid grid-cols-3 gap-3 sm:grid-cols-7"></div>
+        <p data-weather-error class="mt-4 hidden text-sm text-[#a85f3d]"><span class="lang-fil">Hindi makuha ang real-time na panahon ngayon. Subukang muli mamaya o tingnan ang opisyal na forecast ng Baguio.</span><span class="lang-en">Could not get the real-time weather right now. Try again later or check the official Baguio forecast.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+(function () {
+  var root = document.querySelector('[data-weather-root]');
+  if (!root) return;
+  var iconEl = root.querySelector('[data-weather-icon]');
+  var condEl = root.querySelector('[data-weather-cond]');
+  var tempEl = root.querySelector('[data-weather-temp]');
+  var feelsFilEl = root.querySelector('[data-weather-feels-fil]');
+  var feelsEnEl = root.querySelector('[data-weather-feels-en]');
+  var rangeEl = root.querySelector('[data-weather-range]');
+  var windEl = root.querySelector('[data-weather-wind]');
+  var humEl = root.querySelector('[data-weather-humidity]');
+  var adviceEl = root.querySelector('[data-weather-advice]');
+  var riskBox = root.querySelector('[data-weather-risk]');
+  var riskList = root.querySelector('[data-weather-risk-list]');
+  var travelBox = root.querySelector('[data-box-travel]');
+  var playBox = root.querySelector('[data-box-play]');
+  var itemsBox = root.querySelector('[data-box-items]');
+  var travelList = root.querySelector('[data-weather-travel]');
+  var playList = root.querySelector('[data-weather-play]');
+  var itemsList = root.querySelector('[data-weather-items]');
+  var fcEl = root.querySelector('[data-weather-forecast]');
+  var errEl = root.querySelector('[data-weather-error]');
+
+  var WMO = {
+    0: 'Clear sky', 1: 'Mainly clear', 2: 'Partly cloudy', 3: 'Overcast',
+    45: 'Fog', 48: 'Rime fog',
+    51: 'Light drizzle', 53: 'Drizzle', 55: 'Dense drizzle',
+    56: 'Freezing drizzle', 57: 'Freezing drizzle',
+    61: 'Light rain', 63: 'Rain', 65: 'Heavy rain',
+    66: 'Freezing rain', 67: 'Freezing rain',
+    71: 'Light snow', 73: 'Snow', 75: 'Heavy snow', 77: 'Snow grains',
+    80: 'Rain showers', 81: 'Rain showers', 82: 'Violent showers',
+    85: 'Snow showers', 86: 'Snow showers',
+    95: 'Thunderstorm', 96: 'Thunderstorm', 99: 'Thunderstorm'
+  };
+  var ICON = {
+    0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️', 45: '🌫️', 48: '🌫️',
+    51: '🌦️', 53: '🌦️', 55: '🌧️', 56: '🌧️', 57: '🌧️',
+    61: '🌧️', 63: '🌧️', 65: '🌧️', 66: '🌧️', 67: '🌧️',
+    71: '🌨️', 73: '🌨️', 75: '🌨️', 77: '🌨️',
+    80: '🌦️', 81: '🌦️', 82: '⛈️', 85: '🌨️', 86: '🌨️',
+    95: '⛈️', 96: '⛈️', 99: '⛈️'
+  };
+  var RAIN = [51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 71, 73, 75, 77, 80, 81, 82, 85, 86, 95, 96, 99];
+  var HEAVY = [63, 65, 82];
+  var THUNDER = [95, 96, 99];
+  var FOG = [45, 48];
+  var CLEAR = [0, 1];
+  var CLOUDY = [2, 3];
+  var dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+  function inArr(a, v) { return a.indexOf(v) !== -1; }
+  function msToBeaufort(ms) {
+    if (ms == null) return 0;
+    if (ms < 0.3) return 0;
+    if (ms < 1.6) return 1;
+    if (ms < 3.4) return 2;
+    if (ms < 5.5) return 3;
+    if (ms < 8.0) return 4;
+    if (ms < 10.8) return 5;
+    if (ms < 13.9) return 6;
+    if (ms < 17.2) return 7;
+    if (ms < 20.8) return 8;
+    if (ms < 24.5) return 9;
+    if (ms < 28.5) return 10;
+    if (ms < 32.7) return 11;
+    return 12;
+  }
+
+  // Turn raw current + today's daily data into visitor advice.
+  // Each item is bilingual so the global language toggle still works.
+  function buildAdvice(c, d) {
+    var isRain = inArr(RAIN, c.weather_code) || (c.precipitation > 0);
+    var isHeavy = inArr(HEAVY, c.weather_code);
+    var isThunder = inArr(THUNDER, c.weather_code);
+    var isFog = inArr(FOG, c.weather_code);
+    var isClear = inArr(CLEAR, c.weather_code);
+    var isCloudy = inArr(CLOUDY, c.weather_code);
+    var pop = d.precipitation_probability_max ? d.precipitation_probability_max[0] : null;
+    var tmax = d.temperature_2m_max ? d.temperature_2m_max[0] : null;
+    var tmin = d.temperature_2m_min ? d.temperature_2m_min[0] : null;
+    var tdiff = (tmax != null && tmin != null) ? (tmax - tmin) : 0;
+    var uv = c.uv_index;
+    var bft = msToBeaufort(c.wind_speed_10m);
+    var gustBft = msToBeaufort(c.wind_gusts_10m);
+
+    var travel = [], play = [], items = [], risks = [];
+
+    if (isThunder) {
+      risks.push({ fil: 'Ingatan ang kidlat — huwag umakyat sa terraces, iwasang humingi ng silong sa ilalim ng puno.', en: 'Beware lightning — don’t climb the terraces and avoid sheltering under trees.' });
+    }
+    if (isHeavy) {
+      risks.push({ fil: 'Malakas ang ulan — iwasan ang mga lambak at mababang lugar; hindi inirerekomenda ang outdoor, pwedeng magsara ang cable car.', en: 'Heavy rain — avoid valleys and low ground; outdoor not advised and the cable car may close.' });
+    }
+    if (pop != null && pop >= 60 && !isHeavy) {
+      travel.push({ fil: 'Malaki ang chance na umulan, magdala na ng payong o raincoat.', en: 'Likely to rain — bring an umbrella or raincoat.' });
+      play.push({ fil: 'I-prioritize ang mga covered na spot; ipagpaliban muna ang pag-akyat kung umuulan.', en: 'Prioritize covered spots; delay climbing while it rains.' });
+    }
+    if (isRain && !isHeavy && !isThunder) {
+      travel.push({ fil: 'May ambon, madulas ang daan — mag-ingat sa paglakad.', en: 'Light rain; paths are slippery — watch your step.' });
+    }
+    if (pop != null && pop >= 60) items.push({ fil: 'Payong / raincoat', en: 'Umbrella / raincoat' });
+    else if (isRain) items.push({ fil: 'Payong', en: 'Umbrella' });
+
+    if (tmax != null && tmax >= 32) {
+      travel.push({ fil: 'Mataas ang temperatura, iwasan ang tanghaling tapat.', en: 'High temperature — avoid midday outdoors.' });
+      play.push({ fil: 'Ikli ang oras sa labas lalo na sa tanghali.', en: 'Shorten outdoor time around midday.' });
+      items.push({ fil: 'Sunscreen, tubig, pang-protect sa init', en: 'Sunscreen, water, heat protection' });
+    }
+    if (uv != null && uv >= 5) {
+      travel.push({ fil: 'Matindi ang UV, mag-apply ng sunscreen.', en: 'Strong UV — apply sunscreen.' });
+      items.push({ fil: 'Sunscreen, sunglasses, sumbrero', en: 'Sunscreen, sunglasses, hat' });
+    }
+    if (tdiff > 8) {
+      travel.push({ fil: 'Malaki ang timpla sa gabi at araw, magdala ng jacket.', en: 'Big day-night temperature swing — bring a jacket.' });
+    }
+    if (tmin != null && tmin <= 10) {
+      travel.push({ fil: 'Malamig, magdala ng makapal na jacket.', en: 'Cold — bring a warm jacket.' });
+      items.push({ fil: 'Padded jacket, scarf', en: 'Padded jacket, scarf' });
+    }
+
+    if (gustBft >= 7 || bft >= 7) {
+      risks.push({ fil: 'Malakas na hangin — lumayo sa mga edge at mga poste; pwedeng magsara ang outdoor areas.', en: 'Gale-force wind — stay away from edges and loose structures; outdoor areas likely closed.' });
+    } else if (bft >= 5) {
+      travel.push({ fil: 'Matindi ang hangin.', en: 'Brisk wind.' });
+      play.push({ fil: 'Pwedeng magsara ang ilang open-air na viewing deck.', en: 'Some open-air viewing decks may close.' });
+      items.push({ fil: 'Ang sumbrero ay pwedeng lumipad; iwasang magsuot ng maluwag na damit.', en: 'Hat may blow away; avoid loose clothing.' });
+    }
+
+    if (isClear) {
+      travel.push({ fil: 'Maganda ang panahon, pwede sa labas.', en: 'Clear and pleasant — good for outdoor.' });
+      play.push({ fil: 'Maganda para sa sunrise at sunset views.', en: 'Great for sunrise and sunset views.' });
+      if (uv == null || uv < 5) items.push({ fil: 'Huwag kalimutang sunscreen', en: 'Don’t forget sunscreen' });
+    }
+    if (isCloudy) {
+      travel.push({ fil: 'Hindi masakit sa mata, maganda para magpicture.', en: 'Soft light — great for photos.' });
+      play.push({ fil: 'Walang masakit na araw, pwede maglakad nang matagal sa labas.', en: 'No harsh sun — good for long walks outside.' });
+    }
+
+    if (isFog) {
+      risks.push({ fil: 'Mababa ang visibility — hindi maganda para magtanaw ng view at delikado sa daan.', en: 'Low visibility — poor for scenic views and tricky on paths.' });
+      items.push({ fil: 'Mask', en: 'Mask' });
+    }
+
+    return { travel: travel, play: play, items: items, risks: risks };
+  }
+
+  function renderList(box, list, items) {
+    if (!items.length) { box.style.display = 'none'; list.innerHTML = ''; return; }
+    list.innerHTML = '';
+    items.forEach(function (it) {
+      var li = document.createElement('li');
+      li.className = 'flex gap-2';
+      li.innerHTML = '<span class="lang-fil">' + it.fil + '</span><span class="lang-en">' + it.en + '</span>';
+      list.appendChild(li);
+    });
+  }
+
+  fetch('/api/weather', { headers: { 'accept': 'application/json' } })
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+    .then(function (data) {
+      var c = data.current;
+      var code = c.weather_code;
+      iconEl.textContent = ICON[code] || '🌡️';
+      condEl.textContent = cap(WMO[code] || '—');
+      tempEl.textContent = Math.round(c.temperature_2m) + '°';
+      feelsFilEl.textContent = 'Feels like ' + Math.round(c.apparent_temperature) + '° · ' + (c.is_day ? 'Araw' : 'Gabi');
+      feelsEnEl.textContent = 'Feels like ' + Math.round(c.apparent_temperature) + '° · ' + (c.is_day ? 'Day' : 'Night');
+      windEl.textContent = 'Hangin ' + Math.round(c.wind_speed_10m) + ' m/s';
+      humEl.textContent = 'Halumigmig ' + Math.round(c.relative_humidity_2m) + '%';
+
+      var d = data.daily;
+      if (d && d.temperature_2m_max && d.temperature_2m_min) {
+        var tmax = Math.round(d.temperature_2m_max[0]);
+        var tmin = Math.round(d.temperature_2m_min[0]);
+        rangeEl.textContent = 'Ngayon ' + tmin + '° / ' + tmax + '°';
+      }
+
+      var advice = buildAdvice(c, d || {});
+      if (advice.risks.length) {
+        riskBox.classList.remove('hidden');
+        renderList(riskBox, riskList, advice.risks);
+      } else {
+        riskBox.classList.add('hidden');
+      }
+      renderList(travelBox, travelList, advice.travel);
+      renderList(playBox, playList, advice.play);
+      renderList(itemsBox, itemsList, advice.items);
+      adviceEl.classList.remove('hidden');
+
+      if (d && d.time) {
+        fcEl.innerHTML = '';
+        d.time.slice(0, 7).forEach(function (t, i) {
+          var dt = new Date(t + 'T00:00');
+          var labelFil = i === 0 ? 'Ngayon' : i === 1 ? 'Bukas' : dayNames[dt.getDay()];
+          var labelEn = i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : dayNames[dt.getDay()];
+          var max = Math.round(d.temperature_2m_max[i]);
+          var min = Math.round(d.temperature_2m_min[i]);
+          var pop = d.precipitation_probability_max ? d.precipitation_probability_max[i] : null;
+          var el = document.createElement('div');
+          el.className = 'rounded-xl bg-[#17372c]/5 p-3 text-center';
+          el.innerHTML =
+            '<p class="text-[11px] font-bold text-[#375143]"><span class="lang-fil">' + labelFil + '</span><span class="lang-en">' + labelEn + '</span></p>' +
+            '<p class="my-1 text-2xl">' + (ICON[d.weather_code[i]] || '🌡️') + '</p>' +
+            '<p class="font-serif text-lg font-bold text-[#17372c]">' + max + '°</p>' +
+            '<p class="text-xs text-[#5b625a]">' + min + '°</p>' +
+            (typeof pop === 'number' ? '<p class="mt-1 text-[10px] text-[#a85f3d]">' + pop + '% rain</p>' : '');
+          fcEl.appendChild(el);
+        });
+      }
+    })
+    .catch(function () {
+      errEl.classList.remove('hidden');
+      condEl.textContent = '—';
+    });
+})();
+</script>

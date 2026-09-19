@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { directoryItems } from '../data/visit';
+
+export const prerender = true;
+
+const pageTitle = 'Igorot Stone Kingdom Park Directory — Baguio';
+const pageDescription = 'A directory of Igorot Stone Kingdom in Baguio: stone terraces, passageways, viewpoint decks, photo stops and cultural markers across the hillside attraction.';
+
+const siteUrl = Astro.site;
+const dirUrl = siteUrl ? new URL('/directory/', siteUrl).toString() : '/directory/';
+const homeUrl = siteUrl ? siteUrl.toString() : '/';
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Gabay', item: homeUrl },
+    { '@type': 'ListItem', position: 2, name: 'Directory', item: dirUrl }
+  ]
+};
+---
+<Base title={pageTitle} description={pageDescription}>
+  <script type="application/ld+json" slot="structured-data" set:html={JSON.stringify(breadcrumb)} />
+
+  <Breadcrumbs items={[{ fil: 'Gabay', en: 'Guide', href: '/' }, { fil: 'Directory', en: 'Directory', href: '/directory/' }]} />
+
+  <section class="bg-[#17372c] text-white px-5 py-16 lg:px-10 lg:py-24">
+    <div class="mx-auto max-w-[1440px]">
+      <p class="text-xs font-black uppercase tracking-[0.24em] text-[#dcb17c]"><span class="lang-fil">Directory</span><span class="lang-en">Directory</span></p>
+      <h1 class="mt-4 text-5xl font-bold leading-none md:text-6xl"><span class="lang-fil">Park Directory</span><span class="lang-en">Park Directory</span></h1>
+      <p class="mt-6 max-w-2xl text-base leading-7 text-white/80"><span class="lang-fil">Isang mabilis na gabay sa mga bahagi ng Igorot Stone Kingdom—mula stone terraces hanggang mga viewpoint at cultural markers sa gilid ng bundok.</span><span class="lang-en">A quick guide to the parts of the Igorot Stone Kingdom—from stone terraces to viewpoint decks and cultural markers on the mountainside.</span></p>
+      <p class="mt-5 max-w-2xl text-sm leading-6 text-white/65"><span class="lang-fil">Rating: 4.4 ★ (5,411 reviews) sa Google Maps — <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">tingnan ang lahat ng review ↗</a></span><span class="lang-en">Rating: 4.4 ★ (5,411 reviews) on Google Maps — <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">view all reviews ↗</a></span></p>
+    </div>
+  </section>
+
+  <div class="ridge-line" aria-hidden="true"></div>
+
+  <section class="mx-auto max-w-[1440px] px-5 py-16 lg:px-10 lg:py-24">
+    <div class="grid gap-4 lg:grid-cols-2">
+      {directoryItems.map((item, index) => (
+        <article class:list={['border border-[#17372c]/15 p-8', index % 2 === 0 ? 'bg-[#f8f6f0]' : 'bg-[#f2ede1]']}>
+          <div class="flex items-center justify-between gap-4">
+            <h2 class="font-serif text-2xl font-bold text-[#17372c]">{item.name}</h2>
+            <span class="w-fit border border-[#17372c]/20 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.15em] text-[#405045]">{item.tag}</span>
+          </div>
+          <p class="mt-4 text-sm leading-6 text-[#5b625a]">{item.note}</p>
+        </article>
+      ))}
+    </div>
+    <p class="mt-10 max-w-3xl text-sm leading-6 text-[#596158]">Ang Igorot Stone Kingdom ay isang modernong cultural theme attraction na humuhugot ng inspirasyon sa stonework at kuwentong Cordilleran—hindi sinaunang archaeological ruin. Ang layout ay tuloy-tuloy na hagdan at stone passages, kaya hindi ideal para sa wheelchair o stroller.</p>
+    <a href="/location/" class="mt-8 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.12em] text-[#17372c] hover:text-[#a85f3d]">Paano pumunta ↗</a>
+  </section>
+</Base>

@@ -1,5 +1,26 @@
-node_modules/
-dist/
-.astro/
-.wrangler/
+# Dependencies
+node_modules
+
+# Build output
+dist
+.astro
+
+# Wrangler / Cloudflare Workers
+.wrangler
+.dev.vars
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS / editor
 .DS_Store
+Thumbs.db
+*.swp
+
+# Local temp files
+*.local
