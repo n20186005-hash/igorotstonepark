@@ -49,7 +49,7 @@ const attractionStructuredData = {
   ],
   priceRange: '₱₱',
   hasMap: mapsShareUrl,
-  sameAs: [mapsShareUrl, govtTourismUrl]
+  sameAs: [mapsShareUrl]
 };
 
 const faqStructuredData = {
@@ -72,7 +72,7 @@ const faqStructuredData = {
 
   <section id="top" class="hero-photo relative min-h-[790px] overflow-hidden bg-[#17372c] text-white">
     <img src={heroPath} alt="Malawak na tanawin ng mga stone terrace at tore ng Igorot Stone Kingdom" class="absolute inset-0 h-full w-full object-cover" fetchpriority="high" />
-    <div class="relative z-10 mx-auto grid min-h-[790px] max-w-[1440px] items-end gap-10 px-5 pb-14 pt-32 lg:grid-cols-[1.35fr_.65fr] lg:px-10 lg:pb-20">
+    <div class="relative z-10 mx-auto grid min-h-[790px] max-w-[1440px] items-end gap-10 px-5 pb-14 pt-64 sm:pt-52 lg:grid-cols-[1.35fr_.65fr] lg:px-10 lg:pb-20 lg:pt-32">
       <div class="max-w-[900px]">
         <div class="mb-7 flex flex-wrap items-center gap-3 text-[11px] font-black uppercase tracking-[0.24em]">
           <span class="bg-[#a85f3d] px-4 py-2">Pinsao Proper</span>
@@ -121,10 +121,10 @@ const faqStructuredData = {
       </div>
     </div>
 
-    <div class="mt-16 grid overflow-hidden bg-[#17372c] text-white lg:grid-cols-[1fr_1.2fr]">
+    <div class="mt-16 grid grid-cols-1 overflow-hidden bg-[#17372c] text-white lg:grid-cols-[1fr_1.2fr]">
       <div class="p-8 md:p-12 lg:p-14">
         <p class="text-xs font-black uppercase tracking-[0.24em] text-[#dcb17c]">Mahalagang konteksto</p>
-        <h3 class="mt-4 text-4xl font-bold leading-tight md:text-5xl">Modernong interpretasyon, hindi sinaunang guho.</h3>
+        <h3 class="mt-4 text-4xl font-bold leading-tight [overflow-wrap:anywhere] md:text-5xl">Modernong interpretasyon, hindi sinaunang guho.</h3>
         <p class="mt-6 max-w-xl leading-7 text-white/78">Ang Igorot Stone Kingdom ay isang modernong attraction na humuhugot ng inspirasyon sa stonework at kuwentong Cordilleran. Mas makabuluhang bumisita kapag kinikilala itong malikhaing interpretasyon—hindi kapalit ng mga buhay, magkakaiba at patuloy na tradisyon ng mga komunidad sa Cordillera.</p>
       </div>
       <img src="/images/igorot-stone-kingdom-terraces.webp" alt="Stone terraces ng Igorot Stone Kingdom sa gilid ng luntiang bundok" loading="lazy" class="h-full min-h-[390px] w-full object-cover" />
@@ -438,10 +438,10 @@ const faqStructuredData = {
   </section>
 
   <section id="tungkol" class="mx-auto max-w-[1440px] px-5 py-20 lg:px-10 lg:py-28" aria-labelledby="about-title">
-    <div class="grid gap-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-20">
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-20">
       <div>
         <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]"><span class="lang-fil">Kuwento at konteksto</span><span class="lang-en">Story &amp; context</span></p>
-        <h2 id="about-title" class="mt-4 text-5xl font-bold leading-[.95] tracking-tight md:text-6xl"><span class="lang-fil">Higit sa bato: kultura at pananagutan.</span><span class="lang-en">Beyond stone: culture and responsibility.</span></h2>
+        <h2 id="about-title" class="mt-4 text-5xl font-bold leading-[.95] tracking-tight [overflow-wrap:anywhere] md:text-6xl"><span class="lang-fil">Higit sa bato: kultura at pananagutan.</span><span class="lang-en">Beyond stone: culture and responsibility.</span></h2>
       </div>
       <div class="max-w-3xl text-[#4d554d]">
         <p class="text-base leading-7">{aboutContext.intro}</p>

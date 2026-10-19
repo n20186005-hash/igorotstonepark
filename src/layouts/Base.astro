@@ -69,7 +69,7 @@ const navLinks = [
         ? 'absolute inset-x-0 top-0 border-b border-white/15 bg-[#10271f]/55 backdrop-blur-md'
         : 'sticky top-0 border-b border-white/10 bg-[#10271f]'
     ]}>
-      <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-8 px-5 py-4 lg:px-10">
+      <div class="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-4 px-5 py-4 lg:flex-nowrap lg:px-10">
         <a href="/" class="flex items-center gap-3" aria-label="Igorot Stone Kingdom — umpisa">
           <img src="/favicon.svg" width="42" height="42" alt="" class="h-10 w-10" />
           <span class="leading-tight">
@@ -79,7 +79,7 @@ const navLinks = [
         </a>
         <nav aria-label="Pangunahing nabigasyon" class="hidden items-center gap-6 text-sm font-semibold lg:flex">
           {navLinks.map((link) => (
-            <a href={link.href} class="hover:text-[#e7d8b8]"><span class="lang-fil">{link.label}</span><span class="lang-en">{link.en}</span></a>
+            <a href={link.href} aria-current={path.replace(/\/$/, '') === link.href.replace(/\/$/, '') ? 'page' : undefined} class="hover:text-[#e7d8b8] aria-[current=page]:text-[#e7d8b8]"><span class="lang-fil">{link.label}</span><span class="lang-en">{link.en}</span></a>
           ))}
         </nav>
         <div class="flex items-center gap-3">
@@ -91,6 +91,13 @@ const navLinks = [
           <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="rounded-full border border-[#e7d8b8]/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] transition hover:bg-[#e7d8b8] hover:text-[#17372c]"><span class="lang-fil">Mapa ↗</span><span class="lang-en">Map ↗</span></a>
         </div>
       </div>
+      <nav aria-label="Mga pahina / Page navigation" class="flex flex-wrap gap-x-5 gap-y-1 border-t border-white/15 px-5 py-2 text-sm font-semibold lg:hidden">
+        {navLinks.map((link) => (
+          <a href={link.href} aria-current={path.replace(/\/$/, '') === link.href.replace(/\/$/, '') ? 'page' : undefined} class="py-2 hover:text-[#e7d8b8] aria-[current=page]:text-[#e7d8b8]">
+            <span class="lang-fil">{link.label}</span><span class="lang-en">{link.en}</span>
+          </a>
+        ))}
+      </nav>
     </header>
 
     <main id="main">

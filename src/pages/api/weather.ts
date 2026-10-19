@@ -21,7 +21,8 @@ function apiUrl(): string {
 export const prerender = false;
 
 export const GET: APIRoute = async () => {
-  const cache = (globalThis as { caches?: CacheStorage }).caches?.default;
+  // Cloudflare adds a default cache; standard browser CacheStorage does not.
+  const cache = (globalThis as { caches?: CacheStorage & { default?: Cache } }).caches?.default;
   const cacheKey = new Request('https://igorotstonepark.com/api/weather');
 
   try {

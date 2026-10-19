@@ -5,8 +5,8 @@ import { directoryItems } from '../data/visit';
 
 export const prerender = true;
 
-const pageTitle = 'Igorot Stone Kingdom Park Directory — Baguio';
-const pageDescription = 'A directory of Igorot Stone Kingdom in Baguio: stone terraces, passageways, viewpoint decks, photo stops and cultural markers across the hillside attraction.';
+const pageTitle = 'Igorot Stone Kingdom Directory: Map & Visitor Guide';
+const pageDescription = 'Find the Igorot Stone Kingdom map, address, entrance fee and opening-hours guides, plus stone terraces, viewpoints and visitor information. Independent Baguio guide.';
 
 const siteUrl = Astro.site;
 const dirUrl = siteUrl ? new URL('/directory/', siteUrl).toString() : '/directory/';
@@ -29,13 +29,34 @@ const breadcrumb = {
   <section class="bg-[#17372c] text-white px-5 py-16 lg:px-10 lg:py-24">
     <div class="mx-auto max-w-[1440px]">
       <p class="text-xs font-black uppercase tracking-[0.24em] text-[#dcb17c]"><span class="lang-fil">Directory</span><span class="lang-en">Directory</span></p>
-      <h1 class="mt-4 text-5xl font-bold leading-none md:text-6xl"><span class="lang-fil">Park Directory</span><span class="lang-en">Park Directory</span></h1>
+      <h1 class="mt-4 text-5xl font-bold leading-none md:text-6xl">Igorot Stone Kingdom Directory</h1>
       <p class="mt-6 max-w-2xl text-base leading-7 text-white/80"><span class="lang-fil">Isang mabilis na gabay sa mga bahagi ng Igorot Stone Kingdom—mula stone terraces hanggang mga viewpoint at cultural markers sa gilid ng bundok.</span><span class="lang-en">A quick guide to the parts of the Igorot Stone Kingdom—from stone terraces to viewpoint decks and cultural markers on the mountainside.</span></p>
-      <p class="mt-5 max-w-2xl text-sm leading-6 text-white/65"><span class="lang-fil">Rating: 4.4 ★ (5,411 reviews) sa Google Maps — <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">tingnan ang lahat ng review ↗</a></span><span class="lang-en">Rating: 4.4 ★ (5,411 reviews) on Google Maps — <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">view all reviews ↗</a></span></p>
+      <p class="mt-5 max-w-2xl text-sm leading-6 text-white/65"><span class="lang-fil">Independent visitor guide ito. Para sa kasalukuyang impormasyon at mga review, <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">buksan ang listing ng Igorot Stone Kingdom Inc. sa Google Maps ↗</a>.</span><span class="lang-en">This is an independent visitor guide. For current listing details and reviews, <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">open Igorot Stone Kingdom Inc. on Google Maps ↗</a>.</span></p>
     </div>
   </section>
 
   <div class="ridge-line" aria-hidden="true"></div>
+
+  <section aria-labelledby="visitor-info-title" class="mx-auto max-w-[1440px] px-5 pt-12 lg:px-10">
+    <h2 id="visitor-info-title" class="text-3xl font-bold text-[#17372c]"><span class="lang-fil">Mabilis na gabay sa bisita</span><span class="lang-en">Visitor information at a glance</span></h2>
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      <article class="border border-[#17372c]/15 bg-[#f8f6f0] p-6">
+        <h3 class="text-xl font-bold"><span class="lang-fil">Lokasyon at mapa</span><span class="lang-en">Location &amp; map</span></h3>
+        <p class="mt-3 text-sm leading-6 text-[#5b625a]">Longlong Road, Pinsao Proper, Baguio, Benguet.</p>
+        <a href="/location/" class="mt-4 inline-block py-2 font-semibold underline underline-offset-4"><span class="lang-fil">Mga direksyon at map pin</span><span class="lang-en">Directions &amp; map pin</span></a>
+      </article>
+      <article class="border border-[#17372c]/15 bg-[#f8f6f0] p-6">
+        <h3 class="text-xl font-bold"><span class="lang-fil">Bayad at oras</span><span class="lang-en">Entrance fee &amp; hours</span></h3>
+        <p class="mt-3 text-sm leading-6 text-[#5b625a]"><span class="lang-fil">Basahin ang gabay sa bayad at oras. Kumpirmahin sa staff ang kasalukuyang presyo at mga patakaran bago bumili.</span><span class="lang-en">Read the fee and opening-hours guide. Confirm current prices and admission rules with staff before buying tickets.</span></p>
+        <a href="/fees/" class="mt-4 inline-block py-2 font-semibold underline underline-offset-4"><span class="lang-fil">Gabay sa bayad at oras</span><span class="lang-en">Fee &amp; hours guide</span></a>
+      </article>
+      <article class="border border-[#17372c]/15 bg-[#f8f6f0] p-6">
+        <h3 class="text-xl font-bold"><span class="lang-fil">Mga tanong bago bumiyahe</span><span class="lang-en">Questions before visiting</span></h3>
+        <p class="mt-3 text-sm leading-6 text-[#5b625a]"><span class="lang-fil">Alamin ang mga dapat itanong tungkol sa parking, hagdan at mobility access bago pumunta.</span><span class="lang-en">Plan ahead for parking, stairs and mobility needs, and check which areas are accessible with staff.</span></p>
+        <a href="/#faq" class="mt-4 inline-block py-2 font-semibold underline underline-offset-4"><span class="lang-fil">Mga madalas itanong</span><span class="lang-en">Visitor FAQ</span></a>
+      </article>
+    </div>
+  </section>
 
   <section class="mx-auto max-w-[1440px] px-5 py-16 lg:px-10 lg:py-24">
     <div class="grid gap-4 lg:grid-cols-2">
