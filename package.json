@@ -13,7 +13,7 @@
     "check": "astro check",
     "build": "astro build",
     "preview": "astro preview",
-    "deploy": "pnpm build && pnpm dlx wrangler@4.120.1 deploy"
+    "deploy": "pnpm build && pnpm exec wrangler deploy"
   },
   "dependencies": {
     "@astrojs/cloudflare": "14.3.2",
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "wrangler": "4.135.0"
   }
 }
