@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import MapsRating from '../components/MapsRating.astro';
 import WeatherModule from '../components/WeatherModule.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { transportModes } from '../data/visit';
@@ -30,9 +31,9 @@ const breadcrumb = {
   <section class="bg-[#17372c] text-white px-5 py-16 lg:px-10 lg:py-24">
     <div class="mx-auto max-w-[1440px]">
       <p class="text-xs font-black uppercase tracking-[0.24em] text-[#dcb17c]"><span class="lang-fil">Paano Pumunta</span><span class="lang-en">Getting There</span></p>
-      <h1 class="mt-4 text-5xl font-bold leading-none md:text-6xl"><span class="lang-fil">Location &amp; Directions</span><span class="lang-en">Location &amp; Directions</span></h1>
+      <h1 class="mt-4 text-5xl font-bold leading-none md:text-6xl"><span class="lang-fil">Igorot Stone Kingdom Location &amp; Directions</span><span class="lang-en">Igorot Stone Kingdom Location &amp; Directions</span></h1>
       <p class="mt-6 max-w-2xl text-base leading-7 text-white/80"><span class="lang-fil">Address: <strong>362 Longlong Road, Pinsao Proper, Baguio City, 2600 Benguet</strong>. Narito ang mga paraan para makarating mula sa sentro at paliparan.</span><span class="lang-en">Address: <strong>362 Longlong Road, Pinsao Proper, Baguio City, 2600 Benguet</strong>. Here are the ways to get there from the center and the airport.</span></p>
-      <p class="mt-5 max-w-2xl text-sm leading-6 text-white/65"><span class="lang-fil">Rating: 4.4 ★ (5,411 reviews) sa Google Maps — <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">tingnan ang lahat ng review ↗</a></span><span class="lang-en">Rating: 4.4 ★ (5,411 reviews) on Google Maps — <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">view all reviews ↗</a></span></p>
+      <MapsRating />
     </div>
   </section>
 

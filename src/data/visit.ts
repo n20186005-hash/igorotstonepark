@@ -1,3 +1,5 @@
+import { mapsReviewSnapshot, reviewCountLabel, reviewDateFil } from './maps';
+
 export type VisitFact = {
   label: string;
   value: string;
@@ -19,7 +21,7 @@ export type NearbyPlace = {
 export const visitFacts: VisitFact[] = [
   { label: 'Bukas', value: '7:00 AM – 6:00 PM', note: 'Araw-araw; maaaring magbago sa espesyal na okasyon.' },
   { label: 'Oras sa loob', value: '1–2 oras', note: 'Maglaan pa kung mahilig kang kumuha ng litrato.' },
-  { label: 'Google rating', value: '4.4 / 5', note: 'Mula sa 5,411 user reviews sa Google Maps (Setyembre 2026); nababago habang dumarami ang reviews.' },
+  { label: 'Google rating', value: `${mapsReviewSnapshot.rating} / 5`, note: `${reviewCountLabel} reviews sa Google Maps; naitala noong ${reviewDateFil}. Maaaring magbago.` },
   { label: 'Lokasyon', value: 'Pinsao Proper, Baguio', note: 'Sa Longlong Road, sa gilid ng kabundukan.' }
 ];
 

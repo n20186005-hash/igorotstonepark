@@ -1,12 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
+import MapsRating from '../components/MapsRating.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { feeTiers, feeFaqs } from '../data/visit';
 
 export const prerender = true;
 
 const pageTitle = 'Igorot Stone Kingdom Entrance Fee & Opening Hours — Baguio';
-const pageDescription = 'Igorot Stone Kingdom entrance fee: ~₱130 adult, ~₱100 child, free for toddlers. Opening hours 7 AM–6 PM daily, parking, payment tips and visitor FAQ.';
+const pageDescription = 'Plan your Igorot Stone Kingdom visit in Baguio: entrance-fee guidance, opening hours, parking and payment tips. Confirm current admission prices before visiting.';
 
 const siteUrl = Astro.site;
 const feesUrl = siteUrl ? new URL('/fees/', siteUrl).toString() : '/fees/';
@@ -40,9 +41,9 @@ const faqStructuredData = {
   <section class="bg-[#17372c] text-white px-5 py-16 lg:px-10 lg:py-24">
     <div class="mx-auto max-w-[1440px]">
       <p class="text-xs font-black uppercase tracking-[0.24em] text-[#dcb17c]"><span class="lang-fil">Bayad at Oras</span><span class="lang-en">Fees &amp; Hours</span></p>
-      <h1 class="mt-4 text-5xl font-bold leading-none md:text-6xl"><span class="lang-fil">Entrance Fee &amp; Opening Hours</span><span class="lang-en">Entrance Fee &amp; Opening Hours</span></h1>
+      <h1 class="mt-4 text-5xl font-bold leading-none md:text-6xl"><span class="lang-fil">Igorot Stone Kingdom Entrance Fee &amp; Opening Hours</span><span class="lang-en">Igorot Stone Kingdom Entrance Fee &amp; Opening Hours</span></h1>
       <p class="mt-6 max-w-2xl text-base leading-7 text-white/80"><span class="lang-fil">Praktikal na detalye bago umakyat sa Igorot Stone Kingdom sa Baguio: admission, oras, parking at mga tip sa pagbabayad.</span><span class="lang-en">Practical details before climbing the Igorot Stone Kingdom in Baguio: admission, hours, parking and payment tips.</span></p>
-      <p class="mt-5 max-w-2xl text-sm leading-6 text-white/65"><span class="lang-fil">Rating: 4.4 ★ (5,411 reviews) sa Google Maps — <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">tingnan ang lahat ng review ↗</a></span><span class="lang-en">Rating: 4.4 ★ (5,411 reviews) on Google Maps — <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">view all reviews ↗</a></span></p>
+      <MapsRating />
     </div>
   </section>
 

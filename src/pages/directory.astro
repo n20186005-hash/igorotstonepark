@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import MapsRating from '../components/MapsRating.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { directoryItems } from '../data/visit';
 
@@ -32,6 +33,7 @@ const breadcrumb = {
       <h1 class="mt-4 text-5xl font-bold leading-none md:text-6xl">Igorot Stone Kingdom Directory</h1>
       <p class="mt-6 max-w-2xl text-base leading-7 text-white/80"><span class="lang-fil">Isang mabilis na gabay sa mga bahagi ng Igorot Stone Kingdom—mula stone terraces hanggang mga viewpoint at cultural markers sa gilid ng bundok.</span><span class="lang-en">A quick guide to the parts of the Igorot Stone Kingdom—from stone terraces to viewpoint decks and cultural markers on the mountainside.</span></p>
       <p class="mt-5 max-w-2xl text-sm leading-6 text-white/65"><span class="lang-fil">Independent visitor guide ito. Para sa kasalukuyang impormasyon at mga review, <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">buksan ang listing ng Igorot Stone Kingdom Inc. sa Google Maps ↗</a>.</span><span class="lang-en">This is an independent visitor guide. For current listing details and reviews, <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">open Igorot Stone Kingdom Inc. on Google Maps ↗</a>.</span></p>
+      <MapsRating />
     </div>
   </section>
 
@@ -59,10 +61,10 @@ const breadcrumb = {
   </section>
 
   <section class="mx-auto max-w-[1440px] px-5 py-16 lg:px-10 lg:py-24">
-    <div class="grid gap-4 lg:grid-cols-2">
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
       {directoryItems.map((item, index) => (
         <article class:list={['border border-[#17372c]/15 p-8', index % 2 === 0 ? 'bg-[#f8f6f0]' : 'bg-[#f2ede1]']}>
-          <div class="flex items-center justify-between gap-4">
+          <div class="flex flex-wrap items-center justify-between gap-4">
             <h2 class="font-serif text-2xl font-bold text-[#17372c]">{item.name}</h2>
             <span class="w-fit border border-[#17372c]/20 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.15em] text-[#405045]">{item.tag}</span>
           </div>

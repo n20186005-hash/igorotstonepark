@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { mapsReviewSnapshot, reviewDateFil, reviewDateEn } from '../data/maps';
 
 interface Props {
   title: string;
@@ -13,8 +14,6 @@ const path = Astro.url.pathname;
 const canonicalUrl = siteUrl ? new URL(path, siteUrl).toString() : undefined;
 const heroPath = '/images/igorot-stone-kingdom-wide.webp';
 const heroAbsolute = siteUrl ? new URL(heroPath, siteUrl).toString() : undefined;
-
-const lastUpdated = 'Setyembre 2026';
 
 const navLinks = [
   { href: '/', label: 'Gabay', en: 'Guide' },
@@ -126,7 +125,7 @@ const navLinks = [
           </div>
         </div>
       </div>
-      <div class="border-t border-white/10 px-5 py-5 text-center text-xs leading-5 text-white/55 lg:px-10">Hindi ito opisyal na website ng Igorot Stone Kingdom Inc.; independent visitor guide lamang ito at maaaring magbago ang rates, oras at policies nang walang abiso rito. · <span class="lang-fil">Huling in-update: Setyembre 2026</span><span class="lang-en">Last updated: September 2026</span></div>
+      <div class="border-t border-white/10 px-5 py-5 text-center text-xs leading-5 text-white/55 lg:px-10">Hindi ito opisyal na website ng Igorot Stone Kingdom Inc.; independent visitor guide lamang ito at maaaring magbago ang rates, oras at policies nang walang abiso rito. · <span class="lang-fil">Rating sa Maps: naitala noong <time datetime={mapsReviewSnapshot.checkedOn}>{reviewDateFil}</time></span><span class="lang-en">Maps rating checked: <time datetime={mapsReviewSnapshot.checkedOn}>{reviewDateEn}</time></span></div>
     </footer>
 
     <script is:inline>
