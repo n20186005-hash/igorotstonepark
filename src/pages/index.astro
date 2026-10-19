@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import WeatherModule from '../components/WeatherModule.astro';
+import { mapsReviewSnapshot, reviewCountLabel, reviewDateFil, reviewDateEn } from '../data/maps';
 import { faqs, foodSpots, nearbyPlaces, visitFacts, facilities, quarterStrategy, crowdRoutes, generalRoutes, aboutContext } from '../data/visit';
 
 export const prerender = true;
@@ -13,7 +14,7 @@ const heroAbsolute = siteUrl ? new URL(heroPath, siteUrl).toString() : undefined
 const pageTitle = 'Igorot Stone Kingdom Baguio — Entrance Fee, Hours & Directory';
 const pageDescription = 'Visit Igorot Stone Kingdom in Baguio: real-time weather, entrance fee, opening hours, location & directions, parking, transport, facilities, food spots, nearby places and FAQ.';
 
-const mapsShareUrl = 'https://maps.app.goo.gl/n12kgpTFurncbFv3A';
+const mapsShareUrl = mapsReviewSnapshot.url;
 const govtTourismUrl = 'https://www.tourism.gov.ph';
 
 const attractionId = canonicalUrl ? `${canonicalUrl}#attraction` : '#attraction';
@@ -49,7 +50,7 @@ const attractionStructuredData = {
   ],
   priceRange: '₱₱',
   hasMap: mapsShareUrl,
-  sameAs: [mapsShareUrl, govtTourismUrl]
+  sameAs: [mapsShareUrl]
 };
 
 const faqStructuredData = {
@@ -71,8 +72,8 @@ const faqStructuredData = {
   <script type="application/ld+json" slot="structured-data" set:html={JSON.stringify(faqStructuredData)} />
 
   <section id="top" class="hero-photo relative min-h-[790px] overflow-hidden bg-[#17372c] text-white">
-    <img src={heroPath} alt="Malawak na tanawin ng mga stone terrace at tore ng Igorot Stone Kingdom" class="absolute inset-0 h-full w-full object-cover" fetchpriority="high" />
-    <div class="relative z-10 mx-auto grid min-h-[790px] max-w-[1440px] items-end gap-10 px-5 pb-14 pt-32 lg:grid-cols-[1.35fr_.65fr] lg:px-10 lg:pb-20">
+    <img src={heroPath} alt="Malawak na tanawin ng mga stone terrace at tore ng Igorot Stone Kingdom" class="absolute inset-0 h-full w-full object-cover" fetchpriority="high" width="1800" height="1200" />
+    <div class="relative z-10 mx-auto grid min-h-[790px] max-w-[1440px] items-end gap-10 px-5 pb-14 pt-64 sm:pt-52 lg:grid-cols-[1.35fr_.65fr] lg:px-10 lg:pb-20 lg:pt-32">
       <div class="max-w-[900px]">
         <div class="mb-7 flex flex-wrap items-center gap-3 text-[11px] font-black uppercase tracking-[0.24em]">
           <span class="bg-[#a85f3d] px-4 py-2">Pinsao Proper</span>
@@ -94,7 +95,7 @@ const faqStructuredData = {
           <div><span class="block text-xs font-bold uppercase tracking-wider text-[#375143]"><span class="lang-fil">Oras</span><span class="lang-en">Hours</span></span><strong class="mt-1 block font-serif text-2xl">7 AM–6 PM</strong></div>
           <div><span class="block text-xs font-bold uppercase tracking-wider text-[#375143]"><span class="lang-fil">Tagal</span><span class="lang-en">Duration</span></span><strong class="mt-1 block font-serif text-2xl">1–2 oras</strong></div>
           <div><span class="block text-xs font-bold uppercase tracking-wider text-[#375143]"><span class="lang-fil">Adult</span><span class="lang-en">Adult</span></span><strong class="mt-1 block font-serif text-2xl">~₱130</strong></div>
-          <div><span class="block text-xs font-bold uppercase tracking-wider text-[#375143]"><span class="lang-fil">Rating</span><span class="lang-en">Rating</span></span><strong class="mt-1 block font-serif text-2xl">4.4 ★</strong><span class="mt-1 block text-xs text-[#5b625a]">5,411 reviews</span><span class="mt-1 block text-[10px] leading-4 text-[#7a827a]"><span class="lang-fil">Mula sa Google Maps · Setyembre 2026</span><span class="lang-en">From Google Maps · Sep 2026</span></span></div>
+          <div><span class="block text-xs font-bold uppercase tracking-wider text-[#375143]"><span class="lang-fil">Rating</span><span class="lang-en">Rating</span></span><strong class="mt-1 block font-serif text-2xl">{mapsReviewSnapshot.rating} ★</strong><span class="mt-1 block text-xs text-[#5b625a]">{reviewCountLabel} reviews</span><span class="mt-1 block text-[10px] leading-4 text-[#7a827a]"><span class="lang-fil">Google Maps · <time datetime={mapsReviewSnapshot.checkedOn}>{reviewDateFil}</time></span><span class="lang-en">Google Maps · <time datetime={mapsReviewSnapshot.checkedOn}>{reviewDateEn}</time></span></span></div>
         </div>
         <p class="mt-7 border-t border-[#17372c]/20 pt-5 text-xs leading-5 text-[#4f574e]">Rates at oras ay maaaring magbago. Para sa same-day visit, kumpirmahin sa gate o sa kasalukuyang Google Maps listing.</p>
       </aside>
@@ -121,13 +122,13 @@ const faqStructuredData = {
       </div>
     </div>
 
-    <div class="mt-16 grid overflow-hidden bg-[#17372c] text-white lg:grid-cols-[1fr_1.2fr]">
+    <div class="mt-16 grid grid-cols-1 overflow-hidden bg-[#17372c] text-white lg:grid-cols-[1fr_1.2fr]">
       <div class="p-8 md:p-12 lg:p-14">
         <p class="text-xs font-black uppercase tracking-[0.24em] text-[#dcb17c]">Mahalagang konteksto</p>
-        <h3 class="mt-4 text-4xl font-bold leading-tight md:text-5xl">Modernong interpretasyon, hindi sinaunang guho.</h3>
+        <h3 class="mt-4 text-4xl font-bold leading-tight [overflow-wrap:anywhere] md:text-5xl">Modernong interpretasyon, hindi sinaunang guho.</h3>
         <p class="mt-6 max-w-xl leading-7 text-white/78">Ang Igorot Stone Kingdom ay isang modernong attraction na humuhugot ng inspirasyon sa stonework at kuwentong Cordilleran. Mas makabuluhang bumisita kapag kinikilala itong malikhaing interpretasyon—hindi kapalit ng mga buhay, magkakaiba at patuloy na tradisyon ng mga komunidad sa Cordillera.</p>
       </div>
-      <img src="/images/igorot-stone-kingdom-terraces.webp" alt="Stone terraces ng Igorot Stone Kingdom sa gilid ng luntiang bundok" loading="lazy" class="h-full min-h-[390px] w-full object-cover" />
+      <img src="/images/igorot-stone-kingdom-terraces.webp" alt="Stone terraces ng Igorot Stone Kingdom sa gilid ng luntiang bundok" loading="lazy" class="h-full min-h-[390px] w-full object-cover" width="1500" height="1129" />
     </div>
   </section>
 
@@ -143,16 +144,16 @@ const faqStructuredData = {
       <a href="/directory/" class="mt-5 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.12em] text-[#17372c] hover:text-[#a85f3d]"><span class="lang-fil">Tignan ang park directory →</span><span class="lang-en">See the park directory →</span></a>
       <div class="mt-6 grid gap-4 lg:grid-cols-[1.25fr_.75fr]">
         <figure class="group overflow-hidden bg-[#17372c]">
-          <img src="/images/igorot-stone-kingdom-stonework.webp" alt="Mataas na tanawin sa maraming antas ng stone terraces" loading="lazy" class="h-[430px] w-full object-cover transition duration-500 group-hover:scale-[1.02] md:h-[620px]" />
+          <img src="/images/igorot-stone-kingdom-stonework.webp" alt="Mataas na tanawin sa maraming antas ng stone terraces" loading="lazy" class="h-[430px] w-full object-cover transition duration-500 group-hover:scale-[1.02] md:h-[620px]" width="960" height="723" />
           <figcaption class="bg-[#17372c] px-5 py-4 text-sm leading-6 text-white/80"><span class="lang-fil"><strong>Sining ng bato:</strong> ang bawat antas ay pinagtagpi-tagping bato nang walang semento—isang pamamaraang humuhugot sa dry-stone walling ng Cordillera.</span><span class="lang-en"><strong>The craft of stone:</strong> each tier is fitted stone without mortar—a method inspired by Cordillera dry-stone walling.</span></figcaption>
         </figure>
         <div class="grid gap-4">
           <figure class="overflow-hidden bg-[#17372c]">
-            <img src="/images/igorot-stone-kingdom-wide.webp" alt="Malawak na view ng stone structures at courtyard" loading="lazy" class="h-[300px] w-full object-cover md:h-[302px]" />
+            <img src="/images/igorot-stone-kingdom-wide.webp" alt="Malawak na view ng stone structures at courtyard" loading="lazy" class="h-[300px] w-full object-cover md:h-[302px]" width="1800" height="1200" />
             <figcaption class="bg-[#17372c] px-5 py-4 text-sm leading-6 text-white/80"><span class="lang-fil"><strong>Centro at courtyard:</strong> dito nagtatapos ang hagdan mula sa gate—ang pinakamadaling assembly point bago akyatin ang mga terrace.</span><span class="lang-en"><strong>Center &amp; courtyard:</strong> where the stairs from the gate end—the easiest assembly point before climbing the terraces.</span></figcaption>
           </figure>
           <figure class="overflow-hidden bg-[#17372c]">
-            <img src="/images/igorot-stone-kingdom-marker.webp" alt="Opisyal na information marker ng Igorot Stone Kingdom" loading="lazy" class="h-[300px] w-full object-cover object-center md:h-[302px]" />
+            <img src="/images/igorot-stone-kingdom-marker.webp" alt="Opisyal na information marker ng Igorot Stone Kingdom" loading="lazy" class="h-[300px] w-full object-cover object-center md:h-[302px]" width="900" height="1195" />
             <figcaption class="bg-[#17372c] px-5 py-4 text-sm leading-6 text-white/80"><span class="lang-fil"><strong>Information marker:</strong> naglalaman ng opisyal na pangalan at pointer para sa mga bisita; maganda ring photo stop.</span><span class="lang-en"><strong>Information marker:</strong> shows the official name and pointers for visitors; also a good photo stop.</span></figcaption>
           </figure>
         </div>
@@ -438,10 +439,10 @@ const faqStructuredData = {
   </section>
 
   <section id="tungkol" class="mx-auto max-w-[1440px] px-5 py-20 lg:px-10 lg:py-28" aria-labelledby="about-title">
-    <div class="grid gap-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-20">
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-20">
       <div>
         <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]"><span class="lang-fil">Kuwento at konteksto</span><span class="lang-en">Story &amp; context</span></p>
-        <h2 id="about-title" class="mt-4 text-5xl font-bold leading-[.95] tracking-tight md:text-6xl"><span class="lang-fil">Higit sa bato: kultura at pananagutan.</span><span class="lang-en">Beyond stone: culture and responsibility.</span></h2>
+        <h2 id="about-title" class="mt-4 text-5xl font-bold leading-[.95] tracking-tight [overflow-wrap:anywhere] md:text-6xl"><span class="lang-fil">Higit sa bato: kultura at pananagutan.</span><span class="lang-en">Beyond stone: culture and responsibility.</span></h2>
       </div>
       <div class="max-w-3xl text-[#4d554d]">
         <p class="text-base leading-7">{aboutContext.intro}</p>
@@ -463,12 +464,12 @@ const faqStructuredData = {
     <div class="mx-auto grid max-w-[1440px] gap-10 px-5 lg:grid-cols-[.85fr_1.15fr] lg:px-10">
       <div>
         <p class="text-xs font-black uppercase tracking-[0.24em] text-[#dcb17c]"><span class="lang-fil">Rating ng bisita</span><span class="lang-en">Visitor rating</span></p>
-        <h2 id="review-title" class="mt-3 text-4xl font-bold tracking-tight md:text-5xl">4.4 ★ <span class="text-2xl font-normal text-white/70">· 5,411 reviews</span></h2>
-        <p class="mt-5 max-w-md text-sm leading-6 text-white/70"><span class="lang-fil">Ang rating at bilang ng review ay sinabayan mula sa mga user review sa Google Maps · Setyembre 2026 · <a href={mapsShareUrl} target="_blank" rel="noreferrer" class="underline decoration-white/40 underline-offset-4 hover:text-[#e7d8b8]">Tingnan ang lahat ng review sa Google Maps ↗</a></span><span class="lang-en">Rating and review count synced from Google Maps user reviews · September 2026 · <a href={mapsShareUrl} target="_blank" rel="noreferrer" class="underline decoration-white/40 underline-offset-4 hover:text-[#e7d8b8]">View all reviews on Google Maps ↗</a></span></p>
+        <h2 id="review-title" class="mt-3 text-4xl font-bold tracking-tight md:text-5xl">{mapsReviewSnapshot.rating} ★ <span class="text-2xl font-normal text-white/70">· {reviewCountLabel} reviews</span></h2>
+        <p class="mt-5 max-w-md text-sm leading-6 text-white/70"><span class="lang-fil">Rating at bilang ng review sa Google Maps, naitala noong <time datetime={mapsReviewSnapshot.checkedOn}>{reviewDateFil}</time>. Maaaring magbago. <a href={mapsShareUrl} target="_blank" rel="noreferrer" class="underline decoration-white/40 underline-offset-4 hover:text-[#e7d8b8]">Tingnan ang lahat ng review sa Google Maps ↗</a></span><span class="lang-en">Google Maps rating and review count, checked on <time datetime={mapsReviewSnapshot.checkedOn}>{reviewDateEn}</time>. This may change. <a href={mapsShareUrl} target="_blank" rel="noreferrer" class="underline decoration-white/40 underline-offset-4 hover:text-[#e7d8b8]">View all reviews on Google Maps ↗</a></span></p>
       </div>
       <div class="flex flex-col justify-center border-t border-white/15 pt-8 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
         <p class="text-xs font-black uppercase tracking-[0.22em] text-[#dcb17c]"><span class="lang-fil">Sanggunian</span><span class="lang-en">Source</span></p>
-        <p class="mt-3 max-w-xl text-sm leading-6 text-white/75"><span class="lang-fil">Sini-sync mula sa user review ng Google Maps, sync noong Setyembre 2026; ang copyright ay sa mga orihinal na may-akda at Google Maps.</span><span class="lang-en">Synced from Google Maps user reviews, synced September 2026; copyright belongs to the original authors and Google Maps.</span></p>
+        <p class="mt-3 max-w-xl text-sm leading-6 text-white/75"><span class="lang-fil">Ang bilang at rating ay tala sa petsang nakasaad, hindi live update. Buksan ang Google Maps para sa pinakabagong bilang at mga review.</span><span class="lang-en">The rating and count are a dated snapshot, not a live update. Open Google Maps for the latest count and visitor reviews.</span></p>
         <a href={mapsShareUrl} target="_blank" rel="noreferrer" class="mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-[#e7d8b8]/80 px-5 py-2.5 text-xs font-black uppercase tracking-[0.12em] transition hover:bg-[#e7d8b8] hover:text-[#17372c]"><span class="lang-fil">Tingnan ang lahat ng review sa Google Maps</span><span class="lang-en">View all reviews on Google Maps</span> <span>↗</span></a>
       </div>
     </div>
@@ -480,8 +481,8 @@ const faqStructuredData = {
       <h2 id="sources-title" class="mt-3 text-4xl font-bold tracking-tight text-[#17372c] md:text-5xl"><span class="lang-fil">Kung saan hinahati ang impormasyon</span><span class="lang-en">Where our information comes from</span></h2>
       <div class="mt-10 grid gap-4 md:grid-cols-2">
         <div class="border border-[#17372c]/15 bg-white p-7">
-          <p class="text-xs font-black uppercase tracking-[0.18em] text-[#a85f3d]"><span class="lang-fil">Review · Sinychronized Setyembre 2026</span><span class="lang-en">Reviews · Synced September 2026</span></p>
-          <p class="mt-3 text-sm leading-6 text-[#5b625a]"><span class="lang-fil">Ang rating at bilang ng review ay mula sa user review ng Google Maps; ang copyright ay sa mga orihinal na may-akda at Google Maps.</span><span class="lang-en">Ratings and review counts are from Google Maps user reviews; copyright belongs to the original authors and Google Maps.</span></p>
+          <p class="text-xs font-black uppercase tracking-[0.18em] text-[#a85f3d]"><span class="lang-fil">Rating · Naitala noong <time datetime={mapsReviewSnapshot.checkedOn}>{reviewDateFil}</time></span><span class="lang-en">Rating · Checked <time datetime={mapsReviewSnapshot.checkedOn}>{reviewDateEn}</time></span></p>
+          <p class="mt-3 text-sm leading-6 text-[#5b625a]"><span class="lang-fil">Ang rating at bilang ng review ay mula sa pampublikong listing ng Google Maps sa petsang nakasaad. Tingnan ang listing para sa pinakabagong impormasyon.</span><span class="lang-en">The rating and review count were checked on the public Google Maps listing on the date shown. See the listing for current information.</span></p>
           <a href={mapsShareUrl} target="_blank" rel="noreferrer" class="mt-4 inline-flex items-center gap-1 text-sm font-black uppercase tracking-[0.1em] text-[#17372c] hover:text-[#a85f3d]">Google Maps ↗</a>
         </div>
         <div class="border border-[#17372c]/15 bg-white p-7">

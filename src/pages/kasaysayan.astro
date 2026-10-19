@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import MapsRating from '../components/MapsRating.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
 export const prerender = true;
@@ -41,7 +42,7 @@ const sources = [
         <span class="lang-fil">Higit sa isang pasyalan, ang Igorot Stone Kingdom ay isang pagkukuwento sa bato—tungkol sa bundok, sa mga komunidad ng Cordillera, at sa isang modernong proyektong humuhugot sa kanilang sining.</span>
         <span class="lang-en">More than a roadside stop, the Igorot Stone Kingdom is a story told in stone—about the mountain, the communities of the Cordillera, and a modern project that draws on their craft.</span>
       </p>
-      <p class="mt-5 max-w-2xl text-sm leading-6 text-white/65"><span class="lang-fil">Rating: 4.4 ★ (5,411 reviews) sa Google Maps — <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">tingnan ang lahat ng review ↗</a></span><span class="lang-en">Rating: 4.4 ★ (5,411 reviews) on Google Maps — <a href="https://maps.app.goo.gl/n12kgpTFurncbFv3A" target="_blank" rel="noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">view all reviews ↗</a></span></p>
+      <MapsRating />
     </div>
   </section>
 
@@ -49,7 +50,7 @@ const sources = [
 
   <article class="mx-auto max-w-[820px] px-5 py-20 lg:px-10 lg:py-28 text-[#3f463f]">
     <figure class="mb-14 overflow-hidden border-2 border-[#17372c]">
-      <img src="/images/igorot-stone-kingdom-stonework.webp" alt="Mataas na stone terraces ng Igorot Stone Kingdom" loading="lazy" class="w-full" />
+      <img src="/images/igorot-stone-kingdom-stonework.webp" alt="Mataas na stone terraces ng Igorot Stone Kingdom" loading="lazy" class="w-full" width="960" height="723" />
       <figcaption class="bg-[#f2ede1] px-5 py-4 text-sm leading-6 text-[#5b625a]">
         <span class="lang-fil"><strong>Sining ng bato:</strong> ang bawat antas ay gawa sa pinagtagpi-tagping bato nang walang semento—isang pamamaraang humuhugot sa dry-stone walling ng Cordillera.</span>
         <span class="lang-en"><strong>The craft of stone:</strong> each tier is built from fitted stones without mortar—a method inspired by the dry-stone walling of the Cordillera.</span>

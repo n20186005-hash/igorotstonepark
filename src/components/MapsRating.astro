@@ -1,0 +1,8 @@
+---
+import { mapsReviewSnapshot, reviewCountLabel, reviewDateFil, reviewDateEn } from '../data/maps';
+---
+
+<p class="mt-5 max-w-2xl text-sm leading-6 text-white/65">
+  <span class="lang-fil">Google Maps: {mapsReviewSnapshot.rating} ★ ({reviewCountLabel} reviews), naitala noong <time datetime={mapsReviewSnapshot.checkedOn}>{reviewDateFil}</time>. Maaaring magbago. <a href={mapsReviewSnapshot.url} target="_blank" rel="noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">Tingnan ang kasalukuyang rating at mga review ↗</a></span>
+  <span class="lang-en">Google Maps: {mapsReviewSnapshot.rating} ★ ({reviewCountLabel} reviews), checked on <time datetime={mapsReviewSnapshot.checkedOn}>{reviewDateEn}</time>. This may change. <a href={mapsReviewSnapshot.url} target="_blank" rel="noreferrer" class="underline decoration-white/30 underline-offset-4 hover:text-white">See the current rating and reviews ↗</a></span>
+</p>
