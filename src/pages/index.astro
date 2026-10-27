@@ -3,8 +3,20 @@ import Base from '../layouts/Base.astro';
 import WeatherModule from '../components/WeatherModule.astro';
 import { mapsReviewSnapshot, reviewCountLabel, reviewDateFil, reviewDateEn } from '../data/maps';
 import { faqs, foodSpots, nearbyPlaces, visitFacts, facilities, quarterStrategy, crowdRoutes, generalRoutes, aboutContext } from '../data/visit';
+import { topics } from '../data/topics';
 
 export const prerender = true;
+
+const groupOrder = ['core', 'transport', 'food', 'nearby', 'itinerary', 'seasonal', 'faq'] as const;
+const groupLabels: Record<string, { fil: string; en: string }> = {
+  core: { fil: 'Pangunahing impormasyon', en: 'Essentials' },
+  transport: { fil: 'Pagpunta', en: 'Getting there' },
+  food: { fil: 'Pagkain', en: 'Food & drink' },
+  nearby: { fil: 'Mga malapit', en: 'Nearby' },
+  itinerary: { fil: 'Ruta', en: 'Itineraries' },
+  seasonal: { fil: 'Panahon', en: 'Seasons' },
+  faq: { fil: 'FAQ', en: 'FAQ' }
+};
 
 const siteUrl = Astro.site;
 const path = Astro.url.pathname;
@@ -509,6 +521,43 @@ const faqStructuredData = {
           <p class="max-w-3xl pb-7 pr-10 text-sm leading-7 text-[#596158]">{faq.answer}</p>
         </details>
       ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1440px] px-5 py-16 lg:px-10 lg:py-24">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="text-xs font-black uppercase tracking-[0.24em] text-[#a85f3d]"><span class="lang-fil">Mga gabay</span><span class="lang-en">More guides</span></p>
+      <h2 class="mt-4 text-5xl font-bold leading-none md:text-6xl"><span class="lang-fil">Tuklasin ang Baguio.</span><span class="lang-en">Explore more of Baguio.</span></h2>
+    </div>
+    <div class="mt-14 space-y-12">
+      {
+        groupOrder.map((g) => {
+          const items = Object.values(topics).filter((t) => t.group === g);
+          if (items.length === 0) return null;
+          const label = groupLabels[g];
+          return (
+            <div>
+              <p class="text-xs font-black uppercase tracking-[0.22em] text-[#a85f3d]">
+                <span class="lang-fil">{label.fil}</span><span class="lang-en">{label.en}</span>
+              </p>
+              <div class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {
+                  items.map((t) => (
+                    <a href={`/${t.slug}/`} class="stone-texture stone-edge block p-6 transition hover:shadow-xl">
+                      <h3 class="font-serif text-2xl font-bold text-[#17372c]">
+                        <span class="lang-fil">{t.h1Fil}</span><span class="lang-en">{t.h1En}</span>
+                      </h3>
+                      <p class="mt-3 text-sm leading-6 text-[#5b625a]">
+                        <span class="lang-fil">{t.descFil}</span><span class="lang-en">{t.descEn}</span>
+                      </p>
+                    </a>
+                  ))
+                }
+              </div>
+            </div>
+          );
+        })
+      }
     </div>
   </section>
 </Base>
