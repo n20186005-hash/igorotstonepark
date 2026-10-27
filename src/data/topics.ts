@@ -64,7 +64,7 @@ export const topics: Record<string, Topic> = {
       { qFil: 'Hanggang anong oras ang last entry?', qEn: 'What is the last entry time?', aFil: 'Karaniwang bago mag-6:00 PM, pero huwag ituring na fixed. Kumpirmahin sa gate lalo na kapag maulan o may okasyon.', aEn: 'Usually before 6:00 PM, but do not treat it as fixed. Confirm at the gate especially when raining or on special occasions.' },
       { qFil: 'Anong buwan pinakamaganda?', qEn: 'Which month is best?', aFil: 'Ang cool-dry na buwan (Nobyembre–Pebrero) ay pinakakomportable, habang ang Pebrero ay may Panagbenga flower festival kaya inaasahan ang mas maraming tao.', aEn: 'The cool-dry months (November–February) are most comfortable, while February brings the Panagbenga flower festival and bigger crowds.' }
     ],
-    related: ['best-time-to-visit', 'parking', 'photos', 'first-time-tips']
+    related: ['best-time-to-visit', 'parking', 'photos', 'first-time-tips', 'entrance-fee']
   },
   'parking': {
     slug: 'parking',
@@ -107,7 +107,7 @@ export const topics: Record<string, Topic> = {
     ],
     faqs: [
       { qFil: 'Ilang oras ang buong loop?', qEn: 'How long is the whole loop?', aFil: 'Ang full-day culture loop ay humigit-kumulang 6–8 oras kasama ang biyahe at lunch. Ang half-day (Stone Kingdom + Tam-awan) ay 2–3 oras lamang.', aEn: 'The full-day culture loop is about 6–8 hours including travel and lunch. The half-day (Stone Kingdom + Tam-awan) is just 2–3 hours.' },
-      { qFil: 'Pwede bang lakarin lahat?', qEn: 'Can I walk all of them?', aFil: 'Hindi. Ang mga stop ay may distance at ahon, kaya jeep, taxi o Grab ang praktikal na transport sa pagitan ng mga ito.', bEn: 'No. The stops are spaced out with hills, so jeep, taxi or Grab is the practical transport between them.' },
+      { qFil: 'Pwede bang lakarin lahat?', qEn: 'Can I walk all of them?', aFil: 'Hindi. Ang mga stop ay may distance at ahon, kaya jeep, taxi o Grab ang praktikal na transport sa pagitan ng mga ito.', aEn: 'No. The stops are spaced out with hills, so jeep, taxi or Grab is the practical transport between them.' },
       { qFil: 'Saan makakuha ng opisyal na listahan?', qEn: 'Where do I get an official list?', aFil: 'Para sa opisyal na tourism info at mga event, bisitahin ang Department of Tourism at ang official Baguio tourism channels.', aEn: 'For official tourism info and events, visit the Department of Tourism and official Baguio tourism channels.' }
     ],
     related: ['tam-awan-village', 'lourdes-grotto', 'mirador-park', 'full-day-culture-loop']
@@ -224,8 +224,8 @@ export const topics: Record<string, Topic> = {
     ],
     faqs: [
       { qFil: 'Magkano ang Grab?', qEn: 'How much is Grab?', aFil: 'Nag-iiba-iba ayon sa surge at distance; tingnan sa app bago sumakay. Bilang gabay, ang city center → Stone Kingdom ay maikli at nasa municipal fare range.', aEn: 'It varies with surge and distance; check the app before riding. As a guide, city center → Stone Kingdom is short and within municipal fare range.' },
-      { qFil: 'Madaling sumakay ng taxi sa sentro?', qEn: 'Is it easy to get a taxi in the center?', aFil: 'Oo sa karaniwang oras, pero mahirap sa Session Road tuwing gabi at weekend. Ang Grab ay mas mapagkakatiwalaan kung may signal.', bEn: 'Yes at normal hours, but hard along Session Road at night and weekends. Grab is more reliable when there is signal.' },
-      { qFil: 'Pwede bang i-book pabalik?', qEn: 'Can I book the return trip?', aFil: 'Mahina ang signal sa ahon ng Pinsao, kaya magpa-book ng return bago umakyat, o mag-ready ng cash para sa roadside transport.', bEn: 'Signal is weak on the Pinsao uphill, so book your return before climbing, or keep cash for roadside transport.' }
+      { qFil: 'Madaling sumakay ng taxi sa sentro?', qEn: 'Is it easy to get a taxi in the center?', aFil: 'Oo sa karaniwang oras, pero mahirap sa Session Road tuwing gabi at weekend. Ang Grab ay mas mapagkakatiwalaan kung may signal.', aEn: 'Yes at normal hours, but hard along Session Road at night and weekends. Grab is more reliable when there is signal.' },
+      { qFil: 'Pwede bang i-book pabalik?', qEn: 'Can I book the return trip?', aFil: 'Mahina ang signal sa ahon ng Pinsao, kaya magpa-book ng return bago umakyat, o mag-ready ng cash para sa roadside transport.', aEn: 'Signal is weak on the Pinsao uphill, so book your return before climbing, or keep cash for roadside transport.' }
     ],
     related: ['jeepney-pinsao', 'parking', 'drive-parking-tips', 'from-manila']
   },
@@ -269,8 +269,8 @@ export const topics: Record<string, Topic> = {
       { hFil: 'Parking plan', hEn: 'Parking plan', bFil: 'I-park sa roadside o paid lot malapit sa gate, magdala ng cash para sa bayad, at dumating nang maaga sa weekend para hindi ma-stress.', bEn: 'Park at a roadside or paid lot near the gate, bring cash for payment, and arrive early on weekends to avoid stress.' }
     ],
     faqs: [
-      { qFil: 'Mahirap ba ang kalsada?', qEn: 'Is the road difficult?', aFil: 'Hindi ito technically mahirap, pero ahon at makitid sa mga bahagi. Sanayin ang sasakyan at huwag pwersahin kung basa.', bEn: 'Not technically hard, but uphill and narrow in parts. Know your vehicle and do not force it when wet.' },
-      { qFil: 'Saan ang pinakamalapit na gas station?', qEn: 'Where is the nearest gas station?', aFil: 'Sa city proper; walang gas station sa mismong Pinsao ahon. Mag-fuel bago umakyat.', bEn: 'In the city proper; there is no station on the Pinsao uphill. Fuel before climbing.' },
+      { qFil: 'Mahirap ba ang kalsada?', qEn: 'Is the road difficult?', aFil: 'Hindi ito technically mahirap, pero ahon at makitid sa mga bahagi. Sanayin ang sasakyan at huwag pwersahin kung basa.', aEn: 'Not technically hard, but uphill and narrow in parts. Know your vehicle and do not force it when wet.' },
+      { qFil: 'Saan ang pinakamalapit na gas station?', qEn: 'Where is the nearest gas station?', aFil: 'Sa city proper; walang gas station sa mismong Pinsao ahon. Mag-fuel bago umakyat.', aEn: 'In the city proper; there is no station on the Pinsao uphill. Fuel before climbing.' },
       { qFil: 'Pwede bang i-leave ang sasakyan buong araw?', qEn: 'Can I leave the car all day?', aFil: 'Oo sa paid lots, pero may bayad at limitadong slot. Para sa whole-day loop, mas ok iwan sa city at mag-Grab sa gabi.', aEn: 'Yes at paid lots, but there is a fee and limited slots. For a whole-day loop, leaving it in the city and using Grab at night is better.' }
     ],
     related: ['parking', 'taxi-grab', 'jeepney-pinsao', 'baguio-airport-loakan']
@@ -296,7 +296,7 @@ export const topics: Record<string, Topic> = {
     faqs: [
       { qFil: 'Ano ang etag?', qEn: 'What is etag?', aFil: 'Ang etag ay fermented meat (karaniwang baboy o carabao) na ginagamit bilang pampalasa sa highland cooking. Maalat at malakas ang amoy para sa hindi sanay.', aEn: 'Etag is fermented meat (usually pork or carabao) used as a seasoning in highland cooking. Salty and strong-smelling to the uninitiated.' },
       { qFil: 'May vegetarian option ba?', qEn: 'Are there vegetarian options?', aFil: 'Limitado ang purely vegetarian sa tradisyunal na Cordilleran dish, pero ang city proper ay may vegetarian at plant-based restaurants.', aEn: 'Purely vegetarian options are limited in traditional Cordillera dishes, but the city proper has vegetarian and plant-based restaurants.' },
-      { qFil: 'Safe ba kumain sa carinderia?', qEn: 'Is it safe to eat at a carinderia?', aFil: 'Karaniwang safe ang malinis na carinderia, pero piliin ang maayos at maraming tao (fresh turnover). Magdala ng tubig at iwas sa hilaw kapag sensitive ang tiyan.', bEn: 'A clean carinderia is generally safe, but choose tidy, busy ones (fresh turnover). Carry water and avoid raw items if your stomach is sensitive.' }
+      { qFil: 'Safe ba kumain sa carinderia?', qEn: 'Is it safe to eat at a carinderia?', aFil: 'Karaniwang safe ang malinis na carinderia, pero piliin ang maayos at maraming tao (fresh turnover). Magdala ng tubig at iwas sa hilaw kapag sensitive ang tiyan.', aEn: 'A clean carinderia is generally safe, but choose tidy, busy ones (fresh turnover). Carry water and avoid raw items if your stomach is sensitive.' }
     ],
     related: ['where-to-eat-near', 'baguio-coffee-cafes', 'vegetarian-baguio', 'market-and-souvenir']
   },
@@ -317,7 +317,7 @@ export const topics: Record<string, Topic> = {
       { hFil: 'Paunawa', hEn: 'Disclaimer', bFil: 'Ang gabay na ito ay tungkol sa uri at lokasyon ng kainan, hindi rekomendasyon ng partikular na negosyo. Oras at menu ay puwedeng magbago—tingnan ang current listing.', bEn: 'This guide is about the type and location of eateries, not an endorsement of any business. Hours and menus may change—check the current listing.' }
     ],
     faqs: [
-      { qFil: 'May bukas ba sa umaga?', qEn: 'Anything open in the morning?', aFil: 'Ang ibang café at carinderia sa Tam-awan ay bukas nang maaga para sa agahan; i-check ang oras bago pumunta.', bEn: 'Some cafés and carinderias in Tam-awan open early for breakfast; check hours before going.' },
+      { qFil: 'May bukas ba sa umaga?', qEn: 'Anything open in the morning?', aFil: 'Ang ibang café at carinderia sa Tam-awan ay bukas nang maaga para sa agahan; i-check ang oras bago pumunta.', aEn: 'Some cafés and carinderias in Tam-awan open early for breakfast; check hours before going.' },
       { qFil: 'May halal o vegetarian?', qEn: 'Any halal or vegetarian?', aFil: 'Limitado sa hillside area; ang city proper ang may mas maraming halal at vegetarian option.', aEn: 'Limited in the hillside area; the city proper has more halal and vegetarian options.' },
       { qFil: 'Pwede bang mag-takeout?', qEn: 'Can I get takeout?', aFil: 'Oo sa karamihan ng eatery; praktikal ito kung gusto mong kumain sa viewpoint o courtyard ng Stone Kingdom.', aEn: 'Yes at most eateries; handy if you want to eat at a viewpoint or the Stone Kingdom courtyard.' }
     ],
@@ -340,9 +340,9 @@ export const topics: Record<string, Topic> = {
       { hFil: 'Drink + merienda combo', hEn: 'Drink + snack combo', bFil: 'Karaniwang may kape, tsaa, at maliliit na pastry o local snack. Mainam na pair ito sa pahinga bago ang susunod na stop sa culture loop.', bEn: 'Usually coffee, tea and small pastries or local snacks. Pair it with rest before the next stop on your culture loop.' }
     ],
     faqs: [
-      { qFil: 'May Wi-Fi ba ang café?', qEn: 'Do cafés have Wi-Fi?', aFil: 'Karaniwang may Wi-Fi ang mga café sa centro; sa hillside area ay limitado, kaya huwag umasa kung kailangan ang signal.', bEn: 'City cafés usually have Wi-Fi; the hillside area is limited, so do not rely on it if you need signal.' },
-      { qFil: 'Anong oras bukas?', qEn: 'What are the hours?', aFil: 'Karaniwang 8 AM–8 PM sa karamihan, pero mag-iba sa holiday at weekday. I-check ang current listing.', bEn: 'Often 8 AM–8 PM for most, but it shifts on holidays and weekdays. Check the current listing.' },
-      { qFil: 'May local coffee ba?', qEn: 'Is there local coffee?', aFil: 'Oo, maraming café ang nagse-serve ng Benguet coffee at ibang PH origins. Itanong sa barista para sa recommended brew.', bEn: 'Yes, many cafés serve Benguet coffee and other PH origins. Ask the barista for a recommended brew.' }
+      { qFil: 'May Wi-Fi ba ang café?', qEn: 'Do cafés have Wi-Fi?', aFil: 'Karaniwang may Wi-Fi ang mga café sa centro; sa hillside area ay limitado, kaya huwag umasa kung kailangan ang signal.', aEn: 'City cafés usually have Wi-Fi; the hillside area is limited, so do not rely on it if you need signal.' },
+      { qFil: 'Anong oras bukas?', qEn: 'What are the hours?', aFil: 'Karaniwang 8 AM–8 PM sa karamihan, pero mag-iba sa holiday at weekday. I-check ang current listing.', aEn: 'Often 8 AM–8 PM for most, but it shifts on holidays and weekdays. Check the current listing.' },
+      { qFil: 'May local coffee ba?', qEn: 'Is there local coffee?', aFil: 'Oo, maraming café ang nagse-serve ng Benguet coffee at ibang PH origins. Itanong sa barista para sa recommended brew.', aEn: 'Yes, many cafés serve Benguet coffee and other PH origins. Ask the barista for a recommended brew.' }
     ],
     related: ['where-to-eat-near', 'cordilleran-food', 'baguio-food-trip', 'things-to-do-near']
   },
@@ -365,7 +365,7 @@ export const topics: Record<string, Topic> = {
     faqs: [
       { qFil: 'Kailangan ba ng budget?', qEn: 'What budget do I need?', aFil: 'Ang PH travelers ay puwedeng mag-bond paper budget; ang cafe at carinderia ay mura, ang restaurants naman ay mid-range.', aEn: 'PH travelers can keep it on a paper budget; cafés and carinderias are cheap, restaurants mid-range.' },
       { qFil: 'Pwede bang i-include ang Stone Kingdom?', qEn: 'Can I include the Stone Kingdom?', aFil: 'Oo—ito ang natural na morning stop bago ang city food crawl. Ilang oras lang ang attraction kaya sisingit nang maayos.', aEn: 'Yes—it is the natural morning stop before the city food crawl. The attraction takes only a couple of hours, so it fits neatly.' },
-      { qFil: 'May food tour ba?', qEn: 'Are there food tours?', aFil: 'May mga organized tour, pero puwede ring self-guided gamit ang gabay na ito. Para sa opisyal na tourism info, tingnan ang Department of Tourism.', bEn: 'There are organized tours, but you can also self-guide with this page. For official tourism info, see the Department of Tourism.' }
+      { qFil: 'May food tour ba?', qEn: 'Are there food tours?', aFil: 'May mga organized tour, pero puwede ring self-guided gamit ang gabay na ito. Para sa opisyal na tourism info, tingnan ang Department of Tourism.', aEn: 'There are organized tours, but you can also self-guide with this page. For official tourism info, see the Department of Tourism.' }
     ],
     related: ['baguio-coffee-cafes', 'where-to-eat-near', 'market-and-souvenir', 'full-day-culture-loop']
   },
@@ -387,7 +387,7 @@ export const topics: Record<string, Topic> = {
     ],
     faqs: [
       { qFil: 'Malapit ba ang market sa Stone Kingdom?', qEn: 'Is the market near the Stone Kingdom?', aFil: 'Hindi—nasa city proper ito (~15–25 min). Gawing separate stop sa ibang araw o bago umakyat.', aEn: 'No—it is in the city proper (~15–25 min). Make it a separate stop another day or before climbing.' },
-      { qFil: 'Anong oras bukas ang market?', qEn: 'What are market hours?', aFil: 'Karaniwang maaga hanggang gabi, pero maingay at siksik sa weekend. Dumating nang maaga para mas presko.', bEn: 'Generally early to late, but crowded on weekends. Arrive early for fresher goods.' },
+      { qFil: 'Anong oras bukas ang market?', qEn: 'What are market hours?', aFil: 'Karaniwang maaga hanggang gabi, pero maingay at siksik sa weekend. Dumating nang maaga para mas presko.', aEn: 'Generally early to late, but crowded on weekends. Arrive early for fresher goods.' },
       { qFil: 'Pwede bang magpa-wrap?', qEn: 'Can they wrap items?', aFil: 'Oo, maraming stall ang nag-o-offer ng pasalubong wrapping. Magdala ng extra cash para sa small fees.', aEn: 'Yes, many stalls offer pasalubong wrapping. Carry extra cash for small fees.' }
     ],
     related: ['baguio-food-trip', 'cordilleran-food', 'where-to-eat-near', 'things-to-do-near']
@@ -410,7 +410,7 @@ export const topics: Record<string, Topic> = {
     ],
     faqs: [
       { qFil: 'May vegetarian sa Stone Kingdom?', qEn: 'Is there vegetarian food at the Stone Kingdom?', aFil: 'Walang food stall sa loob; magbaon ng snack o kumain sa Tam-awan bago umakyat.', aEn: 'There is no food stall inside; bring a snack or eat in Tam-awan before climbing.' },
-      { qFil: 'Safe ba ang street food?', qEn: 'Is street food safe?', aFil: 'Karaniwang safe kung luto at mainit, pero iwas sa hilaw kung sensitive ang tiyan. Piliin ang maraming tao.', bEn: 'Generally safe if cooked and hot, but avoid raw if your stomach is sensitive. Choose busy stalls.' },
+      { qFil: 'Safe ba ang street food?', qEn: 'Is street food safe?', aFil: 'Karaniwang safe kung luto at mainit, pero iwas sa hilaw kung sensitive ang tiyan. Piliin ang maraming tao.', aEn: 'Generally safe if cooked and hot, but avoid raw if your stomach is sensitive. Choose busy stalls.' },
       { qFil: 'Pwede bang mag-request ng veg version?', qEn: 'Can I request a veg version?', aFil: 'Minsan oo sa café at carinderia; sabihin nang maaga at malinaw ang request.', aEn: 'Sometimes yes at cafés and carinderias; state your request early and clearly.' }
     ],
     related: ['where-to-eat-near', 'cordilleran-food', 'baguio-coffee-cafes', 'baguio-food-trip']
@@ -461,7 +461,7 @@ export const topics: Record<string, Topic> = {
       { qFil: 'Malapit ba sa Stone Kingdom?', qEn: 'Is it near the Stone Kingdom?', aFil: 'Pareho silang nasa hill side ng Baguio; isang short ride ang pagitan. Pwedeng i-sequence sa afternoon.', aEn: 'Both are on Baguio’s hill side; a short ride apart. Can be sequenced in the afternoon.' },
       { qFil: 'May bayad ba?', qEn: 'Is there a fee?', aFil: 'Karaniwang walang entrance fee, pero may donation box. Magdala ng coins kung gustong mag-ambag.', aEn: 'Usually no entrance fee, but there is a donation box. Bring coins if you wish to contribute.' }
     ],
-    related: ['tam-awan-village', 'mirador-park', 'things-to-do-near', 'full-day-culture-loop']
+    related: ['tam-awan-village', 'mirador-park', 'things-to-do-near', 'full-day-culture-loop', 'stone-kingdom-vs-tam-awan']
   },
   'mirador-park': {
     slug: 'mirador-park',
@@ -648,7 +648,7 @@ export const topics: Record<string, Topic> = {
       { qFil: 'Pwede bang i-include ang Mines View?', qEn: 'Can I include Mines View?', aFil: 'Oo, pero magdadag ng kabilang banda ng bundok; mas ok sa hiwalay na half-day kung limited ang oras.', aEn: 'Yes, but it adds the other hill side; better as a separate half-day if time is limited.' },
       { qFil: 'Anong buwan pinakamaganda?', qEn: 'Which month is best?', aFil: 'Ang cool-dry months (Nov–Feb) ay pinakakomportable; iwasan ang peak ng Panagbenga kung ayaw ng crowd.', aEn: 'The cool-dry months (Nov–Feb) are most comfortable; avoid the Panagbenga peak if you dislike crowds.' }
     ],
-    related: ['half-day-itinerary', 'family-itinerary', 'photography-itinerary', '2-day-baguio']
+    related: ['half-day-itinerary', 'family-itinerary', 'photography-itinerary', '2-day-baguio', '3-day-baguio', 'baguio-on-a-budget', 'baguio-solo-travel']
   },
   'family-itinerary': {
     slug: 'family-itinerary',
@@ -668,10 +668,10 @@ export const topics: Record<string, Topic> = {
     ],
     faqs: [
       { qFil: 'Stroller-friendly ba ang Stone Kingdom?', qEn: 'Is the Stone Kingdom stroller-friendly?', aFil: 'Hindi fully—maraming hagdan, kaya sling o carrier ang mas praktikal sa taas. Ang baba ay may patag na courtyard.', aEn: 'Not fully—there are many stairs, so a sling or carrier is more practical up top. The base has a flat courtyard.' },
-      { qFil: 'Safe ba para sa toddler?', qEn: 'Is it safe for toddlers?', aFil: 'Oo kung bantay at hawak; maalog ang ilang hagdan. Iwas sa edge ng viewpoint.', bEn: 'Yes if supervised and held; some stairs are uneven. Keep away from the viewpoint edge.' },
+      { qFil: 'Safe ba para sa toddler?', qEn: 'Is it safe for toddlers?', aFil: 'Oo kung bantay at hawak; maalog ang ilang hagdan. Iwas sa edge ng viewpoint.', aEn: 'Yes if supervised and held; some stairs are uneven. Keep away from the viewpoint edge.' },
       { qFil: 'Pwede bang i-include ang Mines View?', qEn: 'Can I include Mines View?', aFil: 'Oo, pero limitado ang oras; gawing optional stop kung hindi pagod ang bata.', aEn: 'Yes, but keep it optional if the kids are tired.' }
     ],
-    related: ['half-day-itinerary', 'full-day-culture-loop', 'accessibility', 'things-to-do-near']
+    related: ['half-day-itinerary', 'full-day-culture-loop', 'accessibility', 'things-to-do-near', 'baguio-best-viewpoints']
   },
   'photography-itinerary': {
     slug: 'photography-itinerary',
@@ -717,7 +717,7 @@ export const topics: Record<string, Topic> = {
       { qFil: 'May covered area ba?', qEn: 'Is there a covered area?', aFil: 'Limitado; ang courtyard ay open. Maglaan ng jacket kung uulan.', aEn: 'Limited; the courtyard is open. Bring a jacket if rain is likely.' },
       { qFil: 'Pwede bang i-refund?', qEn: 'Can I get a refund?', aFil: 'Depende sa policy sa gate; tanong muna bago bumili ng ticket.', aEn: 'Depends on the gate policy; ask before buying a ticket.' }
     ],
-    related: ['best-time-to-visit', 'baguio-temperature', 'things-to-do-near', 'full-day-culture-loop']
+    related: ['best-time-to-visit', 'baguio-temperature', 'things-to-do-near', 'full-day-culture-loop', 'baguio-festivals', 'baguio-packing-list']
   },
   '2-day-baguio': {
     slug: '2-day-baguio',
@@ -740,7 +740,7 @@ export const topics: Record<string, Topic> = {
       { qFil: 'Saan mag-stay?', qEn: 'Where to stay?', aFil: 'Ang city center ay convenient para sa night market at commute. Iwas sa Pinsao kung walang sasakyan.', aEn: 'The city center is convenient for the night market and commuting. Avoid Pinsao without a car.' },
       { qFil: 'Pwede bang commute lang?', qEn: 'Can I use public transport only?', aFil: 'Oo, pero mas mabilis ang Grab para sa hill transfers.', aEn: 'Yes, but Grab is faster for hill transfers.' }
     ],
-    related: ['full-day-culture-loop', 'half-day-itinerary', 'baguio-night-market', 'best-time-to-visit']
+    related: ['full-day-culture-loop', 'half-day-itinerary', 'baguio-night-market', 'best-time-to-visit', 'baguio-festivals']
   },
 
   // ===================== F. SEASONAL =====================
@@ -811,7 +811,7 @@ export const topics: Record<string, Topic> = {
       { qFil: 'Anong buwan pinaka-basâ?', qEn: 'Which month is wettest?', aFil: 'Ang Agosto at Setyembre ay karaniwang pinakamaramimg ulan.', aEn: 'August and September are usually the wettest.' },
       { qFil: 'Kailan least crowd?', qEn: 'When are crowds least?', aFil: 'Ang Hulyo–Setyembre (rainy) ay mas kaunti ang turista, maliban sa holidays.', aEn: 'July–September (rainy) has fewer tourists, except holidays.' }
     ],
-    related: ['best-time-to-visit', 'baguio-temperature', 'rainy-day-baguio', 'panagbenga']
+    related: ['best-time-to-visit', 'baguio-temperature', 'rainy-day-baguio', 'panagbenga', 'baguio-festivals']
   },
   'baguio-temperature': {
     slug: 'baguio-temperature',
@@ -905,7 +905,7 @@ export const topics: Record<string, Topic> = {
       { qFil: 'Alin ang pinakamadaling lakarin?', qEn: 'Which is easiest to walk?', aFil: 'Ang Burnham ang pinakapatag; ang Stone Kingdom ang pinaka-ahon.', aEn: 'Burnham is flattest; the Stone Kingdom is the most uphill.' },
       { qFil: 'Alin ang free?', qEn: 'Which is free?', aFil: 'Karaniwang may bayad ang Stone Kingdom; ang Burnham at ilang park ay libre. Kumpirmahin sa site.', aEn: 'The Stone Kingdom usually has a fee; Burnham and some parks are free. Confirm on site.' }
     ],
-    related: ['what-is', 'things-to-do-near', 'mines-view-park', 'burnham-park']
+    related: ['what-is', 'things-to-do-near', 'mines-view-park', 'burnham-park', 'baguio-best-viewpoints', 'is-it-worth-it', 'stone-kingdom-vs-tam-awan']
   },
   'faq': {
     slug: 'faq',
@@ -930,6 +930,240 @@ export const topics: Record<string, Topic> = {
       { qFil: 'Bukas ba kapag Lunes?', qEn: 'Is it open on Mondays?', aFil: 'Oo, araw-araw itong bukas.', aEn: 'Yes, it is open every day.' },
       { qFil: 'May parking ba?', qEn: 'Is there parking?', aFil: 'Oo, roadside at paid lots malapit sa gate; mabilis mapuno sa weekend.', aEn: 'Yes, roadside and paid lots near the gate; fills fast on weekends.' }
     ],
-    related: ['what-is', 'hours', 'parking', 'first-time-tips']
+    related: ['what-is', 'hours', 'parking', 'first-time-tips', 'baguio-packing-list', 'is-it-worth-it']
+  },
+
+  // ===================== NEW: long-tail expansions =====================
+  'baguio-packing-list': {
+    slug: 'baguio-packing-list',
+    group: 'seasonal',
+    titleFil: 'Baguio Packing List — Ano ang Dapat Dalhin',
+    titleEn: 'Baguio Packing List — What to Wear & Bring',
+    descFil: 'Ano ang dapat iba sa Baguio: jacket, layer, cash at gear para sa ahon at ulan. Independent visitor guide.',
+    descEn: 'What to bring to Baguio: jacket, layers, cash and gear for the hills and rain. Independent visitor guide.',
+    h1Fil: 'Ano ang dapat dalhin sa Baguio',
+    h1En: 'What to Pack for Baguio',
+    introFil: 'Ang Baguio ay cool highland (humigit-kumulang 15–24°C sa araw, mas malamig sa gabi at sa ahon). Ang ulan ay pwede anytime, kaya layer at rain gear ang pinakasafe.',
+    introEn: 'Baguio is a cool highland (roughly 15–24°C by day, colder at night and uphill). Rain can come any time, so layers and rain gear are safest.',
+    sections: [
+      { hFil: 'Damit at layer', hEn: 'Clothing & layers', bFil: 'Magdala ng jacket o hoodie kahit summer; ang fleece at long pants ay komportable sa gabi. Ang cotton shirt + outer layer ang pinakadali i-adjust.', bEn: 'Bring a jacket or hoodie even in summer; fleece and long pants are comfortable at night. A cotton shirt plus an outer layer is easiest to adjust.' },
+      { hFil: 'Gear para sa ulan at ahon', hEn: 'Gear for rain & hills', bFil: 'Payong o raincoat, sapatos na may kapit (hindi slippers sa basa na hagdan), at small backpack. Magdala ng tissue at alcohol.', bEn: 'Umbrella or raincoat, grippy shoes (not slippers on wet stairs), and a small backpack. Bring tissue and sanitizer.' },
+      { hFil: 'Cash at iba pa', hEn: 'Cash & extras', bFil: 'Maraming spot ang cash-only (parking, jeep, small eateries). Magdala ng coins at small bills; i-charge ang powerbank.', bEn: 'Many spots are cash-only (parking, jeep, small eateries). Bring coins and small bills; keep a power bank charged.' }
+    ],
+    faqs: [
+      { qFil: 'Kailangan ba ng jacket kahit summer?', qEn: 'Do I need a jacket even in summer?', aFil: 'Oo. Ang gabi at ahon ay malamig kahit April; ang jacket ay hindi optional sa Baguio.', aEn: 'Yes. Nights and the hills are cold even in April; a jacket is not optional in Baguio.' },
+      { qFil: 'Anong sapatos ang ok?', qEn: 'What shoes are good?', aFil: 'Sapatos na closed at may kapit—lalo na sa Stone Kingdom na may hagdan at ahon. Iwas sa flat slippers kapag basa.', aEn: 'Closed, grippy shoes—especially for the Stone Kingdom with its stairs and slopes. Avoid flat slippers when wet.' },
+      { qFil: 'Pwede bang bumili sa lugar?', qEn: 'Can I buy there?', aFil: 'Oo, may tindahan sa city proper at Session Road, pero mas mahal at limited sa hillside attraction. Mag-ready bago umakyat.', aEn: 'Yes, there are shops in the city proper and Session Road, but pricier and limited at the hillside attraction. Prepare before climbing.' }
+    ],
+    related: ['best-time-to-visit', 'baguio-temperature', 'first-time-tips', 'things-to-do-near']
+  },
+  'is-it-worth-it': {
+    slug: 'is-it-worth-it',
+    group: 'core',
+    titleFil: 'Worth It ba ang Igorot Stone Kingdom? — Honest Guide',
+    titleEn: 'Is Igorot Stone Kingdom Worth Visiting? — Honest Guide',
+    descFil: 'Honest take kung worth it ang Igorot Stone Kingdom: para kanino, gaano katagal, at kailan i-skip.',
+    descEn: 'An honest take on whether Igorot Stone Kingdom is worth it: for whom, how long, and when to skip.',
+    h1Fil: 'Worth it ba ang Stone Kingdom?',
+    h1En: 'Is It Worth Visiting?',
+    introFil: 'Depende sa trip mo. Kung gusto mo ng unique na stonework, photo spots at hillside view, ito ay sulit. Kung hinahanap mo ng sinaunang ruin o malaking adventure park, baka hindi.',
+    introEn: 'It depends on your trip. If you want unique stonework, photo spots and a hillside view, it is worth it. If you expect an ancient ruin or a big adventure park, it may not be.',
+    sections: [
+      { hFil: 'Para kanino ito sulit', hEn: 'Who it is worth it for', bFil: 'Sulit ito para sa photo lovers, couples at families na gusto ng maikling uphill walk at cultural theme. 1–2 oras lang ang kailangan.', bEn: 'Worth it for photo lovers, couples and families wanting a short uphill walk with a cultural theme. Only 1–2 hours needed.' },
+      { hFil: 'Kailan i-skip', hEn: 'When to skip', bFil: 'I-skip kung may mobility issue na hindi kayang ahon, kung maulan nang todo (madulas ang hagdan), o kung gusto mo ng mall-style attraction.', bEn: 'Skip if you have mobility limits that make hills hard, if it is pouring (slippery stairs), or if you want a mall-style attraction.' },
+      { hFil: 'Paano masulit', hEn: 'How to get the most', bFil: 'Pumunta nang maaga, i-pair sa Tam-awan o Mirador, at huwag asahan ng “castle” — ito ay modernong interpretasyon.', bEn: 'Go early, pair it with Tam-awan or Mirador, and do not expect a “castle”—it is a modern interpretation.' }
+    ],
+    faqs: [
+      { qFil: 'Sulit ba para sa kids?', qEn: 'Is it worth it for kids?', aFil: 'Kung sanay sa lakad at ahon, oo—may staircase at viewpoint. Bantayan lang sa madulas na hagdan.', aEn: 'If they are used to walking and hills, yes—there are stairs and a viewpoint. Watch the slippery stairs.' },
+      { qFil: 'Masarap ba ang view?', qEn: 'Is the view good?', aFil: 'Oo sa umaga; ang Cordillera greens ay malinaw. Sa hapon ay golden-hour para sa terraces.', aEn: 'Yes in the morning; the Cordillera greens are clear. Afternoon gives golden-hour on the terraces.' },
+      { qFil: 'Ok ba para sa seniors?', qEn: 'Is it OK for seniors?', aFil: 'Kung kaya ang ahon nang dahan-dahan, oo; may courtyard para pahinga. Iwas sa maulan araw.', aEn: 'If hills are manageable slowly, yes; there is a courtyard to rest. Avoid rainy days.' }
+    ],
+    related: ['what-is', 'vs-other-baguio', 'first-time-tips', 'things-to-do-near', 'history']
+  },
+  '3-day-baguio': {
+    slug: '3-day-baguio',
+    group: 'itinerary',
+    titleFil: '3-Day Baguio Itinerary — Stone Kingdom at Iba pang Spots',
+    titleEn: '3-Day Baguio Itinerary — Stone Kingdom & More',
+    descFil: '3 araw na Baguio plan: Stone Kingdom, culture loop, food trip at nearby parks.',
+    descEn: 'A 3-day Baguio plan: Stone Kingdom, culture loop, food trip and nearby parks.',
+    h1Fil: '3 Araw na Baguio Itinerary',
+    h1En: '3-Day Baguio Itinerary',
+    introFil: 'Ang 3 araw ay sapat para sa Stone Kingdom, tamang culture loop (Tam-awan, Mirador, Grotto), at food trip nang hindi nagmamadali.',
+    introEn: 'Three days is enough for the Stone Kingdom, a proper culture loop (Tam-awan, Mirador, Grotto) and a relaxed food trip.',
+    sections: [
+      { hFil: 'Araw 1 — Stone Kingdom + Pinsao', hEn: 'Day 1 — Stone Kingdom + Pinsao', bFil: 'Umaga sa Stone Kingdom (tahimik), tanghali sa Tam-awan para kumain, hapon sa Mirador o Grotto. Gabi sa Session Road.', bEn: 'Morning at the Stone Kingdom (quiet), lunch at Tam-awan, afternoon at Mirador or the Grotto. Evening on Session Road.' },
+      { hFil: 'Araw 2 — City parks at museums', hEn: 'Day 2 — City parks & museums', bFil: 'Burnham, Botanical Garden, Mines View, Wright Park. Spend time sa market para sa souvenir.', bEn: 'Burnham, Botanical Garden, Mines View, Wright Park. Spend time at the market for souvenirs.' },
+      { hFil: 'Araw 3 — Chill at cafe', hEn: 'Day 3 — Cafés & slow morning', bFil: 'Baguio coffee crawl, relaxed breakfast, at last-minute shopping bago umuwi. Iwan ang buffer para sa traffic.', bEn: 'A Baguio coffee crawl, a relaxed breakfast and last-minute shopping before heading home. Leave buffer for traffic.' }
+    ],
+    faqs: [
+      { qFil: 'Kasya ba ang Stone Kingdom sa Day 1?', qEn: 'Does the Stone Kingdom fit Day 1?', aFil: 'Oo, 1–2 oras lang ito; i-pair sa Tam-awan para iwas sa back-to-back ahon.', aEn: 'Yes, it is only 1–2 hours; pair it with Tam-awan to avoid back-to-back hills.' },
+      { qFil: 'Pwede bang walang car?', qEn: 'Can I do it without a car?', aFil: 'Oo, taxi/Grab at jeep ang praktikal; ang loop ay naka-cluster sa parehong side ng city.', aEn: 'Yes, taxi/Grab and jeep are practical; the loop clusters on the same side of the city.' },
+      { qFil: 'Anong season ang best?', qEn: 'Which season is best?', aFil: 'Cool-dry months (Nov–Feb) ang pinakakomportable; iwasan ang peak holiday rush kung ayaw ng crowd.', aEn: 'Cool-dry months (Nov–Feb) are most comfortable; avoid peak holiday rushes if you dislike crowds.' }
+    ],
+    related: ['2-day-baguio', 'full-day-culture-loop', 'half-day-itinerary', 'things-to-do-near']
+  },
+  'baguio-on-a-budget': {
+    slug: 'baguio-on-a-budget',
+    group: 'itinerary',
+    titleFil: 'Baguio on a Budget — Tipid Guide',
+    titleEn: 'Baguio on a Budget — Frugal Guide',
+    descFil: 'Paano mag-Baguio nang tipid: free parks, jeep over Grab, at affordable food.',
+    descEn: 'How to do Baguio on a budget: free parks, jeep over Grab, and affordable food.',
+    h1Fil: 'Baguio nang Tipid',
+    h1En: 'Baguio on a Budget',
+    introFil: 'Ang Baguio ay pwede nang tipid: maraming park ang libre, ang jeep ay mura, at ang local eateries ay affordable. Iwas lang sa impulse buys sa market.',
+    introEn: 'Baguio can be done cheaply: many parks are free, the jeep is cheap, and local eateries are affordable. Just avoid impulse buys at the market.',
+    sections: [
+      { hFil: 'Libre (o mura) na spots', hEn: 'Free (or cheap) spots', bFil: 'Ang Burnham, Botanical Garden at ilang park ay libre o minimal fee. Ang Stone Kingdom ay may entrance (~₱130 adult) — kumpirmahin sa gate.', bEn: 'Burnham, the Botanical Garden and some parks are free or minimal fee. The Stone Kingdom has an entrance (~₱130 adult)—confirm at the gate.' },
+      { hFil: 'Transport tipid', hEn: 'Budget transport', bFil: 'Jeep over Grab sa city loops; maglakad sa flat areas tulad ng Burnham. I-save ang Grab para sa hillside trip.', bEn: 'Jeep over Grab on city loops; walk the flat areas like Burnham. Save Grab for the hillside trip.' },
+      { hFil: 'Pagkain nang murang', hEn: 'Eating cheap', bFil: 'Street food, carinderia at market eats ay affordable. Ang cafe crawl ay optional—pwede ring local coffee sa tindahan.', bEn: 'Street food, carinderias and market eats are affordable. A café crawl is optional—local coffee from shops works too.' }
+    ],
+    faqs: [
+      { qFil: 'Magkano ang budget per day?', qEn: 'What is a daily budget?', aFil: 'Depende sa trip mo; ang entrance + jeep + local food ay manageable. Maglista bago umalis.', aEn: 'It depends on your trip; entrance + jeep + local food is manageable. List it before you leave.' },
+      { qFil: 'Free ba ang Stone Kingdom?', qEn: 'Is the Stone Kingdom free?', aFil: 'Hindi karaniwan; may entrance fee. Para sa updates, kumpirmahin sa gate o Google Maps listing.', aEn: 'Usually not; there is an entrance fee. For updates, confirm at the gate or the Google Maps listing.' },
+      { qFil: 'Sulit ba ang 2-day over 3-day?', qEn: 'Is 2 days better than 3?', aFil: 'Kung tipid, ang 2-day ay sapat para sa Stone Kingdom + city loop. Dagdagan lang kung gusto ng chill.', aEn: 'On a budget, 2 days covers the Stone Kingdom + city loop. Add a day only if you want to chill.' }
+    ],
+    related: ['2-day-baguio', 'parking', 'vegetarian-baguio', 'where-to-eat-near']
+  },
+  'baguio-best-viewpoints': {
+    slug: 'baguio-best-viewpoints',
+    group: 'nearby',
+    titleFil: 'Best Viewpoints sa Baguio — Saan maganda ang view',
+    titleEn: 'Best Viewpoints in Baguio — Where to Catch the View',
+    descFil: 'Mga viewpoint sa Baguio: Mines View, Mirador, Stone Kingdom decks at iba pa.',
+    descEn: 'Baguio viewpoints: Mines View, Mirador, Stone Kingdom decks and more.',
+    h1Fil: 'Pinakamagandang Viewpoint sa Baguio',
+    h1En: 'Best Viewpoints in Baguio',
+    introFil: 'Ang Baguio ay hillside city, kaya maraming viewpoint. Ito ang mga madalas puntahan para sa city overlook at Cordillera greens.',
+    introEn: 'Baguio is a hillside city, so there are many viewpoints. These are the usual picks for city overlooks and Cordillera greens.',
+    sections: [
+      { hFil: 'Mines View Park', hEn: 'Mines View Park', bFil: 'Classic photo deck na may overlooking sa mining hills. Maikli ang lakad, madaming tindahan sa paligid.', bEn: 'A classic photo deck overlooking the mining hills. Short walk, lots of shops around.' },
+      { hFil: 'Mirador Heritage Park', hEn: 'Mirador Heritage Park', bFil: 'Tahimik na elevated garden at viewpoint, malapit sa Stone Kingdom side ng city.', bEn: 'A quiet elevated garden and viewpoint, near the Stone Kingdom side of the city.' },
+      { hFil: 'Stone Kingdom decks', hEn: 'Stone Kingdom decks', bFil: 'Ang attraction mismo ay may mountain-edge viewpoint decks para sa terraces at greens.', bEn: 'The attraction itself has mountain-edge viewpoint decks over the terraces and greens.' }
+    ],
+    faqs: [
+      { qFil: 'Alin ang pinakamalapit sa Stone Kingdom?', qEn: 'Which is closest to the Stone Kingdom?', aFil: 'Ang Mirador ay nasa parehong hillside banda; pwede i-pair sa isang half-day.', aEn: 'Mirador is on the same hillside side; it pairs well in a half-day.' },
+      { qFil: 'Anong oras pinakamaganda?', qEn: 'What time is best?', aFil: 'Maagang umaga para sa clear view; iwas sa ulap sa hapon kapag maulan.', aEn: 'Early morning for clear views; avoid cloudy afternoons in the rain.' },
+      { qFil: 'Libre ba ang viewpoints?', qEn: 'Are viewpoints free?', aFil: 'Ang Mines View at Mirador ay may minimal o libreng access; ang Stone Kingdom ay may entrance fee. Kumpirmahin sa site.', aEn: 'Mines View and Mirador have minimal or free access; the Stone Kingdom has an entrance fee. Confirm on site.' }
+    ],
+    related: ['mines-view-park', 'mirador-park', 'things-to-do-near', 'photography-itinerary']
+  },
+  'baguio-festivals': {
+    slug: 'baguio-festivals',
+    group: 'seasonal',
+    titleFil: 'Baguio Festivals at Events — Calendar',
+    titleEn: 'Baguio Festivals & Events — Calendar',
+    descFil: 'Mga festival sa Baguio: Panagbenga, Christmas at iba pang events. Kailan at ano ang aasahan.',
+    descEn: 'Baguio festivals: Panagbenga, Christmas and other events. When and what to expect.',
+    h1Fil: 'Mga Festival sa Baguio',
+    h1En: 'Baguio Festivals & Events',
+    introFil: 'Ang Baguio ay may yearly events, pero ang pinakamalaki ay ang Panagbenga flower festival (February). Iba pang celebration ay may crowd at traffic—plan ahead.',
+    introEn: 'Baguio has yearly events, but the biggest is the Panagbenga flower festival (February). Other celebrations bring crowds and traffic—plan ahead.',
+    sections: [
+      { hFil: 'Panagbenga (February)', hEn: 'Panagbenga (February)', bFil: 'Ang month-long flower festival na may parade ng floats at blooms. Inaasahan ang maraming tao at mahal na lodging—mag-book nang maaga.', bEn: 'A month-long flower festival with float parades and blooms. Expect big crowds and pricey lodging—book early.' },
+      { hFil: 'Christmas at New Year', hEn: 'Christmas & New Year', bFil: 'Ang Baguio sa Disyembre ay malamig at may lights; popular para sa holiday getaway. Maaga rin ang booking.', bEn: 'Baguio in December is cold with lights; popular for holiday getaways. Booking is early too.' },
+      { hFil: 'Tips sa event days', hEn: 'Tips for event days', bFil: 'Mag-book ng lodging at transport nang maaga, i-expect ang traffic, at i-check ang official schedule bago bumiyahe.', bEn: 'Book lodging and transport early, expect traffic, and check the official schedule before traveling.' }
+    ],
+    faqs: [
+      { qFil: 'Kailan ang Panagbenga?', qEn: 'When is Panagbenga?', aFil: 'Karaniwang buong buwan ng February; ang exact dates ay ina-announce annually—i-check ang official Baguio tourism page.', aEn: 'Usually the whole month of February; exact dates are announced yearly—check the official Baguio tourism page.' },
+      { qFil: 'Mas mahal ba sa festival?', qEn: 'Is it more expensive during festivals?', aFil: 'Oo, ang lodging at ibang rate ay tumataas sa peak. Mag-budget nang extra.', aEn: 'Yes, lodging and some rates rise at peak. Budget extra.' },
+      { qFil: 'Worth it ba pumunta sa Panagbenga?', qEn: 'Is it worth going for Panagbenga?', aFil: 'Kung gusto mo ng flowers at parade, oo—pero tanggapin ang crowd. Kung ayaw ng siksikan, iwasan ang peak weekends.', aEn: 'If you like flowers and parades, yes—but accept the crowds. If you dislike crowds, avoid peak weekends.' }
+    ],
+    related: ['panagbenga', 'best-time-to-visit', 'baguio-by-month', 'first-time-tips']
+  },
+
+  // ===================== Batch 2: more long-tail expansions =====================
+  'entrance-fee': {
+    slug: 'entrance-fee',
+    group: 'core',
+    titleFil: 'Igorot Stone Kingdom Entrance Fee — Magkano ang Tiket',
+    titleEn: 'Igorot Stone Kingdom Entrance Fee — Ticket Price',
+    descFil: 'Magkano ang entrance fee sa Igorot Stone Kingdom: adult, child, at kung paano magbayad. Independent visitor guide.',
+    descEn: 'Entrance fee at Igorot Stone Kingdom: adult, child and how to pay. Independent visitor guide.',
+    h1Fil: 'Entrance Fee ng Igorot Stone Kingdom',
+    h1En: 'Igorot Stone Kingdom Entrance Fee',
+    introFil: 'Ang Igorot Stone Kingdom ay may entrance fee na karaniwang humigit-kumulang ₱130 para sa adult at ₱100 para sa child, base sa mga recent visitor reports. Hindi ito fixed—maaaring magbago ang rate, kaya magtanong o kumpirmahin sa gate bago pumasok.',
+    introEn: 'Igorot Stone Kingdom charges an entrance fee, usually about ₱130 for adults and ₱100 for children, based on recent visitor reports. It is not fixed—rates can change, so confirm at the gate before entering.',
+    sections: [
+      { hFil: 'Adult at child rate', hEn: 'Adult & child rate', bFil: 'Ang karaniwang rate ay humigit-kumulang ₱130 (adult) at ₱100 (child). Ang mga senior at student ay maaaring may ibang rate—kumpirmahin sa staff.', bEn: 'Typical rates are about ₱130 (adult) and ₱100 (child). Seniors and students may have different rates—ask the staff.' },
+      { hFil: 'Paano magbayad', hEn: 'How to pay', bFil: 'Karaniwang cash ang tinatanggap sa gate; magdala ng maliit na bill at coins. Iwas sa hassle kapag walang sukli.', bEn: 'Cash is usually accepted at the gate; bring small bills and coins. Avoid hassle when there is no change.' },
+      { hFil: 'Kasama ba ang photo at parking?', hEn: 'Does it include photos & parking?', bFil: 'Ang entrance fee ay para sa pagpasok at personal na pagkuha ng litrato. Ang parking ay hiwalay at may sariling rate sa paligid ng attraction.', bEn: 'The entrance fee covers entry and personal photography. Parking is separate and has its own rate around the attraction.' }
+    ],
+    faqs: [
+      { qFil: 'Free ba ang Igorot Stone Kingdom?', qEn: 'Is Igorot Stone Kingdom free?', aFil: 'Hindi karaniwan; may entrance fee. Para sa updates, kumpirmahin sa gate o sa official Google Maps listing.', aEn: 'Usually not; there is an entrance fee. For updates, confirm at the gate or the official Google Maps listing.' },
+      { qFil: 'May discount para sa senior?', qEn: 'Is there a senior discount?', aFil: 'Maaaring may special rate para sa senior at student, pero nagaiba ang patakaran. Magtanong muna sa staff sa gate.', aEn: 'There may be a special rate for seniors and students, but policy varies. Ask staff at the gate first.' },
+      { qFil: 'Sulit ba ang bayad?', qEn: 'Is the fee worth it?', aFil: 'Kung gusto mo ng stonework, viewpoint at photo spots, oo para sa karamihan. Iwasan ang maulan araw para masulit.', aEn: 'If you want stonework, viewpoints and photo spots, yes for most visitors. Avoid rainy days to get the most.' }
+    ],
+    related: ['hours', 'parking', 'is-it-worth-it', 'photos']
+  },
+  'history': {
+    slug: 'history',
+    group: 'core',
+    titleFil: 'Kasaysayan ng Igorot Stone Kingdom — Modernong Attraction',
+    titleEn: 'History of Igorot Stone Kingdom — A Modern Attraction',
+    descFil: 'Saan nanggaling ang Igorot Stone Kingdom: isang modernong stonework attraction, hindi sinaunang guho. Konteksto ng Cordillera culture.',
+    descEn: 'Where Igorot Stone Kingdom came from: a modern stonework attraction, not an ancient ruin. Context on Cordillera culture.',
+    h1Fil: 'Kasaysayan ng Igorot Stone Kingdom',
+    h1En: 'History of Igorot Stone Kingdom',
+    introFil: 'Ang Igorot Stone Kingdom ay hindi archaeological site o sinaunang guho. Ito ay isang modernong attraction na itinayo gamit ang bato, may temang Cordillera/Igorot—parang mini rice terraces at stone structures na ginawa bilang passion project ng isang lokal na residente.',
+    introEn: 'Igorot Stone Kingdom is not an archaeological site or ancient ruin. It is a modern attraction built from stone, with a Cordillera/Igorot theme—like mini rice terraces and stone structures made as a passion project by a local resident.',
+    sections: [
+      { hFil: 'Bakit ito itinayo', hEn: 'Why it was built', bFil: 'Ito ay nagsimula bilang personal na proyekto na naglalayong ipakita ang galing sa bato at ang kultura ng Cordillera sa isang hillside sa Pinsao, Baguio. Hindi ito bahagi ng opisyal na museum o government heritage site.', bEn: 'It began as a personal project meant to show stonecraft and Cordillera culture on a hillside in Pinsao, Baguio. It is not part of an official museum or government heritage site.' },
+      { hFil: 'Ang itsura at tema', hEn: 'The look & theme', bFil: 'Ang mga stone terraces, arches at courtyard ay inspired ng rice terraces at Igorot architecture. Ang detail ay modernong interpretasyon, hindi replika ng isang tunay na sinaunang istruktura.', bEn: 'The stone terraces, arches and courtyard are inspired by rice terraces and Igorot architecture. The detail is a modern interpretation, not a replica of a real ancient structure.' },
+      { hFil: 'Paunawa sa mga facts', hEn: 'A note on the facts', bFil: 'Ang mga detalye ng builder at taon ay maaaring mag-iba depende sa source. Para sa pinakasariwang impormasyon, magtanong sa staff sa gate o bisitahin ang official listing.', bEn: 'Details about the builder and year may vary by source. For the freshest information, ask staff at the gate or check the official listing.' }
+    ],
+    faqs: [
+      { qFil: 'Sinaunang guho ba ito?', qEn: 'Is it an ancient ruin?', aFil: 'Hindi. Ito ay modernong attraction na itinayo gamit ang bato; ang tema lang ang kuhang Cordillera.', aEn: 'No. It is a modern attraction built from stone; only the theme is Cordillera-inspired.' },
+      { qFil: 'Sino ang nagtayo?', qEn: 'Who built it?', aFil: 'Ito ay nagsimula bilang proyekto ng isang lokal na residente. Ang eksaktong pangalan at taon ay maaaring mag-iba, kaya mas mainam na kumpirmahin sa gate.', aEn: 'It started as a project by a local resident. The exact name and year may vary, so confirm at the gate.' },
+      { qFil: 'Connected ba ito sa real Igorot tribe?', qEn: 'Is it connected to a real Igorot tribe?', aFil: 'Ang tema ay kuhang Igorot/Cordillera culture, pero ito ay isang modernong tourism attraction—hindi ito sacred site o tirahan ng tribe.', aEn: 'The theme draws on Igorot/Cordillera culture, but it is a modern tourism attraction—not a sacred site or tribal dwelling.' }
+    ],
+    related: ['what-is', 'is-it-worth-it', 'things-to-do-near', 'photos']
+  },
+  'stone-kingdom-vs-tam-awan': {
+    slug: 'stone-kingdom-vs-tam-awan',
+    group: 'core',
+    titleFil: 'Igorot Stone Kingdom vs Tam-awan Village — Alin ang Sa’yo?',
+    titleEn: 'Igorot Stone Kingdom vs Tam-awan Village — Which Is for You?',
+    descFil: 'Comparison ng Igorot Stone Kingdom at Tam-awan Village: pareho sa Pinsao side, magkaiba ang vibe. Alin ang dapat puntahan?',
+    descEn: 'Igorot Stone Kingdom vs Tam-awan Village: both on the Pinsao side, different vibe. Which should you visit?',
+    h1Fil: 'Stone Kingdom vs Tam-awan',
+    h1En: 'Stone Kingdom vs Tam-awan',
+    introFil: 'Ang dalawang ito ay nasa parehong hillside banda ng Baguio (Pinsao), kaya madalas silang ipares. Pero magkaiba ang experience: ang Stone Kingdom ay tungkol sa stone terraces at viewpoint, habang ang Tam-awan ay art, culture at native huts.',
+    introEn: 'Both sit on the same hillside side of Baguio (Pinsao), so they are often paired. But the experience differs: the Stone Kingdom is about stone terraces and a viewpoint, while Tam-awan is about art, culture and native huts.',
+    sections: [
+      { hFil: 'Ano ang focus', hEn: 'What each focuses on', bFil: 'Ang Stone Kingdom ay modernong stonework, staircase at mountain-edge decks. Ang Tam-awan ay artist village na may traditional Cordillera huts, galleries at café.', bEn: 'The Stone Kingdom is modern stonework, staircases and mountain-edge decks. Tam-awan is an artist village with traditional Cordillera huts, galleries and a café.' },
+      { hFil: 'Effort at oras', hEn: 'Effort & time', bFil: 'Ang Stone Kingdom ay may ahon at hagdan (1–2 oras). Ang Tam-awan ay mas chill na lakad sa flat-ish pathways (1–2 oras din).', bEn: 'The Stone Kingdom has hills and stairs (1–2 hours). Tam-awan is a more chill walk on flatter paths (also 1–2 hours).' },
+      { hFil: 'Paano pagsamahin', hEn: 'How to combine', bFil: 'Pumunta sa Stone Kingdom sa umaga, tapos Tam-awan para sa lunch at café. Magjeep o tricycle sa pagitan—hindi ito walkable nang diretso.', bEn: 'Go to the Stone Kingdom in the morning, then Tam-awan for lunch and a café. Take a jeep or tricycle between them—not a direct walk.' }
+    ],
+    faqs: [
+      { qFil: 'Pwede bang lakarin ang dalawa?', qEn: 'Can I walk between the two?', aFil: 'Hindi inirerekomenda; may ahon at walang maayos na sidewalk sa Longlong Road. Jeep o tricycle ang mas ligtas.', aEn: 'Not recommended; there is uphill terrain and no proper sidewalk along Longlong Road. A jeep or tricycle is safer.' },
+      { qFil: 'Alin ang mas bagay sa kids?', qEn: 'Which suits kids more?', aFil: 'Pareho ay ok, pero ang Tam-awan ay mas chill at may café. Ang Stone Kingdom ay mas adventurous para sa ahon.', aEn: 'Both work, but Tam-awan is more chill with a café. The Stone Kingdom is more adventurous with its hills.' },
+      { qFil: 'Pareho bang may entrance fee?', qEn: 'Do both have an entrance fee?', aFil: 'Oo, pareho ay may separate na entrance fee. Kumpirmahin ang rate sa gate ng bawat isa.', aEn: 'Yes, both have a separate entrance fee. Confirm the rate at each gate.' }
+    ],
+    related: ['tam-awan-village', 'what-is', 'things-to-do-near', 'is-it-worth-it']
+  },
+  'baguio-solo-travel': {
+    slug: 'baguio-solo-travel',
+    group: 'itinerary',
+    titleFil: 'Baguio Solo Travel — Tips para sa Mag-isa',
+    titleEn: 'Baguio Solo Travel — Tips for Going Alone',
+    descFil: 'Tips sa pag-Baguio mag-isa: transport, safety, at kung paano i-enjoy ang Stone Kingdom nang solo.',
+    descEn: 'Tips for visiting Baguio alone: transport, safety, and how to enjoy the Stone Kingdom solo.',
+    h1Fil: 'Baguio Solo Travel',
+    h1En: 'Baguio Solo Travel',
+    introFil: 'Ang Baguio ay safe at beginner-friendly para sa solo travelers. Ang Stone Kingdom at ibang hillside stop ay madaling puntahan nang mag-isa gamit ang taxi, Grab o jeep.',
+    introEn: 'Baguio is safe and beginner-friendly for solo travelers. The Stone Kingdom and other hillside stops are easy to reach alone via taxi, Grab or jeep.',
+    sections: [
+      { hFil: 'Transport mag-isa', hEn: 'Getting around solo', bFil: 'Ang Grab ay convenient para sa hillside trip tulad ng Stone Kingdom. Sa city loop (Burnham, Session Road), pwede nang lakarin o jeep.', bEn: 'Grab is convenient for the hillside trip to the Stone Kingdom. In the city loop (Burnham, Session Road), walking or jeep works.' },
+      { hFil: 'Safety at hillside', hEn: 'Safety on the hills', bFil: 'Umalis nang maaga, i-text ang plano sa trusted contact, at iwas sa madilim na part kapag pababa. Ang attraction ay sarado sa gabi.', bEn: 'Leave early, text your plan to a trusted contact, and avoid dark sections when heading down. The attraction closes at night.' },
+      { hFil: 'Solo-friendly spots', hEn: 'Solo-friendly spots', bFil: 'Ang cafés sa Session Road, Burnham, at Tam-awan ay madaling tambayan mag-isa. Ang Stone Kingdom ay ok para sa reflective walk at photos.', bEn: 'Cafés on Session Road, Burnham and Tam-awan are easy to hang out in alone. The Stone Kingdom is good for a reflective walk and photos.' }
+    ],
+    faqs: [
+      { qFil: 'Safe ba ang Baguio para sa babae mag-isa?', qEn: 'Is Baguio safe for a woman alone?', aFil: 'Karamihan ay nagsasabing safe sa public areas sa daytime. Gamitin ang common sense, iwas sa isolated spots sa gabi.', aEn: 'Most say it is safe in public areas during the day. Use common sense and avoid isolated spots at night.' },
+      { qFil: 'Mahirap ba mag-commute mag-isa?', qEn: 'Is it hard to commute alone?', aFil: 'Hindi. Ang jeep at Grab ay accessible; ang Stone Kingdom ay may drop-off malapit sa gate.', aEn: 'No. Jeep and Grab are accessible; the Stone Kingdom has a drop-off near the gate.' },
+      { qFil: 'Ilang araw ang sapat?', qEn: 'How many days is enough?', aFil: 'Ang 2–3 araw ay sapat para sa Stone Kingdom + city loop nang hindi nagmamadali.', aEn: '2–3 days covers the Stone Kingdom + city loop at a relaxed pace.' }
+    ],
+    related: ['2-day-baguio', 'half-day-itinerary', 'first-time-tips', 'taxi-grab']
   }
 };
